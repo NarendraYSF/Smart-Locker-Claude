@@ -1,0 +1,398 @@
+/* =========================================================================
+ * Components
+ * ========================================================================= */
+
+/* --- Buttons ------------------------------------------------------- */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: var(--tap-min);
+  padding: var(--space-5) var(--space-7);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  letter-spacing: var(--ls-snug);
+  color: var(--fg-primary);
+  transition: transform var(--dur-fast) var(--ease-spring),
+              background var(--dur-med) var(--ease-standard),
+              box-shadow var(--dur-med) var(--ease-standard);
+  user-select: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn--primary {
+  background: linear-gradient(180deg, var(--accent-uin-strong), var(--accent-uin));
+  color: var(--fg-primary);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.24),
+    0 24px 48px -16px rgba(28, 107, 63, 0.5);
+}
+
+.btn--primary:active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 8px 24px -8px rgba(28, 107, 63, 0.5);
+}
+
+.btn--gold {
+  background: linear-gradient(180deg, #E6BD60, var(--accent-gold));
+  color: var(--fg-inverse);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 24px 48px -16px rgba(212, 168, 75, 0.4);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--fg-secondary);
+  border: 1px solid var(--line-strong);
+}
+
+.btn--ghost:active {
+  background: var(--line-hairline);
+}
+
+.btn--danger-ghost {
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid rgba(232, 93, 93, 0.35);
+}
+
+.btn--lg {
+  font-size: var(--fs-lg);
+  padding: var(--space-6) var(--space-8);
+  min-height: 120px;
+}
+
+.btn--icon-only {
+  padding: var(--space-4);
+  min-width: var(--tap-min);
+  aspect-ratio: 1 / 1;
+}
+
+.btn__icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.btn__icon--lg {
+  width: 40px;
+  height: 40px;
+  stroke-width: 1.75;
+}
+
+/* --- Pill / Badge -------------------------------------------------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  background: var(--line-hairline);
+  color: var(--fg-secondary);
+  border: 1px solid var(--line-soft);
+}
+
+.pill--gold {
+  background: var(--accent-gold-soft);
+  color: var(--accent-gold);
+  border-color: rgba(212, 168, 75, 0.3);
+}
+
+.pill--green {
+  background: var(--accent-glow-soft);
+  color: var(--accent-glow);
+  border-color: var(--line-accent);
+}
+
+.pill--mono {
+  font-family: var(--font-mono);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.pill__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-gold);
+  color: var(--fg-inverse);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+}
+
+/* --- Card ---------------------------------------------------------- */
+
+.card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  box-shadow: var(--elev-1);
+  transition: border-color var(--dur-med) var(--ease-standard),
+              transform var(--dur-fast) var(--ease-spring),
+              background var(--dur-med) var(--ease-standard);
+}
+
+.card--interactive:active {
+  transform: scale(0.99);
+  border-color: var(--line-accent);
+}
+
+.card--gold {
+  background: var(--bg-card-gold);
+  border-color: rgba(212, 168, 75, 0.25);
+}
+
+.card--strong {
+  background: var(--bg-card-strong);
+  border-color: var(--line-strong);
+}
+
+/* --- Locker cell (for grid visualization) ------------------------- */
+
+.locker-cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-raised);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--fg-muted);
+  font-weight: 500;
+  transition: background var(--dur-med) var(--ease-standard),
+              border-color var(--dur-med) var(--ease-standard),
+              color var(--dur-med) var(--ease-standard);
+}
+
+.locker-cell--occupied {
+  background: var(--bg-card-strong);
+  color: var(--fg-secondary);
+}
+
+.locker-cell--mine {
+  background: linear-gradient(180deg, var(--accent-uin-strong), var(--accent-uin));
+  color: var(--fg-primary);
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 32px -4px var(--accent-glow-soft);
+}
+
+.locker-cell--target {
+  background: linear-gradient(180deg, #E6BD60, var(--accent-gold));
+  color: var(--fg-inverse);
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 40px -4px var(--accent-gold-soft);
+  animation: pulse-gold 1600ms ease-in-out infinite;
+}
+
+.locker-cell--delivering {
+  animation: pulse-glow 1600ms ease-in-out infinite;
+}
+
+/* --- Toast -------------------------------------------------------- */
+
+.toast-host {
+  position: absolute;
+  left: 50%;
+  bottom: 180px;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--bg-card-strong);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  padding: var(--space-3) var(--space-6);
+  color: var(--fg-primary);
+  font-size: var(--fs-sm);
+  box-shadow: var(--elev-2);
+  animation: stagger-in var(--dur-slow) var(--ease-entrance) both;
+  pointer-events: auto;
+}
+
+/* --- Inputs ------------------------------------------------------- */
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: var(--bg-raised);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-md);
+  transition: border-color var(--dur-med) var(--ease-standard);
+}
+
+.field:focus-within {
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 0 4px var(--accent-glow-soft);
+}
+
+.field__icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  stroke: var(--fg-muted);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.field__input {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: var(--fs-lg);
+  color: var(--fg-primary);
+  min-height: 56px;
+  padding: 0;
+}
+
+.field__input::placeholder {
+  color: var(--fg-muted);
+}
+
+/* --- Avatar ------------------------------------------------------- */
+
+.avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background:
+    linear-gradient(135deg, var(--accent-uin-strong), var(--accent-uin));
+  border: 2px solid var(--line-strong);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  color: var(--fg-primary);
+  overflow: hidden;
+}
+
+.avatar--sm {
+  width: 72px;
+  height: 72px;
+  font-size: var(--fs-md);
+}
+
+/* --- Divider ------------------------------------------------------ */
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-soft), transparent);
+  border: 0;
+  margin: var(--space-6) 0;
+}
+
+.divider--vertical {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--line-soft), transparent);
+}
+
+/* --- Index dot list ---------------------------------------------- */
+
+.index-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+}
+
+.index-row__num {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--fg-subtle);
+  min-width: 40px;
+}
+
+/* --- Ring (progress/countdown) ----------------------------------- */
+
+.ring {
+  --ring-size: 120px;
+  --ring-stroke: 4px;
+  --ring-progress: 1;
+  width: var(--ring-size);
+  height: var(--ring-size);
+  position: relative;
+}
+
+.ring__svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring__track {
+  fill: none;
+  stroke: var(--line-soft);
+  stroke-width: var(--ring-stroke);
+}
+
+.ring__fill {
+  fill: none;
+  stroke: var(--accent-glow);
+  stroke-width: var(--ring-stroke);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1000ms linear;
+}
+
+.ring__label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
+}

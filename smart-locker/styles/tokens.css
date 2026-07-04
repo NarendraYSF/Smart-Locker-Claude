@@ -1,0 +1,129 @@
+/* =========================================================================
+ * Design Tokens
+ * Calm Academic Futurism — Loker Pintar FST
+ * =========================================================================
+ * Every value here is intentional. Do not introduce one-off colors, font
+ * sizes, or spacing steps outside of these tokens.
+ */
+
+:root {
+  /* --- Surfaces ----------------------------------------------------- */
+  --bg-void: #0B1410;
+  --bg-raised: #132220;
+  --bg-card: #1A2E29;
+  --bg-card-strong: #203832;
+  --bg-card-gold: #2A2417;
+  --bg-card-translucent: rgba(26, 46, 41, 0.72);
+
+  /* --- Foreground -------------------------------------------------- */
+  --fg-primary: #F2EDE3;
+  --fg-secondary: #D8D1C2;
+  --fg-muted: #8FA59D;
+  --fg-subtle: #5B7069;
+  --fg-inverse: #0B1410;
+
+  /* --- Accents ----------------------------------------------------- */
+  --accent-uin: #1C6B3F;
+  --accent-uin-strong: #238654;
+  --accent-glow: #27D17C;
+  --accent-glow-soft: rgba(39, 209, 124, 0.18);
+  --accent-gold: #D4A84B;
+  --accent-gold-soft: rgba(212, 168, 75, 0.18);
+
+  /* --- States ------------------------------------------------------ */
+  --danger: #E85D5D;
+  --danger-soft: rgba(232, 93, 93, 0.16);
+  --warning: #F2B86E;
+
+  /* --- Lines ------------------------------------------------------- */
+  --line-hairline: rgba(242, 237, 227, 0.06);
+  --line-soft: rgba(242, 237, 227, 0.09);
+  --line-strong: rgba(242, 237, 227, 0.16);
+  --line-accent: rgba(39, 209, 124, 0.35);
+
+  /* --- Typography -------------------------------------------------- */
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-body: "Inter Tight", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Type scale (kiosk-tuned, large) */
+  --fs-xs: 16px;
+  --fs-sm: 20px;
+  --fs-md: 24px;
+  --fs-lg: 32px;
+  --fs-xl: 44px;
+  --fs-2xl: 64px;
+  --fs-3xl: 96px;
+  --fs-4xl: 144px;
+  --fs-5xl: 240px;
+
+  /* Line heights */
+  --lh-tight: 1.02;
+  --lh-snug: 1.18;
+  --lh-body: 1.45;
+  --lh-loose: 1.6;
+
+  /* Letter spacing */
+  --ls-tight: -0.02em;
+  --ls-snug: -0.005em;
+  --ls-normal: 0;
+  --ls-label: 0.14em;
+  --ls-caps: 0.22em;
+
+  /* --- Spacing (8px base) ----------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --space-11: 160px;
+
+  /* --- Radii ------------------------------------------------------- */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
+  --radius-pill: 999px;
+
+  /* --- Elevation (glow-based, not drop-shadow) -------------------- */
+  --elev-1: 0 1px 0 var(--line-soft) inset, 0 24px 40px -24px rgba(0, 0, 0, 0.6);
+  --elev-2: 0 1px 0 var(--line-soft) inset, 0 40px 64px -28px rgba(0, 0, 0, 0.8);
+  --elev-glow: 0 0 48px -8px var(--accent-glow-soft), 0 1px 0 var(--line-accent) inset;
+  --elev-gold: 0 0 48px -8px var(--accent-gold-soft), 0 1px 0 rgba(212, 168, 75, 0.35) inset;
+
+  /* --- Motion ------------------------------------------------------ */
+  --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-exit: cubic-bezier(0.55, 0, 0.85, 0.35);
+
+  --dur-fast: 160ms;
+  --dur-med: 320ms;
+  --dur-slow: 520ms;
+  --dur-ambient: 1800ms;
+
+  /* --- Kiosk frame ------------------------------------------------- */
+  --kiosk-width: 1080px;
+  --kiosk-height: 1920px;
+  --kiosk-pad-x: var(--space-8);
+  --kiosk-pad-y: var(--space-7);
+
+  /* --- Tap target -------------------------------------------------- */
+  --tap-min: 88px;
+}
+
+/* Prefer no-motion respect */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-med: 1ms;
+    --dur-slow: 1ms;
+    --dur-ambient: 1ms;
+  }
+}

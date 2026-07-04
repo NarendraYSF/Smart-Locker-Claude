@@ -1,0 +1,89 @@
+@startuml use-case-loker-pintar-fst
+title Use Case Diagram — Loker Pintar FST (UIN Syarif Hidayatullah Jakarta)
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #F4F1E8
+  BorderColor #2A403C
+  ArrowColor #2A403C
+}
+
+' ---------- Actors ----------
+actor "Dosen / Tenaga\nKependidikan" as Staf
+actor "Tamu / Kurir" as Kurir
+actor "Admin Sekretariat\nFST" as Admin
+
+actor "RFID Reader" as RFID <<device>>
+actor "Locker Hardware\n(Solenoid + Door Sensor)" as Hardware <<device>>
+actor "Notification Service" as Notif <<system>>
+actor "Inactivity Timer" as Timer <<system>>
+
+' ---------- System Boundary ----------
+rectangle "Sistem Loker Pintar FST" {
+
+  usecase "Tampilkan Layar Idle" as UC_Idle
+  usecase "Autentikasi via RFID" as UC_Auth
+  usecase "Lihat Dashboard Personal" as UC_Dash
+  usecase "Buka Loker Pribadi" as UC_OpenSelf
+  usecase "Lihat Daftar Kiriman" as UC_MailList
+  usecase "Ambil Kiriman" as UC_Claim
+
+  usecase "Cari Penerima\n(nama / NIP / dept)" as UC_Search
+  usecase "Pilih Ukuran Paket" as UC_PickSize
+  usecase "Konfirmasi & Titipkan\nPaket" as UC_Deliver
+
+  usecase "Alokasikan Loker Kosong\nTerdekat Sesuai Ukuran" as UC_Allocate
+  usecase "Buka Pintu Loker\n(unlock 30 detik)" as UC_Unlock
+  usecase "Deteksi Pintu Tertutup" as UC_DoorClose
+  usecase "Kunci Otomatis\n(timeout)" as UC_AutoLock
+  usecase "Kirim Notifikasi\nke Penerima" as UC_Notify
+  usecase "Reset ke Idle\n(setelah 60 detik diam)" as UC_AutoIdle
+
+  usecase "Kelola Data Staf\n& Loker" as UC_Manage
+  usecase "Pantau Status Loker" as UC_Monitor
+}
+
+' ---------- Staf relationships ----------
+Staf --> UC_Auth
+Staf --> UC_Dash
+Staf --> UC_OpenSelf
+Staf --> UC_MailList
+Staf --> UC_Claim
+
+UC_Auth ..> RFID : <<uses>>
+UC_Auth <.. UC_Dash : <<include>>
+UC_OpenSelf ..> UC_Unlock : <<include>>
+UC_Claim    ..> UC_Unlock : <<include>>
+UC_MailList <.. UC_Claim  : <<extend>>
+
+' ---------- Kurir relationships ----------
+Kurir --> UC_Search
+Kurir --> UC_PickSize
+Kurir --> UC_Deliver
+
+UC_Search   <.. UC_PickSize : <<include>>
+UC_PickSize <.. UC_Deliver  : <<include>>
+UC_Deliver  ..> UC_Allocate : <<include>>
+UC_Deliver  ..> UC_Unlock   : <<include>>
+UC_Deliver  ..> UC_Notify   : <<include>>
+
+' ---------- Hardware / system actors ----------
+UC_Unlock    --> Hardware
+UC_DoorClose <-- Hardware
+UC_AutoLock  --> Hardware
+UC_Unlock    <.. UC_DoorClose : <<extend>>
+UC_Unlock    <.. UC_AutoLock  : <<extend>>
+
+UC_Notify --> Notif
+
+UC_AutoIdle <-- Timer
+UC_Idle <.. UC_AutoIdle : <<extend>>
+
+' ---------- Admin ----------
+Admin --> UC_Manage
+Admin --> UC_Monitor
+
+@enduml

@@ -1,0 +1,143 @@
+@startuml sequence-loker-pintar-fst
+title Sequence Diagram — Loker Pintar FST (3 Skenario)
+
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #2A403C
+  ActorBorderColor #2A403C
+  LifeLineBackgroundColor #F4F1E8
+  LifeLineBorderColor #2A403C
+  ParticipantBorderColor #2A403C
+  ParticipantBackgroundColor #D9CFA9
+  ParticipantFontColor #1B2A26
+  GroupBorderColor #8A6A1F
+  GroupBackgroundColor #FFF7E0
+}
+
+actor "Staf / Kurir" as User
+participant "KioskApp\n(state + router)" as App
+participant "Screen\n(mounted)" as Screen
+participant "DataRepository" as Repo
+participant "InactivityTimer" as Timer
+participant "RFID Reader" as RFID
+participant "Locker Hardware" as HW
+participant "Notification\nService" as Notif
+
+== Boot ==
+User -> App : open kiosk URL
+activate App
+App -> App : boot()
+App -> App : startClock()
+App -> App : navigate("idle")
+App -> Screen : mountIdle(stage, state)
+deactivate App
+
+== Skenario 1 — Staf membuka loker pribadi ==
+User  -> Screen : tap "Staf Akademik"
+Screen -> App   : navigate("tap-card")
+App   -> Screen : mountTapCard(stage, state)
+
+User  -> RFID   : tempel kartu
+RFID  -> Screen : onTap(uid)  // simulated 3.5s / Enter
+Screen -> Repo  : staff.find(by rfid)
+Repo  --> Screen : Staff{nip, name, role, lockerId}
+Screen -> App   : navigate("dashboard", {user})
+App   -> Timer  : reset()
+App   -> Screen : mountDashboard(stage, state)
+Screen -> Repo  : mailFor(user.nip)
+Repo  --> Screen : Mail[]
+Screen -> Repo  : lockers.find(user.lockerId)
+Repo  --> Screen : Locker
+
+User  -> Screen : tap "Buka Loker Saya"
+Screen -> App   : navigate("opening-locker", {openReason: "self"})
+App   -> Screen : mountOpeningLocker(stage, state)
+Screen -> HW    : unlock(locker.id)
+HW    --> Screen : ack
+Screen -> Screen : startCountdown(30s)
+
+alt Pengguna selesai sebelum 30s
+  User   -> Screen : tap "Selesai"
+else Door sensor menutup
+  HW     -> Screen : doorClosed()
+else Timeout 30s
+  Screen -> Screen : tick → 0
+end
+Screen -> HW    : autoLock(locker.id)
+Screen -> App   : navigate("done-screen")
+App   -> Screen : mountDone(stage, state)
+Screen -> Screen : auto-back ke idle (5s)
+Screen -> App   : navigate("idle")
+
+== Skenario 2 — Staf mengambil kiriman masuk ==
+User  -> Screen : (di Dashboard) tap "Surat & Paket"
+Screen -> App   : navigate("mail")
+App   -> Screen : mountMail(stage, state)
+Screen -> Repo  : mailFor(user.nip)
+Repo  --> Screen : Mail[]
+
+User  -> Screen : tap "Ambil" pada Mail{id: M-001}
+Screen -> App   : navigate("opening-locker", {openReason: "claim-mail", claimedMailId})
+App   -> Screen : mountOpeningLocker(stage, state)
+Screen -> Repo  : incomingMail.find(M-001)
+Repo  --> Screen : Mail
+Screen -> Repo  : lockers.find(mail.lockerId)
+Repo  --> Screen : Locker
+Screen -> HW    : unlock(locker.id)
+HW    --> Screen : ack
+User  -> Screen : ambil kiriman, tap "Sudah Diambil"
+Screen -> Repo  : mark mail = claimed
+Screen -> HW    : autoLock(locker.id)
+Screen -> App   : navigate("done-screen")
+
+== Skenario 3 — Kurir menitipkan paket ==
+User  -> Screen : (di Idle) tap "Kirim Surat atau Paket"
+Screen -> App   : navigate("courier-search")
+App   -> Screen : mountCourierSearch(stage, state)
+
+loop pencarian iteratif
+  User  -> Screen : ketik query
+  Screen -> Repo  : searchStaff(q)
+  Repo  --> Screen : Staff[]
+end
+User  -> Screen : pilih penerima
+Screen -> App   : navigate("courier-size", {recipient})
+App   -> Screen : mountCourierSize(stage, state)
+
+loop tiap ukuran paket
+  Screen -> Repo : countFree(bucket)
+  Repo  --> Screen : n
+end
+
+User  -> Screen : pilih ukuran (mis. "Paket Sedang")
+Screen -> Repo  : findFreeLocker("sedang")
+alt Loker tersedia
+  Repo  --> Screen : Locker
+  Screen -> App   : navigate("courier-assign", {packageSize, assignedLocker})
+  App   -> Screen : mountCourierAssign(stage, state)
+  Screen -> Screen : locker.state = "delivering"
+else Tidak ada
+  Repo  --> Screen : null
+  Screen -> Screen : disable tile ukuran
+end
+
+User  -> Screen : tap "Buka Loker & Titipkan"
+Screen -> App   : navigate("opening-locker", {openReason: "deliver"})
+App   -> Screen : mountOpeningLocker(stage, state)
+Screen -> HW    : unlock(assignedLocker.id)
+HW    --> Screen : ack
+User  -> Screen : letakkan paket, tap "Sudah Diletakkan"
+Screen -> Repo  : create Mail{recipientNip, sender, type, lockerId}
+Screen -> Repo  : assignedLocker.state = "occupied"
+Screen -> HW    : autoLock(assignedLocker.id)
+Screen -> Notif : notify(recipient, mail)
+Notif --> Screen : queued
+Screen -> App   : navigate("done-screen")
+
+== Cross-cutting — Inactivity ==
+User  -> Timer : (no input ≥ 60s)
+Timer -> App   : onTimeout()
+App   -> App   : clear transient state
+App   -> Screen : mountIdle(stage, state)
+
+@enduml

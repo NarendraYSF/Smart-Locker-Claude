@@ -1,0 +1,201 @@
+/* =========================================================================
+ * Layout: kiosk frame, header, stage, footer, portrait fit
+ * =========================================================================
+ * Primary canvas is 1080 x 1920 (portrait). The kiosk container is CSS-sized
+ * and scaled visually via `transform` so the same layout can be previewed
+ * on any desktop monitor in dev without changing the intended proportions.
+ */
+
+body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.kiosk {
+  position: relative;
+  width: var(--kiosk-width);
+  height: var(--kiosk-height);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--bg-void);
+  color: var(--fg-primary);
+  overflow: hidden;
+  isolation: isolate;
+  flex-shrink: 0;
+  transform-origin: center center;
+  /* Fit portrait canvas inside any viewport:
+     min(vw/1080, vh/1920) guarantees the entire kiosk is visible,
+     scaled uniformly, with the design's true 1080x1920 proportions. */
+  transform: scale(min(calc(100vw / 1080), calc(100vh / 1920)));
+}
+
+/* --- Ambient backdrop --------------------------------------------- */
+
+.kiosk__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.kiosk__pattern {
+  position: absolute;
+  inset: -10%;
+  background-image: url("../assets/pattern-geo.svg");
+  background-repeat: repeat;
+  background-size: 320px 320px;
+  opacity: 0.05;
+  animation: drift 120s linear infinite;
+}
+
+.kiosk__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(160px);
+  opacity: 0.55;
+}
+
+.kiosk__glow--one {
+  top: -280px;
+  left: -240px;
+  width: 780px;
+  height: 780px;
+  background: radial-gradient(closest-side, var(--accent-uin) 0%, transparent 70%);
+}
+
+.kiosk__glow--two {
+  bottom: -340px;
+  right: -260px;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(closest-side, rgba(212, 168, 75, 0.35) 0%, transparent 70%);
+  opacity: 0.35;
+}
+
+/* --- Header -------------------------------------------------------- */
+
+.kiosk__header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--kiosk-pad-y) var(--kiosk-pad-x) var(--space-6);
+}
+
+.kiosk__brand {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.brand-mark {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  background:
+    linear-gradient(135deg, var(--accent-uin-strong) 0%, var(--accent-uin) 100%);
+  box-shadow: var(--elev-glow);
+  position: relative;
+  display: inline-block;
+}
+
+.brand-mark::before,
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(242, 237, 227, 0.28);
+}
+
+.brand-mark::after {
+  inset: 18px;
+  border-radius: 4px;
+  border-color: var(--accent-gold);
+  opacity: 0.7;
+}
+
+.brand-text__eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.brand-text__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  color: var(--fg-primary);
+  letter-spacing: var(--ls-snug);
+  margin-top: 4px;
+}
+
+.kiosk__meta {
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.kiosk__meta-date {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.kiosk__meta-time {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  color: var(--fg-primary);
+  letter-spacing: var(--ls-snug);
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Stage --------------------------------------------------------- */
+
+.kiosk__stage {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 0 var(--kiosk-pad-x);
+  display: grid;
+}
+
+/* --- Footer -------------------------------------------------------- */
+
+.kiosk__footer {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-6) var(--kiosk-pad-x) var(--kiosk-pad-y);
+  border-top: 1px solid var(--line-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kiosk__footer-line {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--fg-secondary);
+}
+
+.kiosk__footer-line--muted {
+  color: var(--fg-subtle);
+}
+
+/* Ambient drift animation */
+@keyframes drift {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-320px, -320px, 0); }
+}

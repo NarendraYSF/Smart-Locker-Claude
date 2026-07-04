@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <defs>
+    <g id="star">
+      <!-- 8-point Islamic geometric star -->
+      <polygon points="40,0 48,32 80,40 48,48 40,80 32,48 0,40 32,32"
+               fill="none" stroke="#F2EDE3" stroke-width="0.8" />
+      <polygon points="40,8 56,24 72,40 56,56 40,72 24,56 8,40 24,24"
+               fill="none" stroke="#F2EDE3" stroke-width="0.5" opacity="0.6" />
+      <circle cx="40" cy="40" r="2.5" fill="#F2EDE3" opacity="0.5" />
+    </g>
+  </defs>
+  <!-- staggered grid of stars -->
+  <use href="#star" x="0"   y="0"   />
+  <use href="#star" x="80"  y="0"   />
+  <use href="#star" x="160" y="0"   />
+  <use href="#star" x="240" y="0"   />
+  <use href="#star" x="40"  y="80"  />
+  <use href="#star" x="120" y="80"  />
+  <use href="#star" x="200" y="80"  />
+  <use href="#star" x="280" y="80"  />
+  <use href="#star" x="0"   y="160" />
+  <use href="#star" x="80"  y="160" />
+  <use href="#star" x="160" y="160" />
+  <use href="#star" x="240" y="160" />
+  <use href="#star" x="40"  y="240" />
+  <use href="#star" x="120" y="240" />
+  <use href="#star" x="200" y="240" />
+  <use href="#star" x="280" y="240" />
+  <!-- connecting hairlines -->
+  <g fill="none" stroke="#F2EDE3" stroke-width="0.4" opacity="0.35">
+    <line x1="40"  y1="40"  x2="120" y2="120" />
+    <line x1="120" y1="40"  x2="40"  y2="120" />
+    <line x1="200" y1="40"  x2="280" y2="120" />
+    <line x1="280" y1="40"  x2="200" y2="120" />
+    <line x1="40"  y1="200" x2="120" y2="280" />
+    <line x1="120" y1="200" x2="40"  y2="280" />
+    <line x1="200" y1="200" x2="280" y2="280" />
+    <line x1="280" y1="200" x2="200" y2="280" />
+  </g>
+</svg>

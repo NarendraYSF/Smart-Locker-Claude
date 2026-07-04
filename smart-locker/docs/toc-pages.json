@@ -1,0 +1,322 @@
+[
+  {
+    "tocText": "KATA PENGANTAR",
+    "key": "KATA PENGANTAR",
+    "pdfPage": 2,
+    "displayed": "i",
+    "isBab": false,
+    "isRoman": true
+  },
+  {
+    "tocText": "DAFTAR ISI",
+    "key": "DAFTAR ISI",
+    "pdfPage": 3,
+    "displayed": "ii",
+    "isBab": false,
+    "isRoman": true
+  },
+  {
+    "tocText": "PENDAHULUAN",
+    "key": "BAB I PENDAHULUAN",
+    "pdfPage": 5,
+    "displayed": "1",
+    "isBab": true,
+    "isRoman": false
+  },
+  {
+    "tocText": "Latar Belakang",
+    "key": "1.1 Latar Belakang",
+    "pdfPage": 5,
+    "displayed": "1",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Identifikasi Masalah",
+    "key": "1.2 Identifikasi Masalah",
+    "pdfPage": 7,
+    "displayed": "3",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Rumusan Masalah",
+    "key": "1.3 Rumusan Masalah",
+    "pdfPage": 7,
+    "displayed": "3",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Batasan Masalah",
+    "key": "1.4 Batasan Masalah",
+    "pdfPage": 8,
+    "displayed": "4",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Tujuan Project",
+    "key": "1.5 Tujuan Project",
+    "pdfPage": 9,
+    "displayed": "5",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Manfaat Project",
+    "key": "1.6 Manfaat Project",
+    "pdfPage": 9,
+    "displayed": "5",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Metode Pengumpulan Data",
+    "key": "1.7 Metode Pengumpulan Data",
+    "pdfPage": 10,
+    "displayed": "6",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Sistematika Penulisan",
+    "key": "1.8 Sistematika Penulisan",
+    "pdfPage": 11,
+    "displayed": "7",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "ANALISIS SISTEM BERJALAN",
+    "key": "Objek penelitian dalam laporan ini adalah",
+    "pdfPage": 13,
+    "displayed": "9",
+    "isBab": true,
+    "isRoman": false
+  },
+  {
+    "tocText": "Gambaran Umum Objek Penelitian",
+    "key": "2.1 Gambaran Umum Objek Penelitian",
+    "pdfPage": 13,
+    "displayed": "9",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Profil Instansi",
+    "key": "2.2 Profil Instansi",
+    "pdfPage": 15,
+    "displayed": "11",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Struktur Organisasi",
+    "key": "2.3 Struktur Organisasi",
+    "pdfPage": 15,
+    "displayed": "11",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Tugas dan Fungsi",
+    "key": "2.4 Tugas dan Fungsi",
+    "pdfPage": 17,
+    "displayed": "13",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Prosedur Sistem Berjalan",
+    "key": "2.5 Prosedur Sistem Berjalan",
+    "pdfPage": 18,
+    "displayed": "14",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Dokumen Masukan dan Keluaran",
+    "key": "2.6 Dokumen Masukan dan Keluaran",
+    "pdfPage": 20,
+    "displayed": "16",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Permasalahan Sistem Berjalan",
+    "key": "2.7 Permasalahan Sistem Berjalan",
+    "pdfPage": 21,
+    "displayed": "17",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Solusi yang Diusulkan",
+    "key": "2.8 Solusi yang Diusulkan",
+    "pdfPage": 22,
+    "displayed": "18",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "ANALISIS KEBUTUHAN SISTEM",
+    "key": "Analisis kebutuhan sistem merupakan tahapan penting",
+    "pdfPage": 25,
+    "displayed": "21",
+    "isBab": true,
+    "isRoman": false
+  },
+  {
+    "tocText": "Analisis Kebutuhan Sistem",
+    "key": "3.1 Analisis Kebutuhan Sistem",
+    "pdfPage": 25,
+    "displayed": "21",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Identifikasi Pengguna / Aktor",
+    "key": "3.2 Identifikasi Pengguna",
+    "pdfPage": 26,
+    "displayed": "22",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Kebutuhan Fungsional",
+    "key": "3.3 Kebutuhan Fungsional",
+    "pdfPage": 27,
+    "displayed": "23",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Kebutuhan Nonfungsional",
+    "key": "3.4 Kebutuhan Nonfungsional",
+    "pdfPage": 29,
+    "displayed": "25",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Kebutuhan Perangkat Keras",
+    "key": "3.5 Kebutuhan Perangkat Keras",
+    "pdfPage": 30,
+    "displayed": "26",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Kebutuhan Perangkat Lunak",
+    "key": "3.6 Kebutuhan Perangkat Lunak",
+    "pdfPage": 32,
+    "displayed": "28",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Kebutuhan Data",
+    "key": "3.7 Kebutuhan Data",
+    "pdfPage": 33,
+    "displayed": "29",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Kebutuhan Input, Proses, dan Output",
+    "key": "3.8 Kebutuhan Input",
+    "pdfPage": 34,
+    "displayed": "30",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Spesifikasi Kebutuhan Sistem",
+    "key": "3.9 Spesifikasi Kebutuhan Sistem",
+    "pdfPage": 35,
+    "displayed": "31",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "PERANCANGAN SISTEM",
+    "key": "Berdasarkan hasil analisis pada Bab III, dirancanglah",
+    "pdfPage": 39,
+    "displayed": "35",
+    "isBab": true,
+    "isRoman": false
+  },
+  {
+    "tocText": "Rancangan Sistem Usulan",
+    "key": "4.1 Rancangan Sistem Usulan",
+    "pdfPage": 39,
+    "displayed": "35",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Use Case Diagram",
+    "key": "4.2 Use Case Diagram",
+    "pdfPage": 43,
+    "displayed": "39",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Deskripsi Use Case",
+    "key": "4.3 Deskripsi Use Case",
+    "pdfPage": 44,
+    "displayed": "40",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Activity Diagram",
+    "key": "4.4 Activity Diagram",
+    "pdfPage": 50,
+    "displayed": "46",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Sequence Diagram",
+    "key": "4.5 Sequence Diagram",
+    "pdfPage": 52,
+    "displayed": "48",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Class Diagram",
+    "key": "4.6 Class Diagram",
+    "pdfPage": 54,
+    "displayed": "50",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Perancangan Basis Data",
+    "key": "4.7 Perancangan Basis Data",
+    "pdfPage": 56,
+    "displayed": "52",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Struktur Tabel",
+    "key": "4.8 Struktur Tabel",
+    "pdfPage": 58,
+    "displayed": "54",
+    "isBab": false,
+    "isRoman": false
+  },
+  {
+    "tocText": "Rancangan Antarmuka",
+    "key": "4.9 Rancangan Antarmuka",
+    "pdfPage": 63,
+    "displayed": "59",
+    "isBab": false,
+    "isRoman": false
+  }
+]

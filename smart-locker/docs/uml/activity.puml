@@ -1,0 +1,164 @@
+@startuml activity-loker-pintar-fst
+title Activity Diagram — Loker Pintar FST (3 Alur Utama)
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+skinparam PartitionBorderColor #2A403C
+skinparam PartitionFontColor #2A403C
+
+|#E8F0EE|Pengguna|
+|#FFF7E0|Sistem Kiosk|
+|#EAEAEA|Hardware Loker|
+
+|Pengguna|
+start
+:Mendekati kiosk;
+
+|Sistem Kiosk|
+:Tampilkan layar **Idle**
+(2 CTA: Staf / Kurir);
+
+|Pengguna|
+if (Pilih jalur?) then (**Staf Akademik**)
+
+  :Tap kartu RFID;
+
+  |Sistem Kiosk|
+  :Baca UID kartu
+  (timeout simulasi 3.5s);
+  if (Kartu valid?) then (ya)
+    :Muat data Staf
+    (nama, NIP, role, lockerId);
+    :Render **Dashboard**
+    (loker, kiriman, status);
+  else (tidak)
+    :Tampilkan toast error;
+    stop
+  endif
+
+  |Pengguna|
+  if (Aksi di dashboard?) then (**Buka Loker Saya**)
+
+    |Sistem Kiosk|
+    :Render **Opening Locker**
+    reason = "self"
+    accent = hijau;
+    :Mulai countdown 30 detik;
+
+    |Hardware Loker|
+    :Aktifkan solenoid
+    (pintu terbuka);
+
+    |Pengguna|
+    :Ambil/letakkan barang;
+    :Tutup pintu;
+
+    |Hardware Loker|
+    :Sensor mendeteksi
+    pintu tertutup;
+
+    |Sistem Kiosk|
+    :Hentikan countdown;
+    :Render **Done**
+    "Selesai";
+
+  else (**Surat & Paket**)
+
+    |Sistem Kiosk|
+    :Render daftar **Mail**
+    (sender, type, locker, waktu);
+
+    |Pengguna|
+    :Pilih kiriman → tap **Ambil**;
+
+    |Sistem Kiosk|
+    :Render **Opening Locker**
+    reason = "claim-mail"
+    accent = emas;
+
+    |Hardware Loker|
+    :Buka loker target;
+
+    |Pengguna|
+    :Ambil kiriman, tutup pintu;
+
+    |Sistem Kiosk|
+    :Tandai mail = claimed;
+    :Render **Done**;
+
+  endif
+
+else (**Tamu / Kurir**)
+
+  |Sistem Kiosk|
+  :Render **Courier — Search**
+  (Langkah 1/3);
+
+  |Pengguna|
+  :Cari penerima
+  (nama / dept / NIP);
+  :Pilih penerima;
+
+  |Sistem Kiosk|
+  :Render **Courier — Size**
+  (Langkah 2/3);
+
+  |Pengguna|
+  :Pilih ukuran paket
+  (Surat / Kecil / Sedang / Besar);
+
+  |Sistem Kiosk|
+  if (Loker tersedia
+  untuk ukuran ini?) then (ya)
+    :findFreeLocker(bucket);
+    :Tandai locker.state = delivering;
+    :Render **Courier — Assign**
+    (peta loker + ringkasan);
+  else (tidak)
+    :Disable tile ukuran tsb;
+    stop
+  endif
+
+  |Pengguna|
+  :Tap **Buka Loker & Titipkan**;
+
+  |Sistem Kiosk|
+  :Render **Opening Locker**
+  reason = "deliver"
+  accent = emas;
+
+  |Hardware Loker|
+  :Buka loker target;
+
+  |Pengguna|
+  :Letakkan paket, tutup pintu;
+
+  |Sistem Kiosk|
+  :Tandai locker.state = occupied;
+  :Buat record mail untuk penerima;
+  :Kirim notifikasi ke penerima;
+  :Render **Done**;
+
+endif
+
+|Sistem Kiosk|
+:Tampilkan konfirmasi 5 detik;
+:Reset state transient
+(user, recipient, package, locker);
+:Kembali ke **Idle**;
+
+stop
+
+' --- Inactivity branch (cross-cutting) ---
+note right
+  Cross-cutting: kapan pun
+  tidak ada interaksi 60 detik
+  pada layar non-idle, sistem
+  otomatis kembali ke **Idle**
+  dan menghapus state transient.
+end note
+
+@enduml

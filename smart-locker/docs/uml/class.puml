@@ -1,0 +1,240 @@
+@startuml class-loker-pintar-fst
+title Class Diagram — Loker Pintar FST (Kiosk Frontend Model)
+
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F4F1E8
+  BorderColor #2A403C
+  ArrowColor #2A403C
+  HeaderBackgroundColor #D9CFA9
+}
+hide circle
+
+' ================== Domain Entities ==================
+package "Domain" {
+
+  class Staff {
+    + nip : String
+    + name : String
+    + role : Role
+    + dept : String
+    + initials : String
+    + rfid : String
+    + lockerId : String
+    --
+    + greetingHint() : String
+  }
+
+  enum Role {
+    DOSEN
+    TENAGA_KEPENDIDIKAN
+  }
+
+  class Locker {
+    + id : String
+    + number : int
+    + size : LockerSize
+    + state : LockerState
+    + ownerNip : String?
+    + hasMail : boolean
+    --
+    + isFree() : boolean
+    + sizeLabel() : String
+  }
+
+  enum LockerSize {
+    KECIL
+    SEDANG
+    BESAR
+  }
+
+  enum LockerState {
+    AVAILABLE
+    ASSIGNED
+    OCCUPIED
+    DELIVERING
+  }
+
+  class Mail {
+    + id : String
+    + recipientNip : String
+    + sender : String
+    + type : String
+    + note : String
+    + arrivedAt : ISODateTime
+    + lockerId : String
+    --
+    + relativeAge() : String
+  }
+
+  class PackageSize {
+    + id : String
+    + name : String
+    + icon : String
+    + dim : String
+    + bucket : LockerSize
+  }
+
+  class Department {
+    + name : String
+  }
+}
+
+' ================== Repository / Data Layer ==================
+package "Data" {
+  class DataRepository <<module>> {
+    + departments : List<Department>
+    + lockers : List<Locker>
+    + staff : List<Staff>
+    + incomingMail : List<Mail>
+    + packageSizes : List<PackageSize>
+    --
+    + searchStaff(q : String) : List<Staff>
+    + mailFor(nip : String) : List<Mail>
+    + countFree(size : LockerSize) : int
+    + findFreeLocker(size : LockerSize) : Locker?
+    - seed() : void
+  }
+}
+
+' ================== Application Core ==================
+package "App Core" {
+
+  class KioskApp <<module>> {
+    + state : KioskState
+    --
+    + navigate(screen : String, ctx : Object) : void
+    + toast(msg : String, opts : Object) : void
+    + boot() : void
+    - resetInactivity() : void
+  }
+
+  class KioskState {
+    + screen : String
+    + user : Staff?
+    + recipient : Staff?
+    + packageSize : PackageSize?
+    + assignedLocker : Locker?
+    + openReason : OpenReason?
+    + claimedMailId : String?
+  }
+
+  enum OpenReason {
+    SELF
+    CLAIM_MAIL
+    DELIVER
+  }
+
+  class InactivityTimer {
+    - timeoutMs : long = 60000
+    - timerId : int
+    --
+    + reset() : void
+    + cancel() : void
+    + onTimeout() : void
+  }
+
+  class ClockService {
+    - intervalId : int
+    --
+    + start(dateEl, timeEl) : void
+    + formatTime(iso : String) : String
+    + formatRelative(iso : String) : String
+  }
+
+  class ToastHost {
+    + show(msg : String, duration : int) : void
+  }
+}
+
+' ================== Screen Layer ==================
+package "Screens (Mountable Modules)" {
+
+  abstract class Screen <<module>> {
+    + mount(stage : Element, state : KioskState) : Cleanup?
+  }
+
+  class IdleScreen
+  class TapCardScreen
+  class DashboardScreen
+  class OpeningLockerScreen {
+    - countdownSeconds : int = 30
+    + tick() : void
+    + finish() : void
+  }
+  class CourierSearchScreen
+  class CourierSizeScreen
+  class CourierAssignScreen
+  class MailScreen
+  class DoneScreen
+
+  Screen <|-- IdleScreen
+  Screen <|-- TapCardScreen
+  Screen <|-- DashboardScreen
+  Screen <|-- OpeningLockerScreen
+  Screen <|-- CourierSearchScreen
+  Screen <|-- CourierSizeScreen
+  Screen <|-- CourierAssignScreen
+  Screen <|-- MailScreen
+  Screen <|-- DoneScreen
+}
+
+' ================== Hardware Adapters (planned) ==================
+package "Hardware Adapters" <<rectangle>> {
+  interface RfidReader {
+    + onTap(callback) : void
+  }
+  interface LockerHardware {
+    + unlock(lockerId : String) : void
+    + onDoorClosed(callback) : void
+  }
+  interface NotificationGateway {
+    + notify(staff : Staff, mail : Mail) : void
+  }
+}
+
+' ================== Relationships ==================
+Staff "1" -- "0..1" Locker        : owns >
+Staff "1" -- "0..*" Mail          : receives >
+Mail  "0..*" -- "1" Locker        : stored in >
+PackageSize "1" -- "1" LockerSize : maps to >
+Staff -- Role
+Locker -- LockerSize
+Locker -- LockerState
+Staff -- Department
+
+KioskApp "1" *-- "1" KioskState
+KioskApp "1" *-- "1" InactivityTimer
+KioskApp "1" *-- "1" ToastHost
+KioskApp ..> ClockService : uses
+KioskApp ..> Screen        : routes to >
+KioskApp ..> DataRepository : queries
+
+KioskState --> Staff       : user
+KioskState --> Staff       : recipient
+KioskState --> PackageSize : packageSize
+KioskState --> Locker      : assignedLocker
+KioskState --> OpenReason  : openReason
+
+DataRepository "1" o-- "*" Staff
+DataRepository "1" o-- "*" Locker
+DataRepository "1" o-- "*" Mail
+DataRepository "1" o-- "*" PackageSize
+DataRepository "1" o-- "*" Department
+
+' Screens that strictly need data
+TapCardScreen        ..> DataRepository
+DashboardScreen      ..> DataRepository
+OpeningLockerScreen  ..> DataRepository
+CourierSearchScreen  ..> DataRepository
+CourierSizeScreen    ..> DataRepository
+CourierAssignScreen  ..> DataRepository
+MailScreen           ..> DataRepository
+
+' Future hardware bindings
+TapCardScreen       ..> RfidReader        : << adapter >>
+OpeningLockerScreen ..> LockerHardware    : << adapter >>
+CourierAssignScreen ..> NotificationGateway : << adapter >>
+
+@enduml

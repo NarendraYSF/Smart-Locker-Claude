@@ -1,0 +1,124 @@
+/* =========================================================================
+ * Motion: keyframes + entrance utilities
+ * ========================================================================= */
+
+/* Entrance: stagger fade-up. Child elements can opt-in via `.stagger > *` */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: stagger-in var(--dur-slow) var(--ease-entrance) forwards;
+}
+
+.stagger > *:nth-child(1)  { animation-delay: 60ms; }
+.stagger > *:nth-child(2)  { animation-delay: 140ms; }
+.stagger > *:nth-child(3)  { animation-delay: 220ms; }
+.stagger > *:nth-child(4)  { animation-delay: 300ms; }
+.stagger > *:nth-child(5)  { animation-delay: 380ms; }
+.stagger > *:nth-child(6)  { animation-delay: 460ms; }
+.stagger > *:nth-child(7)  { animation-delay: 540ms; }
+.stagger > *:nth-child(8)  { animation-delay: 620ms; }
+
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* RFID radar ripple */
+@keyframes ripple {
+  0% {
+    transform: scale(0.25);
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.05;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Green success pulse (locker unlock) */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 rgba(39, 209, 124, 0.35),
+      0 0 40px -4px var(--accent-glow-soft);
+  }
+  50% {
+    box-shadow:
+      0 0 0 24px rgba(39, 209, 124, 0),
+      0 0 80px -4px rgba(39, 209, 124, 0.4);
+  }
+}
+
+/* Gold pulse (delivery) */
+@keyframes pulse-gold {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 rgba(212, 168, 75, 0.35),
+      0 0 40px -4px var(--accent-gold-soft);
+  }
+  50% {
+    box-shadow:
+      0 0 0 20px rgba(212, 168, 75, 0),
+      0 0 80px -4px rgba(212, 168, 75, 0.4);
+  }
+}
+
+/* Unlock spring: scale bounce used when a locker number is revealed */
+@keyframes unlock-pop {
+  0% {
+    transform: scale(0.82);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  70% {
+    transform: scale(1.04);
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.unlock-pop {
+  animation: unlock-pop 720ms var(--ease-spring) both;
+}
+
+/* Ambient slow breathe */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+
+/* Slide in from below */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Screen transition: the stage swaps attribute and fades in */
+[data-stage] > * {
+  animation: fade-in var(--dur-med) var(--ease-entrance) both;
+}
