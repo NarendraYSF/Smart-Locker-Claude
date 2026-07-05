@@ -2,6 +2,7 @@
 
 import { qs } from "./utils/dom.js";
 import { startClock } from "./utils/clock.js";
+import { releaseLocker } from "./data.js";
 
 import { mount as mountIdle } from "./screens/idle.js";
 import { mount as mountTap } from "./screens/tap-card.js";
@@ -105,7 +106,10 @@ function manageIdleChecker() {
     if (Date.now() - lastUserInteraction >= IDLE_TIMEOUT_MS) {
       clearInterval(inactivityCheckerId);
       inactivityCheckerId = null;
-      // Auto-return to idle, clearing transient state
+      // Auto-return to idle, clearing transient state.
+      // Release any locker reserved by an abandoned courier flow; the
+      // from-state guard makes this a no-op after a completed deposit.
+      if (state.assignedLocker) releaseLocker(state.assignedLocker.id);
       Object.assign(state, {
         user: null,
         recipient: null,
@@ -142,12 +146,38 @@ export function toast(msg, { duration = 3200 } = {}) {
   }, duration);
 }
 
+// --- Viewport fit ------------------------------------------------------
+// The kiosk canvas is a fixed 1080x1920. CSS provides an initial
+// scale(min(100dvw/1080, 100dvh/1920)), but viewport units can lie on
+// tablet browsers (dynamic address bars, older WebViews without dvh).
+// Measuring the real visible viewport in JS and setting the transform
+// directly guarantees the whole canvas fits, e.g. on 16:10 displays.
+
+const KIOSK_W = 1080;
+const KIOSK_H = 1920;
+
+function fitKiosk() {
+  const kiosk = qs("[data-kiosk]");
+  if (!kiosk) return;
+  const vw = (window.visualViewport && window.visualViewport.width) || window.innerWidth;
+  const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+  const scale = Math.min(vw / KIOSK_W, vh / KIOSK_H);
+  kiosk.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener("resize", fitKiosk);
+window.addEventListener("orientationchange", fitKiosk);
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", fitKiosk);
+}
+
 // --- Boot ------------------------------------------------------------
 // NOTE: module scripts are deferred, so by the time this file runs the DOM
 // is usually already parsed and DOMContentLoaded has already fired. We must
 // boot directly if that's the case, otherwise queue it.
 
 function boot() {
+  fitKiosk();
   startClock({
     dateEl: qs("[data-clock-date]"),
     timeEl: qs("[data-clock-time]")

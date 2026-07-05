@@ -10,13 +10,23 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
+  /* Dynamic viewport units: exclude browser chrome on tablets/phones */
+  width: 100dvw;
+  height: 100dvh;
   overflow: hidden;
-  display: grid;
-  place-items: center;
 }
 
 .kiosk {
-  position: relative;
+  /* Center the fixed 1080x1920 canvas on the viewport with absolute
+     positioning + negative margins. Grid/flex centering is NOT used here:
+     when the child overflows the viewport, browsers fall back to
+     start-alignment ("safe" centering), which pushed the kiosk down/right
+     and clipped its bottom on small screens (e.g. 16:10 tablets). */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: calc(var(--kiosk-height) / -2);
+  margin-left: calc(var(--kiosk-width) / -2);
   width: var(--kiosk-width);
   height: var(--kiosk-height);
   display: grid;
@@ -25,12 +35,13 @@ body {
   color: var(--fg-primary);
   overflow: hidden;
   isolation: isolate;
-  flex-shrink: 0;
   transform-origin: center center;
-  /* Fit portrait canvas inside any viewport:
-     min(vw/1080, vh/1920) guarantees the entire kiosk is visible,
-     scaled uniformly, with the design's true 1080x1920 proportions. */
-  transform: scale(min(calc(100vw / 1080), calc(100vh / 1920)));
+  /* Scaling is applied by fitKiosk() in scripts/app.js, which measures
+     the real visible viewport (visualViewport) and sets
+     transform: scale(min(vw/1080, vh/1920)). No CSS fallback: the old
+     scale(min(calc(100vw / 1080), ...)) length-division syntax is only
+     valid in very new browsers and silently breaks on older tablets. */
+  transform: scale(0.5);
 }
 
 /* --- Ambient backdrop --------------------------------------------- */
@@ -96,28 +107,10 @@ body {
 .brand-mark {
   width: 64px;
   height: 64px;
-  border-radius: 14px;
-  background:
-    linear-gradient(135deg, var(--accent-uin-strong) 0%, var(--accent-uin) 100%);
+  border-radius: 50%;
+  object-fit: contain;
   box-shadow: var(--elev-glow);
-  position: relative;
   display: inline-block;
-}
-
-.brand-mark::before,
-.brand-mark::after {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  border-radius: 8px;
-  border: 1.5px solid rgba(242, 237, 227, 0.28);
-}
-
-.brand-mark::after {
-  inset: 18px;
-  border-radius: 4px;
-  border-color: var(--accent-gold);
-  opacity: 0.7;
 }
 
 .brand-text__eyebrow {
@@ -169,6 +162,11 @@ body {
   overflow: hidden;
   padding: 0 var(--kiosk-pad-x);
   display: grid;
+  /* Force the single screen row to exactly the stage height. Without
+     minmax(0, 1fr) the implicit row is content-sized, so tall screens
+     (e.g. courier search with its staff list) silently overflow into the
+     hidden area instead of getting an inner scrollbar. */
+  grid-template-rows: minmax(0, 1fr);
 }
 
 /* --- Footer -------------------------------------------------------- */

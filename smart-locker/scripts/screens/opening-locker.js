@@ -7,7 +7,7 @@
 
 import { h, icon } from "../utils/dom.js";
 import { navigate } from "../app.js";
-import { lockers, incomingMail } from "../data.js";
+import { lockers, incomingMail, occupyLocker } from "../data.js";
 
 const COUNTDOWN_SECONDS = 30;
 
@@ -161,6 +161,10 @@ export function mount(stage, state) {
 
   function finish() {
     clearInterval(id);
+    // Complete the deposit: delivering -> occupied (records the recipient)
+    if (reason === "deliver") {
+      occupyLocker(locker.id, state.recipient ? state.recipient.nip : null);
+    }
     // Go to an appropriate "done" screen
     navigate("done-screen", { openReason: reason, completedLocker: locker });
   }

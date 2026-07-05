@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loker Pintar FST — Product &amp; UX Review</title>
+<style>
+  :root {
+    --ink: #1c2333;
+    --ink-2: #5b6478;
+    --ink-3: #8b93a7;
+    --paper: #fbfaf7;
+    --surface: #ffffff;
+    --stroke: #e3e1da;
+    --navy: #1f2a44;
+    --gold: #b8860b;
+    --gold-soft: #f6efdc;
+    --danger: #b03a2e;
+    --danger-soft: #f9e9e7;
+    --warn: #b06f00;
+    --warn-soft: #faf1de;
+    --ok: #2e7d4f;
+    --ok-soft: #e8f2ec;
+    --info: #2b5f8a;
+    --info-soft: #e8eff5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 15px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 40px 28px 64px; }
+
+  /* ---------- header ---------- */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 16px; margin-bottom: 8px;
+  }
+  h1 { font-size: 26px; line-height: 1.25; color: var(--navy); }
+  h2 {
+    font-size: 19px; color: var(--navy);
+    margin: 44px 0 6px; padding-top: 20px;
+    border-top: 2px solid var(--navy);
+  }
+  h3 { font-size: 15px; color: var(--navy); margin: 14px 0 4px; }
+  .kicker {
+    font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 6px;
+  }
+  .meta { color: var(--ink-2); font-size: 13.5px; max-width: 760px; margin-top: 8px; }
+  .lead { color: var(--ink-2); font-size: 13.5px; margin-bottom: 12px; max-width: 780px; }
+
+  .lang-toggle { display: flex; gap: 0; border: 1px solid var(--stroke); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+  .lang-toggle button {
+    border: none; background: var(--surface); color: var(--ink-2);
+    font: inherit; font-size: 13px; font-weight: 600; padding: 6px 14px; cursor: pointer;
+  }
+  .lang-toggle button.active { background: var(--navy); color: #fff; }
+
+  /* ---------- stats ---------- */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 24px 0 6px; }
+  .stat { background: var(--surface); border: 1px solid var(--stroke); border-radius: 8px; padding: 14px 16px; }
+  .stat .v { font-size: 28px; font-weight: 700; line-height: 1.1; }
+  .stat .l { font-size: 12.5px; color: var(--ink-2); margin-top: 2px; }
+  .stat.danger .v { color: var(--danger); }
+  .stat.success .v { color: var(--ok); }
+  .stat.warning .v { color: var(--warn); }
+
+  /* ---------- callouts ---------- */
+  .callout { border-radius: 8px; padding: 14px 16px; margin: 18px 0; font-size: 13.5px; border: 1px solid; }
+  .callout b.title { display: block; margin-bottom: 3px; font-size: 13.5px; }
+  .callout.warning { background: var(--warn-soft); border-color: #e5cfa0; }
+  .callout.warning b.title { color: var(--warn); }
+  .callout.info { background: var(--info-soft); border-color: #c4d5e3; }
+  .callout.info b.title { color: var(--info); }
+
+  /* ---------- cards ---------- */
+  .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 14px 0; }
+  .card { background: var(--surface); border: 1px solid var(--stroke); border-radius: 8px; overflow: hidden; }
+  .card-h {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+    padding: 10px 14px; border-bottom: 1px solid var(--stroke);
+    font-weight: 600; font-size: 14px; color: var(--navy);
+  }
+  .card-b { padding: 12px 14px; font-size: 13px; }
+  .card-b .quote { color: var(--ink-2); font-style: italic; margin-bottom: 8px; }
+  .card-b .gap { color: var(--ink-2); margin-top: 8px; }
+  .pill {
+    font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 999px;
+    background: var(--gold-soft); color: var(--gold); white-space: nowrap;
+  }
+
+  /* ---------- tables ---------- */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; background: var(--surface); }
+  th {
+    text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--ink-2); padding: 8px 10px; border-bottom: 2px solid var(--navy);
+  }
+  td { padding: 9px 10px; border-bottom: 1px solid var(--stroke); vertical-align: top; }
+  tr.sev-danger td:first-child { box-shadow: inset 3px 0 0 var(--danger); }
+  tr.sev-warning td:first-child { box-shadow: inset 3px 0 0 var(--warn); }
+  tr.sev-info td:first-child { box-shadow: inset 3px 0 0 var(--info); }
+  td.c, th.c { text-align: center; }
+  .sev-tag { font-weight: 600; }
+  .sev-tag.danger { color: var(--danger); }
+  .sev-tag.warning { color: var(--warn); }
+  .sev-tag.info { color: var(--info); }
+  .sev-tag.neutral { color: var(--ink-2); }
+
+  /* ---------- charts ---------- */
+  .chart-block { background: var(--surface); border: 1px solid var(--stroke); border-radius: 8px; padding: 18px 18px 12px; margin: 14px 0; }
+  .chart-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+  .chart-sub { font-size: 12px; color: var(--ink-2); margin-bottom: 14px; }
+  .chart-cap { font-size: 11.5px; color: var(--ink-3); margin-top: 10px; }
+  .charts2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
+  svg text { font-family: inherit; }
+
+  /* hbar (CSS) */
+  .hbar-row { display: grid; grid-template-columns: 230px 1fr 58px; gap: 10px; align-items: center; margin: 7px 0; font-size: 12.5px; }
+  .hbar-row .lbl { text-align: right; color: var(--ink); line-height: 1.25; }
+  .hbar-track { background: #f0eee8; border-radius: 3px; height: 18px; }
+  .hbar-fill { height: 100%; border-radius: 3px; background: var(--navy); min-width: 2px; }
+  .hbar-fill.gold { background: var(--gold); }
+  .hbar-row .val { font-weight: 600; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--ink-2); margin-top: 8px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+  /* ---------- stories ---------- */
+  details { background: var(--surface); border: 1px solid var(--stroke); border-radius: 8px; margin: 10px 0; }
+  summary {
+    cursor: pointer; padding: 11px 14px; font-weight: 600; font-size: 14px; color: var(--navy);
+    display: flex; justify-content: space-between; align-items: center; list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--ink-3); font-size: 16px; }
+  details[open] summary::after { content: "\2212"; }
+  details .body { padding: 0 14px 14px; font-size: 13px; border-top: 1px solid var(--stroke); }
+  details .body .story { font-style: italic; color: var(--ink-2); margin: 10px 0; }
+  details .body ol { margin-left: 18px; }
+  details .body li { margin: 4px 0; }
+
+  footer { margin-top: 48px; padding-top: 14px; border-top: 1px solid var(--stroke); font-size: 12px; color: var(--ink-3); }
+
+  @media (max-width: 760px) {
+    .stats, .cards3, .charts2 { grid-template-columns: 1fr; }
+    .hbar-row { grid-template-columns: 130px 1fr 52px; }
+  }
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    .lang-toggle { display: none; }
+    .wrap { padding: 0; max-width: none; }
+    h2 { break-after: avoid; }
+    .chart-block, .card, table, details { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   Shared numeric data (language-independent)
+   ============================================================ */
+var SEVERITY = { danger: 2, warning: 3, info: 4 };
+
+var EMOTION = [4, 3, 3, 2, 2]; // per journey stage, 1-5
+
+var RICE = [
+  { key: "bugs",    score: 3000, effort: 0.5 },
+  { key: "timeout", score: 1200, effort: 0.5 },
+  { key: "rfid",    score: 787,  effort: 4   },
+  { key: "notif",   score: 720,  effort: 2.5 },
+  { key: "search",  score: 480,  effort: 1   },
+  { key: "receipt", score: 420,  effort: 1   },
+  { key: "help",    score: 210,  effort: 1   },
+  { key: "admin",   score: 140,  effort: 6   },
+  { key: "pin",     score: 60,   effort: 2   }
+];
+
+/* ============================================================
+   Content dictionary — English / Indonesian
+   ============================================================ */
+var T = {
+en: {
+  kicker: "Smart Locker FST — kiosk prototype",
+  title: "Loker Pintar FST — Product & UX Review",
+  meta: "Codebase audit of the kiosk prototype, structured with the skills in skills/: ux-researcher-designer, cs-ux-researcher, product-manager-toolkit (RICE), agile-product-owner (INVEST, sprint planning) and product-strategist (OKRs). Source: smart-locker/ prototype · reviewed Jul 5, 2026.",
+
+  stats: [
+    { v: "9", l: "Usability findings", cls: "" },
+    { v: "2", l: "Critical (block pilot)", cls: "danger" },
+    { v: "4", l: "Quick wins (\u22641 week)", cls: "success" },
+    { v: "3", l: "Personas (unvalidated)", cls: "warning" }
+  ],
+
+  caveatTitle: "Evidence caveat",
+  caveat: "Everything below is derived from code review and heuristics, not user data. Per the persona-methodology checklist these are proto-personas (confidence: low, 0 users interviewed). The research plan at the bottom is the cheapest way to upgrade this from assumption to evidence.",
+
+  sevChartTitle: "Findings by severity",
+  sevChartSub: "9 findings from the usability audit, grouped by severity rating",
+  sevLabels: { danger: "Critical", warning: "Major", info: "Minor" },
+  sevCap: "Source: usability audit table below \u00b7 severity scale: Critical blocks deployment, Major causes significant difficulty, Minor causes hesitation.",
+
+  emoChartTitle: "Emotion curve — courier delivery journey",
+  emoChartSub: "Estimated emotion (1 = frustrated, 5 = delighted) at each stage of the courier flow",
+  emoStages: ["Arrive", "Find recipient", "Choose size", "Deposit", "Leave"],
+  emoAxisY: "Emotion (1\u20135)",
+  emoCap: "Source: journey map below \u00b7 values are heuristic estimates pending real observation. The curve falls exactly where the product's core promise (confirmation + notification) should pay off.",
+
+  personasH: "Proto-personas",
+  personas: [
+    { name: "Dosen — \u201cpadat jadwal\u201d", tag: "Primary",
+      quote: "\u201cSaya cuma punya 10 menit di antara kelas.\u201d",
+      desc: "Teaches most of the day; packages arrive while in class. Wants tap-and-go pickup in under a minute, outside front-desk hours.",
+      gap: "Unmet need in app: no notification when mail arrives, no fallback if card is forgotten." },
+    { name: "Tendik — operational staff", tag: "Primary",
+      quote: "\u201cDokumen dinas tidak boleh hilang.\u201d",
+      desc: "Handles official documents; cares about trust and traceability more than speed.",
+      gap: "Unmet need in app: no audit trail of who deposited what, when." },
+    { name: "Kurir — time-pressed guest", tag: "First-time",
+      quote: "\u201cDua menit per alamat, lalu lanjut.\u201d",
+      desc: "Has never seen the kiosk; often knows only a (possibly misspelled) recipient name. Needs proof of delivery for their own courier app.",
+      gap: "Unmet need in app: no deposit receipt/code, exact-substring search only." }
+  ],
+  personaGapTitle: "Missing persona: Sekretariat admin",
+  personaGap: "The system has no admin surface at all — no way to register staff, reassign lockers, force-open a jammed door, or see an audit log. This is the biggest strategic gap, not a screen-level fix.",
+
+  journeyH: "Journey map — courier delivery (highest-risk flow)",
+  journeyLead: "Stages from the courier flow in scripts/screens/courier.js. Emotion is a 1\u20135 estimate pending real observation.",
+  journeyHead: ["Stage", "User action", "Pain point", "Opportunity", "Emotion"],
+  journey: [
+    ["Arrive", "Walks up mid-route, taps gold CTA", "None — entry is clear", "\u2014", "4/5"],
+    ["Find recipient", "Types name / dept / NIP", "Exact substring match only; typo = zero results; list caps at 12 with no \u201cmore results\u201d hint", "Fuzzy match, show result count, keyboard suited to names", "3/5"],
+    ["Choose size", "Picks one of 4 size tiles", "Guessing between Kecil/Sedang from printed dimensions", "Physical size gauge next to kiosk; photos on tiles", "3/5"],
+    ["Deposit", "Locker opens, 30s countdown", "No door-closed confirmation; \u201cBatal\u201d behaves like \u201cSelesai\u201d (false success)", "Distinct cancel path; door-sensor state when hardware lands", "2/5"],
+    ["Leave", "Sees done screen, walks away", "No receipt or deposit code; recipient notification is promised in copy but does not exist", "Deposit code + notification — this is the product's core promise", "2/5"]
+  ],
+
+  auditH: "Usability audit — severity-rated findings",
+  auditLead: "Severity scale from the usability-testing framework: Critical prevents task completion or blocks deployment; Major causes significant difficulty; Minor causes hesitation.",
+  auditHead: ["#", "Finding", "Where", "Severity"],
+  findings: [
+    ["Tap-card auto-signs-in a hardcoded user after 3.5s — anyone standing near the kiosk gets a session (prototype artifact; must be gated before any pilot)", "tap-card.js", "danger"],
+    ["Locker inventory leaks: state set to \u201cdelivering\u201d on the confirm screen is never reverted on cancel, timeout, or even success — free lockers vanish over a running day", "courier.js / data model", "danger"],
+    ["\u201cBatal\u201d on the opening-locker screen calls the same finish() as \u201cSelesai\u201d — user who cancels still sees a success confirmation", "opening-locker.js", "warning"],
+    ["Done screen promises \u201cPenerima akan dihubungi secara otomatis\u201d but no notification exists — a broken core promise once real users rely on it", "done.js copy", "warning"],
+    ["No failure states anywhere: unreadable card, no free locker mid-flow, door jam, door left open — every path assumes success", "all screens", "warning"],
+    ["60s inactivity reset has no warning — a slow reader loses the session mid-task with no \u201cMasih di sana?\u201d prompt", "app.js", "info"],
+    ["Recipient search caps at 12 results silently; fine for 10 mock staff, misleading for a real directory of hundreds", "courier.js", "info"],
+    ["No fallback authentication (PIN / one-time code) when a staff card is lost or forgotten", "flow gap", "info"],
+    ["No help or \u201creport a problem\u201d affordance for stuck users — kiosk best practice is an always-visible escape hatch", "layout", "info"]
+  ],
+  sevWord: { danger: "Critical", warning: "Major", info: "Minor" },
+
+  riceH: "RICE-prioritized backlog",
+  riceLead: "Score = (Reach \u00d7 Impact \u00d7 Confidence) / Effort. Reach = estimated events per semester (\u2248250 staff, \u224820 deliveries/day \u2192 \u22481,200 deliveries and \u22483,000 kiosk sessions). Impact on the 0.25\u20133 RICE scale; effort in person-weeks. All inputs are assumptions to validate with the Sekretariat.",
+  riceChartTitle: "RICE score by backlog item",
+  riceChartSub: "Higher score = better value for effort this semester",
+  riceCap: "Source: RICE inputs estimated from the audit above \u00b7 semester horizon. Gold bars mark the two strategic bets (see balance check).",
+  riceLabels: {
+    bugs: "Fix cancel + inventory bugs", timeout: "Timeout warning",
+    rfid: "RFID + backend auth", notif: "Recipient notification",
+    search: "Search UX (fuzzy + count)", receipt: "Deposit receipt code",
+    help: "Help / report problem", admin: "Admin console", pin: "PIN fallback auth"
+  },
+  riceShort: {
+    bugs: "Bug fixes", timeout: "Timeout warning", rfid: "RFID + auth",
+    notif: "Notification", search: "Search UX", receipt: "Receipt code",
+    help: "Help", admin: "Admin console", pin: "PIN fallback"
+  },
+  balanceTitle: "Portfolio balance check",
+  balance: "RICE mechanically favors quick wins. Per the toolkit's guidance, pair them with the strategic bets: RFID + backend auth and the recipient notification are what turn this from a UI demo into a product — they should anchor the roadmap even though bug fixes outscore them.",
+
+  scatterTitle: "Value vs. effort",
+  scatterSub: "RICE score (\u221a scale) against estimated effort in person-weeks — top-left is \u201cdo first\u201d",
+  scatterX: "Effort (person-weeks)",
+  scatterY: "RICE score (\u221a scale)",
+  scatterCap: "Source: same RICE estimates as the bar chart. Items above the line and left of \u22481 week are the quick wins; RFID + auth and the notification sit in the \u201cbig bet\u201d zone; the admin console is high effort and should wait for pilot evidence.",
+
+  sprintH: "Sprint 1 proposal",
+  sprintLead: "Assumes 2 developers, first sprint, provisional velocity 20 pts \u2192 commit \u226485% (17 pts) per the sprint-planning guide. Everything here is achievable in the prototype without hardware.",
+  sprintHead: ["Story", "Persona", "Points", "Slot"],
+  sprint: [
+    ["Fix \u201cBatal\u201d \u2192 real cancel path on opening screen", "All", "2", "Committed"],
+    ["Fix locker inventory lifecycle (release on cancel/timeout, occupy on success)", "All", "3", "Committed"],
+    ["Timeout warning dialog 10s before idle reset", "Dosen / Tendik", "2", "Committed"],
+    ["Fuzzy recipient search + result count", "Kurir", "3", "Committed"],
+    ["Deposit receipt code on courier done screen", "Kurir", "5", "Committed"],
+    ["\u201cLaporkan masalah\u201d help affordance on every screen", "All", "2", "Committed"],
+    ["Spike: notification channel options (WA / SMS / email)", "Dosen", "3", "Stretch"]
+  ],
+
+  storiesH: "Sample stories with acceptance criteria",
+  stories: [
+    { title: "US-01 \u00b7 Deposit receipt code", pts: "5 pts", open: true,
+      story: "As a courier, I want a short deposit code on the confirmation screen, so that I have proof of delivery for my own app and disputes can be resolved.",
+      ac: [
+        "Given a completed deposit, when the done screen shows, then a 6-character code and locker number are displayed for 60s.",
+        "Given the code is shown, when the session ends, then the code is stored with locker ID, recipient NIP, and timestamp.",
+        "Given a cancelled deposit, when the flow is aborted, then no code is generated and the locker returns to available.",
+        "Should render the code at a size readable from 1 m (kiosk context)."
+      ] },
+    { title: "US-02 \u00b7 Real cancel on opening-locker screen", pts: "2 pts", open: false,
+      story: "As a kiosk user, I expect \u201cBatal\u201d to abort the operation, so that I am not shown a false success confirmation.",
+      ac: [
+        "Given the opening-locker screen, when I tap Batal, then I return to the previous screen and no success state is shown.",
+        "Given a courier cancel, when the flow aborts, then the assigned locker is released back to available.",
+        "Given the countdown reaches zero, when no cancel occurred, then the existing done screen still shows."
+      ] },
+    { title: "US-03 \u00b7 Idle timeout warning", pts: "2 pts", open: false,
+      story: "As a staff member reading my mail list, I want a warning before the kiosk resets, so that I don't lose my session mid-task.",
+      ac: [
+        "Given 50s of inactivity on a non-idle screen, when the threshold passes, then a \u201cMasih di sana?\u201d dialog appears with a 10s countdown.",
+        "Given the dialog, when I tap anywhere, then the session continues and the timer resets.",
+        "Given no response, when the countdown ends, then the kiosk returns to idle and clears state (current behavior)."
+      ] }
+  ],
+
+  okrH: "Success metrics — pilot OKR",
+  okrLead: "One objective, semester horizon, per the product-strategist cascade (3\u20135 measurable KRs, baseline \u2192 target).",
+  okrHead: ["Key result", "Baseline", "Target"],
+  okr: [
+    ["Incoming staff packages routed through the locker", "0%", "60%"],
+    ["Median kiosk session duration", "unknown", "< 45 s"],
+    ["Packages picked up within 24h of deposit", "n/a", "> 90%"],
+    ["Usability task success (moderated test)", "unmeasured", "> 80%"],
+    ["Locker faults unresolved after 1 business day", "n/a", "0"]
+  ],
+  objectiveH: "Objective",
+  objective: "Make the smart locker the default, trusted channel for staff deliveries at FST — replacing ad-hoc front-desk handling.",
+
+  researchH: "Next research step (1 week, near-zero cost)",
+  research: "Guerrilla usability test in the FST lobby before writing more code: 5\u20138 participants (2 dosen, 2 tendik, 2\u20133 real couriers), 3 tasks — open your locker, claim a package, deliver a package to a name given verbally. Success criteria per the framework: completion > 80%, time-on-task < 2\u00d7 expected, satisfaction > 4/5. Pair it with 8\u201310 short intercept interviews to validate the proto-personas and the RICE reach numbers.",
+
+  footer: "Loker Pintar FST \u00b7 Product & UX review \u00b7 generated Jul 5, 2026 \u00b7 self-contained document — print to PDF with Ctrl+P."
+},
+
+id: {
+  kicker: "Loker Pintar FST — prototipe kios",
+  title: "Loker Pintar FST — Tinjauan Produk & UX",
+  meta: "Audit basis kode prototipe kios, disusun dengan skill di skills/: ux-researcher-designer, cs-ux-researcher, product-manager-toolkit (RICE), agile-product-owner (INVEST, perencanaan sprint) dan product-strategist (OKR). Sumber: prototipe smart-locker/ \u00b7 ditinjau 5 Jul 2026.",
+
+  stats: [
+    { v: "9", l: "Temuan usabilitas", cls: "" },
+    { v: "2", l: "Kritis (memblokir pilot)", cls: "danger" },
+    { v: "4", l: "Perbaikan cepat (\u22641 minggu)", cls: "success" },
+    { v: "3", l: "Persona (belum tervalidasi)", cls: "warning" }
+  ],
+
+  caveatTitle: "Catatan tentang bukti",
+  caveat: "Semua isi di bawah berasal dari tinjauan kode dan heuristik, bukan data pengguna. Mengacu pada checklist metodologi persona, ini adalah proto-persona (tingkat keyakinan: rendah, 0 pengguna diwawancarai). Rencana riset di bagian bawah adalah cara termurah untuk menaikkan status ini dari asumsi menjadi bukti.",
+
+  sevChartTitle: "Temuan berdasarkan tingkat keparahan",
+  sevChartSub: "9 temuan dari audit usabilitas, dikelompokkan berdasarkan tingkat keparahan",
+  sevLabels: { danger: "Kritis", warning: "Mayor", info: "Minor" },
+  sevCap: "Sumber: tabel audit usabilitas di bawah \u00b7 skala: Kritis memblokir deployment, Mayor menyebabkan kesulitan signifikan, Minor menyebabkan keraguan.",
+
+  emoChartTitle: "Kurva emosi — perjalanan kurir mengantar paket",
+  emoChartSub: "Perkiraan emosi (1 = frustrasi, 5 = senang) pada tiap tahap alur kurir",
+  emoStages: ["Tiba", "Cari penerima", "Pilih ukuran", "Titip paket", "Pergi"],
+  emoAxisY: "Emosi (1\u20135)",
+  emoCap: "Sumber: peta perjalanan di bawah \u00b7 nilai adalah estimasi heuristik, menunggu observasi nyata. Kurva justru turun tepat di titik janji utama produk (konfirmasi + notifikasi) seharusnya terasa.",
+
+  personasH: "Proto-persona",
+  personas: [
+    { name: "Dosen — \u201cpadat jadwal\u201d", tag: "Utama",
+      quote: "\u201cSaya cuma punya 10 menit di antara kelas.\u201d",
+      desc: "Mengajar hampir sepanjang hari; paket datang saat sedang di kelas. Ingin pengambilan tap-and-go di bawah satu menit, di luar jam layanan front desk.",
+      gap: "Kebutuhan yang belum terpenuhi di aplikasi: tidak ada notifikasi saat kiriman tiba, tidak ada jalur cadangan jika kartu tertinggal." },
+    { name: "Tendik — staf operasional", tag: "Utama",
+      quote: "\u201cDokumen dinas tidak boleh hilang.\u201d",
+      desc: "Menangani dokumen dinas; lebih mementingkan kepercayaan dan keterlacakan daripada kecepatan.",
+      gap: "Kebutuhan yang belum terpenuhi di aplikasi: tidak ada jejak audit siapa menitipkan apa dan kapan." },
+    { name: "Kurir — tamu yang terburu waktu", tag: "Pengguna baru",
+      quote: "\u201cDua menit per alamat, lalu lanjut.\u201d",
+      desc: "Belum pernah melihat kios ini; sering hanya tahu nama penerima (yang bisa saja salah eja). Butuh bukti pengantaran untuk aplikasi kurirnya sendiri.",
+      gap: "Kebutuhan yang belum terpenuhi di aplikasi: tidak ada kode/resi penitipan, pencarian hanya cocok-substring persis." }
+  ],
+  personaGapTitle: "Persona yang hilang: admin Sekretariat",
+  personaGap: "Sistem sama sekali tidak punya antarmuka admin — tidak ada cara mendaftarkan staf, memindahkan loker, membuka paksa pintu yang macet, atau melihat log audit. Ini kesenjangan strategis terbesar, bukan perbaikan level layar.",
+
+  journeyH: "Peta perjalanan — pengantaran kurir (alur berisiko tertinggi)",
+  journeyLead: "Tahapan dari alur kurir di scripts/screens/courier.js. Emosi adalah estimasi 1\u20135, menunggu observasi nyata.",
+  journeyHead: ["Tahap", "Aksi pengguna", "Titik masalah", "Peluang", "Emosi"],
+  journey: [
+    ["Tiba", "Menghampiri kios di tengah rute, menekan CTA emas", "Tidak ada — pintu masuk alur jelas", "\u2014", "4/5"],
+    ["Cari penerima", "Mengetik nama / departemen / NIP", "Hanya cocok-substring persis; salah ketik = nol hasil; daftar dibatasi 12 tanpa petunjuk \u201chasil lainnya\u201d", "Pencarian fuzzy, tampilkan jumlah hasil, keyboard yang sesuai untuk nama", "3/5"],
+    ["Pilih ukuran", "Memilih satu dari 4 ubin ukuran", "Menebak antara Kecil/Sedang hanya dari dimensi tercetak", "Alat ukur fisik di samping kios; foto pada ubin", "3/5"],
+    ["Titip paket", "Loker terbuka, hitung mundur 30 detik", "Tidak ada konfirmasi pintu tertutup; \u201cBatal\u201d berperilaku seperti \u201cSelesai\u201d (sukses palsu)", "Jalur batal yang jelas; status sensor pintu saat perangkat keras tersedia", "2/5"],
+    ["Pergi", "Melihat layar selesai, lalu pergi", "Tidak ada resi atau kode penitipan; notifikasi penerima dijanjikan di teks tetapi tidak ada", "Kode penitipan + notifikasi — inilah janji utama produk", "2/5"]
+  ],
+
+  auditH: "Audit usabilitas — temuan berperingkat keparahan",
+  auditLead: "Skala keparahan dari kerangka usability testing: Kritis mencegah penyelesaian tugas atau memblokir deployment; Mayor menyebabkan kesulitan signifikan; Minor menyebabkan keraguan.",
+  auditHead: ["#", "Temuan", "Lokasi", "Tingkat"],
+  findings: [
+    ["Tap kartu otomatis memasukkan pengguna hardcoded setelah 3,5 detik — siapa pun yang berdiri dekat kios mendapat sesi (artefak prototipe; wajib ditutup sebelum pilot apa pun)", "tap-card.js", "danger"],
+    ["Inventaris loker bocor: status \u201cdelivering\u201d yang di-set di layar konfirmasi tidak pernah dikembalikan saat batal, timeout, bahkan saat sukses — loker kosong lenyap sepanjang hari berjalan", "courier.js / model data", "danger"],
+    ["\u201cBatal\u201d di layar pembukaan loker memanggil finish() yang sama dengan \u201cSelesai\u201d — pengguna yang membatalkan tetap melihat konfirmasi sukses", "opening-locker.js", "warning"],
+    ["Layar selesai menjanjikan \u201cPenerima akan dihubungi secara otomatis\u201d padahal notifikasi tidak ada — janji utama yang ingkar begitu pengguna nyata mengandalkannya", "teks done.js", "warning"],
+    ["Tidak ada keadaan gagal sama sekali: kartu tak terbaca, loker habis di tengah alur, pintu macet, pintu dibiarkan terbuka — semua jalur mengasumsikan sukses", "semua layar", "warning"],
+    ["Reset 60 detik karena tidak aktif tanpa peringatan — pembaca yang lambat kehilangan sesi di tengah tugas tanpa dialog \u201cMasih di sana?\u201d", "app.js", "info"],
+    ["Pencarian penerima diam-diam dibatasi 12 hasil; cukup untuk 10 staf tiruan, menyesatkan untuk direktori nyata ratusan orang", "courier.js", "info"],
+    ["Tidak ada autentikasi cadangan (PIN / kode sekali pakai) saat kartu staf hilang atau tertinggal", "celah alur", "info"],
+    ["Tidak ada bantuan atau tombol \u201claporkan masalah\u201d untuk pengguna yang tersangkut — praktik terbaik kios adalah jalur keluar yang selalu terlihat", "tata letak", "info"]
+  ],
+  sevWord: { danger: "Kritis", warning: "Mayor", info: "Minor" },
+
+  riceH: "Backlog terprioritisasi RICE",
+  riceLead: "Skor = (Reach \u00d7 Impact \u00d7 Confidence) / Effort. Reach = estimasi kejadian per semester (\u2248250 staf, \u224820 pengantaran/hari \u2192 \u22481.200 pengantaran dan \u22483.000 sesi kios). Impact pada skala RICE 0,25\u20133; effort dalam orang-minggu. Semua masukan adalah asumsi yang perlu divalidasi bersama Sekretariat.",
+  riceChartTitle: "Skor RICE per item backlog",
+  riceChartSub: "Skor lebih tinggi = nilai lebih baik per usaha semester ini",
+  riceCap: "Sumber: masukan RICE diestimasi dari audit di atas \u00b7 horizon satu semester. Batang emas menandai dua taruhan strategis (lihat catatan keseimbangan).",
+  riceLabels: {
+    bugs: "Perbaiki bug batal + inventaris", timeout: "Peringatan timeout",
+    rfid: "RFID + autentikasi backend", notif: "Notifikasi penerima",
+    search: "UX pencarian (fuzzy + jumlah)", receipt: "Kode resi penitipan",
+    help: "Bantuan / lapor masalah", admin: "Konsol admin", pin: "Autentikasi cadangan PIN"
+  },
+  riceShort: {
+    bugs: "Perbaikan bug", timeout: "Peringatan idle", rfid: "RFID + auth",
+    notif: "Notifikasi", search: "Pencarian", receipt: "Kode resi",
+    help: "Bantuan", admin: "Konsol admin", pin: "PIN cadangan"
+  },
+  balanceTitle: "Pemeriksaan keseimbangan portofolio",
+  balance: "RICE secara mekanis mengunggulkan perbaikan cepat. Sesuai panduan toolkit, imbangi dengan taruhan strategis: RFID + autentikasi backend dan notifikasi penerima adalah yang mengubah ini dari demo UI menjadi produk — keduanya harus menjadi jangkar roadmap meski skor perbaikan bug lebih tinggi.",
+
+  scatterTitle: "Nilai vs. usaha",
+  scatterSub: "Skor RICE (skala \u221a) terhadap estimasi usaha dalam orang-minggu — kiri-atas berarti \u201ckerjakan dulu\u201d",
+  scatterX: "Usaha (orang-minggu)",
+  scatterY: "Skor RICE (skala \u221a)",
+  scatterCap: "Sumber: estimasi RICE yang sama dengan diagram batang. Item di kiri \u22481 minggu adalah perbaikan cepat; RFID + auth dan notifikasi berada di zona \u201ctaruhan besar\u201d; konsol admin berusaha tinggi dan sebaiknya menunggu bukti dari pilot.",
+
+  sprintH: "Usulan Sprint 1",
+  sprintLead: "Asumsi 2 developer, sprint pertama, velocity sementara 20 poin \u2192 komitmen \u226485% (17 poin) sesuai panduan perencanaan sprint. Semua item dapat dikerjakan di prototipe tanpa perangkat keras.",
+  sprintHead: ["Cerita", "Persona", "Poin", "Slot"],
+  sprint: [
+    ["Perbaiki \u201cBatal\u201d \u2192 jalur batal sungguhan di layar pembukaan", "Semua", "2", "Komitmen"],
+    ["Perbaiki siklus hidup inventaris loker (lepas saat batal/timeout, isi saat sukses)", "Semua", "3", "Komitmen"],
+    ["Dialog peringatan timeout 10 detik sebelum reset idle", "Dosen / Tendik", "2", "Komitmen"],
+    ["Pencarian penerima fuzzy + jumlah hasil", "Kurir", "3", "Komitmen"],
+    ["Kode resi penitipan di layar selesai kurir", "Kurir", "5", "Komitmen"],
+    ["Tombol bantuan \u201cLaporkan masalah\u201d di setiap layar", "Semua", "2", "Komitmen"],
+    ["Spike: opsi kanal notifikasi (WA / SMS / email)", "Dosen", "3", "Cadangan"]
+  ],
+
+  storiesH: "Contoh cerita dengan kriteria penerimaan",
+  stories: [
+    { title: "US-01 \u00b7 Kode resi penitipan", pts: "5 poin", open: true,
+      story: "Sebagai kurir, saya ingin kode penitipan singkat di layar konfirmasi, agar saya punya bukti pengantaran untuk aplikasi saya sendiri dan sengketa dapat diselesaikan.",
+      ac: [
+        "Diberikan penitipan selesai, ketika layar selesai tampil, maka kode 6 karakter dan nomor loker ditampilkan selama 60 detik.",
+        "Diberikan kode sedang tampil, ketika sesi berakhir, maka kode disimpan bersama ID loker, NIP penerima, dan cap waktu.",
+        "Diberikan penitipan dibatalkan, ketika alur dihentikan, maka tidak ada kode yang dibuat dan loker kembali tersedia.",
+        "Kode harus ditampilkan dalam ukuran yang terbaca dari jarak 1 m (konteks kios)."
+      ] },
+    { title: "US-02 \u00b7 Batal sungguhan di layar pembukaan loker", pts: "2 poin", open: false,
+      story: "Sebagai pengguna kios, saya berharap \u201cBatal\u201d menghentikan operasi, agar saya tidak diperlihatkan konfirmasi sukses yang palsu.",
+      ac: [
+        "Diberikan layar pembukaan loker, ketika saya menekan Batal, maka saya kembali ke layar sebelumnya dan tidak ada status sukses yang tampil.",
+        "Diberikan pembatalan oleh kurir, ketika alur dihentikan, maka loker yang sudah dialokasikan dilepas kembali menjadi tersedia.",
+        "Diberikan hitung mundur mencapai nol, ketika tidak ada pembatalan, maka layar selesai yang ada tetap tampil."
+      ] },
+    { title: "US-03 \u00b7 Peringatan sebelum timeout idle", pts: "2 poin", open: false,
+      story: "Sebagai staf yang sedang membaca daftar kiriman, saya ingin peringatan sebelum kios ter-reset, agar sesi saya tidak hilang di tengah tugas.",
+      ac: [
+        "Diberikan 50 detik tanpa aktivitas di layar non-idle, ketika ambang terlewati, maka dialog \u201cMasih di sana?\u201d muncul dengan hitung mundur 10 detik.",
+        "Diberikan dialog tampil, ketika saya menekan di mana saja, maka sesi berlanjut dan timer di-reset.",
+        "Diberikan tidak ada respons, ketika hitung mundur berakhir, maka kios kembali ke idle dan menghapus state (perilaku saat ini)."
+      ] }
+  ],
+
+  okrH: "Metrik keberhasilan — OKR pilot",
+  okrLead: "Satu objective, horizon satu semester, sesuai kaskade product-strategist (3\u20135 key result terukur, baseline \u2192 target).",
+  okrHead: ["Key result", "Baseline", "Target"],
+  okr: [
+    ["Paket masuk staf yang dialihkan lewat loker", "0%", "60%"],
+    ["Durasi median sesi kios", "belum diketahui", "< 45 dtk"],
+    ["Paket diambil dalam 24 jam sejak dititipkan", "n/a", "> 90%"],
+    ["Keberhasilan tugas usabilitas (uji termoderasi)", "belum diukur", "> 80%"],
+    ["Gangguan loker tak tertangani lebih dari 1 hari kerja", "n/a", "0"]
+  ],
+  objectiveH: "Objective",
+  objective: "Menjadikan loker pintar sebagai kanal default dan terpercaya untuk kiriman staf di FST — menggantikan penanganan ad-hoc di front desk.",
+
+  researchH: "Langkah riset berikutnya (1 minggu, biaya nyaris nol)",
+  research: "Uji usabilitas gerilya di lobi FST sebelum menulis kode lagi: 5\u20138 partisipan (2 dosen, 2 tendik, 2\u20133 kurir sungguhan), 3 tugas — buka loker Anda, ambil paket, antarkan paket ke nama yang disebutkan lisan. Kriteria sukses sesuai kerangka: penyelesaian > 80%, waktu tugas < 2\u00d7 ekspektasi, kepuasan > 4/5. Gabungkan dengan 8\u201310 wawancara singkat untuk memvalidasi proto-persona dan angka reach RICE.",
+
+  footer: "Loker Pintar FST \u00b7 Tinjauan produk & UX \u00b7 dibuat 5 Jul 2026 \u00b7 dokumen mandiri — cetak ke PDF dengan Ctrl+P."
+}
+};
+
+/* ============================================================
+   Chart builders (return SVG / HTML strings)
+   ============================================================ */
+var C = {
+  navy: "#1f2a44", gold: "#b8860b", danger: "#b03a2e",
+  warn: "#b06f00", info: "#2b5f8a", grid: "#e8e6df", ink2: "#5b6478", ink3: "#8b93a7"
+};
+
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function severityDonut(t) {
+  var order = ["danger", "warning", "info"];
+  var colors = { danger: C.danger, warning: C.warn, info: C.info };
+  var total = 0;
+  order.forEach(function (k) { total += SEVERITY[k]; });
+  var r = 62, cx = 90, cy = 90, circ = 2 * Math.PI * r, off = -circ / 4;
+  var arcs = "";
+  order.forEach(function (k) {
+    var frac = SEVERITY[k] / total;
+    arcs += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="' + colors[k] +
+      '" stroke-width="26" stroke-dasharray="' + (frac * circ - 2) + " " + (circ - frac * circ + 2) +
+      '" stroke-dashoffset="' + -off + '"></circle>';
+    off += frac * circ;
+  });
+  var legend = order.map(function (k) {
+    return '<span><i style="background:' + colors[k] + '"></i>' + esc(t.sevLabels[k]) + " \u00b7 " + SEVERITY[k] + "</span>";
+  }).join("");
+  return (
+    '<svg viewBox="0 0 180 180" width="180" height="180" role="img" aria-label="' + esc(t.sevChartTitle) + '">' +
+    arcs +
+    '<text x="90" y="86" text-anchor="middle" font-size="30" font-weight="700" fill="' + C.navy + '">' + total + "</text>" +
+    '<text x="90" y="106" text-anchor="middle" font-size="11" fill="' + C.ink2 + '">' + esc(t.stats[0].l) + "</text>" +
+    "</svg>" +
+    '<div class="legend">' + legend + "</div>"
+  );
+}
+
+function emotionLine(t) {
+  var W = 640, H = 230, padL = 48, padR = 20, padT = 18, padB = 48;
+  var iw = W - padL - padR, ih = H - padT - padB;
+  var xs = EMOTION.map(function (_, i) { return padL + (iw * i) / (EMOTION.length - 1); });
+  var y = function (v) { return padT + ih - ((v - 1) / 4) * ih; };
+  var s = "";
+  // grid + y labels
+  for (var v = 1; v <= 5; v++) {
+    s += '<line x1="' + padL + '" y1="' + y(v) + '" x2="' + (W - padR) + '" y2="' + y(v) + '" stroke="' + C.grid + '"/>' +
+         '<text x="' + (padL - 10) + '" y="' + (y(v) + 4) + '" text-anchor="end" font-size="11" fill="' + C.ink3 + '">' + v + "</text>";
+  }
+  // area fill
+  var area = "M" + xs[0] + "," + y(EMOTION[0]);
+  EMOTION.forEach(function (v, i) { area += " L" + xs[i] + "," + y(v); });
+  area += " L" + xs[xs.length - 1] + "," + (padT + ih) + " L" + xs[0] + "," + (padT + ih) + " Z";
+  s += '<path d="' + area + '" fill="' + C.gold + '" opacity="0.12"/>';
+  // line
+  var line = EMOTION.map(function (v, i) { return xs[i] + "," + y(v); }).join(" ");
+  s += '<polyline points="' + line + '" fill="none" stroke="' + C.gold + '" stroke-width="2.5"/>';
+  // points + value + x labels
+  EMOTION.forEach(function (v, i) {
+    s += '<circle cx="' + xs[i] + '" cy="' + y(v) + '" r="4.5" fill="' + C.navy + '"/>' +
+         '<text x="' + xs[i] + '" y="' + (y(v) - 10) + '" text-anchor="middle" font-size="11.5" font-weight="600" fill="' + C.navy + '">' + v + "</text>" +
+         '<text x="' + xs[i] + '" y="' + (H - padB + 18) + '" text-anchor="middle" font-size="11" fill="' + C.ink2 + '">' + esc(t.emoStages[i]) + "</text>";
+  });
+  // y axis label
+  s += '<text x="14" y="' + (padT + ih / 2) + '" text-anchor="middle" font-size="11" fill="' + C.ink3 +
+       '" transform="rotate(-90 14 ' + (padT + ih / 2) + ')">' + esc(t.emoAxisY) + "</text>";
+  return '<svg viewBox="0 0 ' + W + " " + H + '" style="width:100%;height:auto" role="img" aria-label="' + esc(t.emoChartTitle) + '">' + s + "</svg>";
+}
+
+function riceBars(t) {
+  var max = RICE[0].score;
+  var strategic = { rfid: true, notif: true };
+  return RICE.map(function (item) {
+    var w = Math.max(0.5, (item.score / max) * 100);
+    return (
+      '<div class="hbar-row">' +
+      '<div class="lbl">' + esc(t.riceLabels[item.key]) + "</div>" +
+      '<div class="hbar-track"><div class="hbar-fill' + (strategic[item.key] ? " gold" : "") + '" style="width:' + w + '%"></div></div>' +
+      '<div class="val">' + item.score.toLocaleString("en-US") + "</div>" +
+      "</div>"
+    );
+  }).join("");
+}
+
+function valueEffortScatter(t) {
+  var W = 640, H = 300, padL = 56, padR = 24, padT = 20, padB = 52;
+  var iw = W - padL - padR, ih = H - padT - padB;
+  var maxE = 6.5, maxS = 56; // sqrt(3000) ~ 54.8
+  var X = function (e) { return padL + (e / maxE) * iw; };
+  var Y = function (sc) { return padT + ih - (Math.sqrt(sc) / maxS) * ih; };
+  var s = "";
+  // gridlines x (weeks) and y (score ticks at sqrt positions)
+  [0, 1, 2, 3, 4, 5, 6].forEach(function (w) {
+    s += '<line x1="' + X(w) + '" y1="' + padT + '" x2="' + X(w) + '" y2="' + (padT + ih) + '" stroke="' + C.grid + '"/>' +
+         '<text x="' + X(w) + '" y="' + (padT + ih + 16) + '" text-anchor="middle" font-size="11" fill="' + C.ink3 + '">' + w + "</text>";
+  });
+  [100, 500, 1000, 2000, 3000].forEach(function (v) {
+    s += '<line x1="' + padL + '" y1="' + Y(v) + '" x2="' + (W - padR) + '" y2="' + Y(v) + '" stroke="' + C.grid + '"/>' +
+         '<text x="' + (padL - 8) + '" y="' + (Y(v) + 4) + '" text-anchor="end" font-size="11" fill="' + C.ink3 + '">' + v.toLocaleString("en-US") + "</text>";
+  });
+  // quick-win zone divider at 1 week
+  s += '<line x1="' + X(1) + '" y1="' + padT + '" x2="' + X(1) + '" y2="' + (padT + ih) + '" stroke="' + C.ink3 + '" stroke-dasharray="4 4"/>';
+  // points; manual label offsets to avoid overlap
+  var dxy = {
+    bugs: [8, 4], timeout: [8, 4], rfid: [8, 4], notif: [8, -8],
+    search: [8, -8], receipt: [8, 12], help: [8, 4], admin: [-8, -8], pin: [8, 4]
+  };
+  var strategic = { rfid: true, notif: true };
+  RICE.forEach(function (item) {
+    var x = X(item.effort), y = Y(item.score);
+    var col = strategic[item.key] ? C.gold : C.navy;
+    var d = dxy[item.key];
+    var anchor = d[0] < 0 ? "end" : "start";
+    s += '<circle cx="' + x + '" cy="' + y + '" r="6" fill="' + col + '"/>' +
+         '<text x="' + (x + d[0]) + '" y="' + (y + d[1]) + '" text-anchor="' + anchor + '" font-size="11" fill="' + C.ink2 + '">' + esc(t.riceShort[item.key]) + "</text>";
+  });
+  // axis labels
+  s += '<text x="' + (padL + iw / 2) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="11.5" fill="' + C.ink2 + '">' + esc(t.scatterX) + "</text>" +
+       '<text x="16" y="' + (padT + ih / 2) + '" text-anchor="middle" font-size="11.5" fill="' + C.ink2 +
+       '" transform="rotate(-90 16 ' + (padT + ih / 2) + ')">' + esc(t.scatterY) + "</text>";
+  return '<svg viewBox="0 0 ' + W + " " + H + '" style="width:100%;height:auto" role="img" aria-label="' + esc(t.scatterTitle) + '">' + s + "</svg>";
+}
+
+/* ============================================================
+   Page render
+   ============================================================ */
+function tableHTML(headers, rows, opts) {
+  opts = opts || {};
+  var th = headers.map(function (h, i) {
+    return "<th" + ((opts.center || []).indexOf(i) >= 0 ? ' class="c"' : "") + ">" + esc(h) + "</th>";
+  }).join("");
+  var body = rows.map(function (r, ri) {
+    var cls = opts.rowClass ? opts.rowClass(r, ri) : "";
+    var tds = r.map(function (cell, ci) {
+      var c = (opts.center || []).indexOf(ci) >= 0 ? ' class="c"' : "";
+      return "<td" + c + ">" + cell + "</td>";
+    }).join("");
+    return "<tr" + (cls ? ' class="' + cls + '"' : "") + ">" + tds + "</tr>";
+  }).join("");
+  return "<table><thead><tr>" + th + "</tr></thead><tbody>" + body + "</tbody></table>";
+}
+
+function render(lang) {
+  var t = T[lang];
+  document.documentElement.lang = lang;
+  document.title = t.title;
+
+  var statsHTML = t.stats.map(function (s) {
+    return '<div class="stat ' + s.cls + '"><div class="v">' + esc(s.v) + '</div><div class="l">' + esc(s.l) + "</div></div>";
+  }).join("");
+
+  var personasHTML = t.personas.map(function (p) {
+    return (
+      '<div class="card"><div class="card-h">' + esc(p.name) + '<span class="pill">' + esc(p.tag) + "</span></div>" +
+      '<div class="card-b"><div class="quote">' + esc(p.quote) + "</div><div>" + esc(p.desc) + '</div><div class="gap">' + esc(p.gap) + "</div></div></div>"
+    );
+  }).join("");
+
+  var journeyRows = t.journey.map(function (r) { return r.map(esc); });
+  var journeyHTML = tableHTML(t.journeyHead, journeyRows, { center: [4] });
+
+  var findingRows = t.findings.map(function (f, i) {
+    var sev = f[2];
+    return [String(i + 1), esc(f[0]), esc(f[1]), '<span class="sev-tag ' + sev + '">' + esc(t.sevWord[sev]) + "</span>"];
+  });
+  var auditHTML = tableHTML(t.auditHead, findingRows, {
+    center: [0],
+    rowClass: function (_, ri) { return "sev-" + t.findings[ri][2]; }
+  });
+
+  var sprintRows = t.sprint.map(function (r) { return r.map(esc); });
+  var sprintHTML = tableHTML(t.sprintHead, sprintRows, { center: [2] });
+
+  var storiesHTML = t.stories.map(function (st) {
+    var ac = st.ac.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("");
+    return (
+      "<details" + (st.open ? " open" : "") + "><summary><span>" + esc(st.title) +
+      ' <span class="pill" style="margin-left:8px">' + esc(st.pts) + "</span></span></summary>" +
+      '<div class="body"><p class="story">' + esc(st.story) + "</p><ol>" + ac + "</ol></div></details>"
+    );
+  }).join("");
+
+  var okrRows = t.okr.map(function (r) { return r.map(esc); });
+  var okrHTML = tableHTML(t.okrHead, okrRows, {});
+
+  document.getElementById("app").innerHTML =
+    '<div class="topbar"><div>' +
+      '<div class="kicker">' + esc(t.kicker) + "</div>" +
+      "<h1>" + esc(t.title) + "</h1>" +
+    "</div>" +
+    '<div class="lang-toggle">' +
+      '<button data-lang="en" class="' + (lang === "en" ? "active" : "") + '">EN</button>' +
+      '<button data-lang="id" class="' + (lang === "id" ? "active" : "") + '">ID</button>' +
+    "</div></div>" +
+    '<p class="meta">' + esc(t.meta) + "</p>" +
+
+    '<div class="stats">' + statsHTML + "</div>" +
+
+    '<div class="callout warning"><b class="title">' + esc(t.caveatTitle) + "</b>" + esc(t.caveat) + "</div>" +
+
+    '<div class="charts2">' +
+      '<div class="chart-block" style="display:flex;flex-direction:column;align-items:center;text-align:center">' +
+        '<div class="chart-title" style="align-self:flex-start;text-align:left">' + esc(t.sevChartTitle) + "</div>" +
+        '<div class="chart-sub" style="align-self:flex-start;text-align:left">' + esc(t.sevChartSub) + "</div>" +
+        severityDonut(t) +
+        '<div class="chart-cap" style="align-self:flex-start;text-align:left">' + esc(t.sevCap) + "</div>" +
+      "</div>" +
+      '<div class="chart-block">' +
+        '<div class="chart-title">' + esc(t.emoChartTitle) + "</div>" +
+        '<div class="chart-sub">' + esc(t.emoChartSub) + "</div>" +
+        emotionLine(t) +
+        '<div class="chart-cap">' + esc(t.emoCap) + "</div>" +
+      "</div>" +
+    "</div>" +
+
+    "<h2>" + esc(t.personasH) + "</h2>" +
+    '<div class="cards3">' + personasHTML + "</div>" +
+    '<div class="callout info"><b class="title">' + esc(t.personaGapTitle) + "</b>" + esc(t.personaGap) + "</div>" +
+
+    "<h2>" + esc(t.journeyH) + "</h2>" +
+    '<p class="lead">' + esc(t.journeyLead) + "</p>" +
+    journeyHTML +
+
+    "<h2>" + esc(t.auditH) + "</h2>" +
+    '<p class="lead">' + esc(t.auditLead) + "</p>" +
+    auditHTML +
+
+    "<h2>" + esc(t.riceH) + "</h2>" +
+    '<p class="lead">' + esc(t.riceLead) + "</p>" +
+    '<div class="chart-block">' +
+      '<div class="chart-title">' + esc(t.riceChartTitle) + "</div>" +
+      '<div class="chart-sub">' + esc(t.riceChartSub) + "</div>" +
+      riceBars(t) +
+      '<div class="chart-cap">' + esc(t.riceCap) + "</div>" +
+    "</div>" +
+    '<div class="callout info"><b class="title">' + esc(t.balanceTitle) + "</b>" + esc(t.balance) + "</div>" +
+    '<div class="chart-block">' +
+      '<div class="chart-title">' + esc(t.scatterTitle) + "</div>" +
+      '<div class="chart-sub">' + esc(t.scatterSub) + "</div>" +
+      valueEffortScatter(t) +
+      '<div class="chart-cap">' + esc(t.scatterCap) + "</div>" +
+    "</div>" +
+
+    "<h2>" + esc(t.sprintH) + "</h2>" +
+    '<p class="lead">' + esc(t.sprintLead) + "</p>" +
+    sprintHTML +
+
+    "<h2>" + esc(t.storiesH) + "</h2>" +
+    storiesHTML +
+
+    "<h2>" + esc(t.okrH) + "</h2>" +
+    '<p class="lead">' + esc(t.okrLead) + "</p>" +
+    okrHTML +
+    "<h3>" + esc(t.objectiveH) + "</h3>" +
+    "<p>" + esc(t.objective) + "</p>" +
+
+    "<h2>" + esc(t.researchH) + "</h2>" +
+    "<p>" + esc(t.research) + "</p>" +
+
+    "<footer>" + esc(t.footer) + "</footer>";
+
+  document.querySelectorAll(".lang-toggle button").forEach(function (btn) {
+    btn.addEventListener("click", function () { render(btn.getAttribute("data-lang")); });
+  });
+}
+
+var initial = new URLSearchParams(location.search).get("lang");
+render(initial === "id" ? "id" : "en");
+
+// expand all collapsibles when printing, restore after
+var openedForPrint = [];
+window.addEventListener("beforeprint", function () {
+  openedForPrint = [];
+  document.querySelectorAll("details:not([open])").forEach(function (d) {
+    d.setAttribute("open", "");
+    openedForPrint.push(d);
+  });
+});
+window.addEventListener("afterprint", function () {
+  openedForPrint.forEach(function (d) { d.removeAttribute("open"); });
+  openedForPrint = [];
+});
+</script>
+</body>
+</html>

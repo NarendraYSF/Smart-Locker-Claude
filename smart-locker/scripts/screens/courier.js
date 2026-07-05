@@ -10,6 +10,8 @@ import {
   packageSizes,
   countFree,
   findFreeLocker,
+  reserveLocker,
+  releaseLocker,
   lockers
 } from "../data.js";
 
@@ -282,8 +284,8 @@ function mountAssign(stage, state) {
     return;
   }
 
-  // mark locker as delivering in the mock model for the grid visualization
-  assignedLocker.state = "delivering";
+  // reserve the locker for this in-progress deposit (available -> delivering)
+  reserveLocker(assignedLocker.id);
 
   const root = h(
     "section.courier.stagger",
@@ -294,7 +296,13 @@ function mountAssign(stage, state) {
       {},
       h(
         "button.screen__back",
-        { type: "button", onclick: () => navigate("courier-size") },
+        {
+          type: "button",
+          onclick: () => {
+            releaseLocker(assignedLocker.id);
+            navigate("courier-size", { assignedLocker: null });
+          }
+        },
         icon("arrowLeft", { className: "screen__back-arrow" }),
         "Ganti Ukuran"
       ),

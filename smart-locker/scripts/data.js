@@ -221,6 +221,41 @@ function offsetHours(delta) {
 
 seed();
 
+// --- Locker state transitions ---------------------------------------
+// The only place locker.state may be mutated. Each function enforces its
+// valid from-state and returns the locker, or null if the transition was
+// invalid (so stray calls can never corrupt inventory).
+
+function lockerById(id) {
+  return lockers.find((l) => l.id === id) || null;
+}
+
+/** available -> delivering. Reserve a locker for an in-progress courier deposit. */
+export function reserveLocker(id) {
+  const l = lockerById(id);
+  if (!l || l.state !== "available") return null;
+  l.state = "delivering";
+  return l;
+}
+
+/** delivering -> available. Cancel/timeout path; no-op on any other state. */
+export function releaseLocker(id) {
+  const l = lockerById(id);
+  if (!l || l.state !== "delivering") return null;
+  l.state = "available";
+  l.ownerNip = null;
+  return l;
+}
+
+/** delivering -> occupied. Successful deposit; records the recipient. */
+export function occupyLocker(id, ownerNip = null) {
+  const l = lockerById(id);
+  if (!l || l.state !== "delivering") return null;
+  l.state = "occupied";
+  l.ownerNip = ownerNip;
+  return l;
+}
+
 /** Utility: how many free lockers of a given size bucket. */
 export function countFree(size) {
   return lockers.filter((l) => l.size === size && l.state === "available").length;

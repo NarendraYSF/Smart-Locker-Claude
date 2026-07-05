@@ -24,6 +24,16 @@ export function mount(stage, state) {
       ? "Semoga harinya menyenangkan. Jangan lupa tutup kembali pintu loker dengan rapat."
       : "Semoga harinya menyenangkan, hati-hati di perjalanan.";
 
+  const clearedState = {
+    user: null,
+    recipient: null,
+    packageSize: null,
+    assignedLocker: null,
+    openReason: null,
+    claimedMailId: null,
+    completedLocker: null
+  };
+
   const root = h(
     "section.done.stagger",
     {},
@@ -60,7 +70,7 @@ export function mount(stage, state) {
       { style: { display: "flex", gap: "var(--space-4)", alignItems: "center" } },
       h(
         "button.btn.btn--ghost",
-        { type: "button", onclick: () => navigate("idle") },
+        { type: "button", onclick: () => navigate("idle", clearedState) },
         "Kembali Sekarang"
       ),
       h("p.done__auto", { "data-auto": "" }, "Kembali otomatis dalam 5 detik")
@@ -77,15 +87,7 @@ export function mount(stage, state) {
     if (remaining <= 0) {
       clearInterval(id);
       // clear transient state
-      navigate("idle", {
-        user: null,
-        recipient: null,
-        packageSize: null,
-        assignedLocker: null,
-        openReason: null,
-        claimedMailId: null,
-        completedLocker: null
-      });
+      navigate("idle", clearedState);
     }
   }, 1000);
 

@@ -99,6 +99,15 @@ smart-locker/
     pattern-geo.svg          # subtle 8-point star backdrop
 ```
 
+## UX Research
+
+Research artifacts live in `docs/research/` (produced with the `cs-ux-researcher` workflow):
+
+- `research-plan.md` — 2-week study plan: questions, methodology, participants, timeline
+- `personas.md` — 3 proto-personas (low confidence, pending validation)
+- `journey-maps.md` — journey maps for the 3 flows with prioritized opportunities
+- `usability-test-kit.md` — task scenarios, moderator script, severity framework, report template
+
 ## Scope Boundary
 
 This prototype is **UI only**. Explicitly out of scope:
