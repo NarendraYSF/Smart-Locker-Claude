@@ -35,8 +35,15 @@ export const state = {
 };
 
 let currentCleanup = null;
-let inactivityTimer = null;
+let inactivityCheckerId = null;
+let lastUserInteraction = Date.now();
 const IDLE_TIMEOUT_MS = 60_000;
+const IDLE_CHECK_INTERVAL = 1_000;
+
+/** Record a real user interaction (not a programmatic navigate). */
+function onUserActivity() {
+  lastUserInteraction = Date.now();
+}
 
 /** Navigate to a screen, optionally with a context payload. */
 export function navigate(screen, ctx = {}) {
@@ -65,29 +72,57 @@ export function navigate(screen, ctx = {}) {
 
   currentCleanup = mount(stage, state) || null;
 
-  resetInactivity();
+  // Start or stop the idle checker based on current screen
+  manageIdleChecker();
 }
 
-function resetInactivity() {
-  clearTimeout(inactivityTimer);
-  if (state.screen === "idle") return;
-  inactivityTimer = setTimeout(() => {
-    // auto-return to idle, clearing transient state
-    Object.assign(state, {
-      user: null,
-      recipient: null,
-      packageSize: null,
-      assignedLocker: null,
-      openReason: null,
-      claimedMailId: null
-    });
-    navigate("idle");
-  }, IDLE_TIMEOUT_MS);
+/**
+ * Periodically check whether the user has been inactive for IDLE_TIMEOUT_MS.
+ * Unlike the old approach, programmatic navigate() calls from screen auto-timers
+ * do NOT reset the clock — only real user events (pointer/key/touch) do.
+ */
+function manageIdleChecker() {
+  // On the idle screen, stop checking
+  if (state.screen === "idle") {
+    if (inactivityCheckerId) {
+      clearInterval(inactivityCheckerId);
+      inactivityCheckerId = null;
+    }
+    return;
+  }
+
+  // Already running — nothing to do
+  if (inactivityCheckerId) return;
+
+  // Start a periodic checker
+  inactivityCheckerId = setInterval(() => {
+    if (state.screen === "idle") {
+      clearInterval(inactivityCheckerId);
+      inactivityCheckerId = null;
+      return;
+    }
+
+    if (Date.now() - lastUserInteraction >= IDLE_TIMEOUT_MS) {
+      clearInterval(inactivityCheckerId);
+      inactivityCheckerId = null;
+      // Auto-return to idle, clearing transient state
+      Object.assign(state, {
+        user: null,
+        recipient: null,
+        packageSize: null,
+        assignedLocker: null,
+        openReason: null,
+        claimedMailId: null,
+        completedLocker: null
+      });
+      navigate("idle");
+    }
+  }, IDLE_CHECK_INTERVAL);
 }
 
-// Any user interaction should reset the inactivity timer
+// Any real user interaction resets the inactivity clock
 ["pointerdown", "keydown", "touchstart"].forEach((evt) => {
-  window.addEventListener(evt, resetInactivity, { passive: true });
+  window.addEventListener(evt, onUserActivity, { passive: true });
 });
 
 // --- Toast host ------------------------------------------------------
