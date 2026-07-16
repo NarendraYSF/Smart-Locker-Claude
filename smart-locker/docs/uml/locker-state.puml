@@ -1,0 +1,33 @@
+@startuml locker-state-loker-pintar-fst
+title State Machine — Siklus Hidup Loker (scripts/data.js)
+
+skinparam shadowing false
+skinparam state {
+  BackgroundColor #F4F1E8
+  BorderColor #2A403C
+  ArrowColor #2A403C
+}
+
+state "AVAILABLE\n(kosong, bisa dialokasikan)" as Available
+state "DELIVERING\n(direservasi kurir,\ntitipan berlangsung)" as Delivering
+state "OCCUPIED\n(terisi; ownerNip terisi)" as Occupied
+
+[*] --> Available : seed()\n(loker tanpa pemilik tetap)
+[*] --> Occupied : seed()\n(loker permanen staf)
+
+Available --> Delivering : reserveLocker(id)\nlayar Courier — Assign dimuat
+
+Delivering --> Available : releaseLocker(id)\nBatal / "Ganti Ukuran" /\nidle timeout 60s
+Delivering --> Occupied : occupyLocker(id, nip)\n+ recordDelivery()\n"Sudah Diletakkan"
+
+Occupied --> Available : claimMail(id)\nloker non-permanen &\ntidak ada mail tersisa
+Occupied --> Occupied : claimMail(id)\nloker permanen staf\n(tetap milik pemilik)
+
+note bottom of Delivering
+  Semua transisi dijaga di DataRepository:
+  fungsi menolak (return null) jika
+  from-state tidak sesuai, sehingga
+  pemanggilan liar tidak merusak inventori.
+end note
+
+@enduml

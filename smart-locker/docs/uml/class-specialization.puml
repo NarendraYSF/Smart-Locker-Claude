@@ -1,0 +1,208 @@
+@startuml class-specialization-loker-pintar-fst
+title Class Diagram (Dengan Spesialisasi) — Loker Pintar FST
+
+' Versi HIERARKI: variasi dimodelkan dengan generalisasi/spesialisasi
+' (inheritance). Bandingkan dengan class-no-specialization.puml untuk
+' versi flat yang memakai atribut role/size.
+
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F4F1E8
+  BorderColor #2A403C
+  ArrowColor #2A403C
+  HeaderBackgroundColor #D9CFA9
+}
+hide circle
+
+' ================== Hierarki Pengguna ==================
+package "Domain — Pengguna" {
+
+  abstract class Pengguna {
+    + name : String
+    --
+    + {abstract} greeting() : String
+  }
+
+  abstract class Staf {
+    + nip : String
+    + dept : String
+    + rfid : String
+    + lockerId : String
+    --
+    + tapKartu(uid : String) : boolean
+  }
+
+  class Dosen {
+    + gelar : String
+    --
+    + greeting() : String  {"Selamat datang, Dr. ..."}
+  }
+
+  class TenagaKependidikan {
+    + unitKerja : String
+    --
+    + greeting() : String
+  }
+
+  class Kurir {
+    + perusahaan : String?  {anonim — tanpa akun}
+    --
+    + greeting() : String  {"Silakan cari penerima"}
+  }
+
+  Pengguna <|-- Staf
+  Staf     <|-- Dosen
+  Staf     <|-- TenagaKependidikan
+  Pengguna <|-- Kurir
+
+  note right of Kurir
+    Kurir TIDAK punya nip/rfid/loker —
+    dengan spesialisasi, atribut itu
+    cukup diletakkan di Staf sehingga
+    tidak ada field nullable di Kurir.
+  end note
+}
+
+' ================== Hierarki Loker ==================
+package "Domain — Loker" {
+
+  abstract class Loker {
+    + id : String
+    + number : int
+    + state : LockerState
+    + ownerNip : String?
+    + hasMail : boolean
+    --
+    + isFree() : boolean
+    + {abstract} dimensi() : String
+  }
+
+  class LokerKecil {
+    + dimensi() : String  {"20 x 30 x 45 cm"}
+  }
+  class LokerSedang {
+    + dimensi() : String  {"35 x 40 x 45 cm"}
+  }
+  class LokerBesar {
+    + dimensi() : String  {"50 x 60 x 45 cm"}
+  }
+
+  enum LockerState {
+    AVAILABLE
+    DELIVERING
+    OCCUPIED
+  }
+
+  Loker <|-- LokerKecil
+  Loker <|-- LokerSedang
+  Loker <|-- LokerBesar
+  Loker -- LockerState
+}
+
+' ================== Kiriman ==================
+package "Domain — Kiriman" {
+
+  abstract class Kiriman {
+    + id : String
+    + recipientNip : String
+    + sender : String
+    + arrivedAt : ISODateTime
+    + lockerId : String
+    --
+    + {abstract} label() : String
+  }
+
+  class Surat {
+    + label() : String  {"Surat / dokumen"}
+  }
+  class Paket {
+    + ukuran : String
+    + label() : String  {"Paket " + ukuran}
+  }
+
+  Kiriman <|-- Surat
+  Kiriman <|-- Paket
+}
+
+' ================== Hierarki Layar ==================
+package "Screens" {
+
+  abstract class Screen <<module>> {
+    + {abstract} mount(stage, state) : Cleanup?
+  }
+
+  class IdleScreen
+  class TapCardScreen
+  class DashboardScreen
+  class MailScreen
+  class OpeningLockerScreen {
+    + finish() : void
+    + cancel() : void
+  }
+  class CourierSearchScreen
+  class CourierSizeScreen
+  class CourierAssignScreen
+  class DoneScreen {
+    - receiptCode() : String
+  }
+
+  Screen <|-- IdleScreen
+  Screen <|-- TapCardScreen
+  Screen <|-- DashboardScreen
+  Screen <|-- MailScreen
+  Screen <|-- OpeningLockerScreen
+  Screen <|-- CourierSearchScreen
+  Screen <|-- CourierSizeScreen
+  Screen <|-- CourierAssignScreen
+  Screen <|-- DoneScreen
+}
+
+' ================== Data & App Core ==================
+package "Data & App Core" {
+
+  class DataRepository <<module>> {
+    + staff : List<Staf>
+    + lockers : List<Loker>
+    + incomingMail : List<Kiriman>
+    --
+    + searchStaff(q : String) : List<Staf>
+    + mailFor(nip : String) : List<Kiriman>
+    + reserveLocker(id : String) : Loker?
+    + releaseLocker(id : String) : Loker?
+    + occupyLocker(id : String, ownerNip : String?) : Loker?
+    + recordDelivery(spec) : Kiriman
+    + claimMail(mailId : String) : Kiriman?
+  }
+
+  class KioskApp <<module>> {
+    + state : KioskState
+    --
+    + navigate(screen : String, ctx : Object) : void
+    + boot() : void
+  }
+
+  class KioskState {
+    + user : Staf?
+    + recipient : Staf?
+    + assignedLocker : Loker?
+    + openReason : String?
+  }
+}
+
+' ================== Asosiasi lintas paket ==================
+Staf    "1" -- "0..1" Loker   : memiliki >
+Staf    "1" -- "0..*" Kiriman : menerima >
+Kiriman "0..*" -- "1" Loker   : disimpan di >
+Kurir ..> Kiriman : menitipkan >
+
+DataRepository "1" o-- "*" Staf
+DataRepository "1" o-- "*" Loker
+DataRepository "1" o-- "*" Kiriman
+
+KioskApp "1" *-- "1" KioskState
+KioskApp ..> Screen : routes to >
+KioskApp ..> DataRepository : queries
+Screen ..> DataRepository : queries
+
+@enduml

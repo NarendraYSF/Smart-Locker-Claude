@@ -12,16 +12,16 @@ export const departments = [
   "Agribisnis"
 ];
 
-/** Locker grid: 6 columns x 8 rows = 48 cells.
- *  size distribution: rows 1-1 (cells 1-6)  = besar
- *                     rows 2-3 (cells 7-18) = sedang
- *                     rows 4-8 (cells 19-48) = kecil
+/** Locker grid: 3 columns x 8 rows = 24 cells.
+ *  size distribution: row 1 (cells 1-3)   = besar
+ *                     rows 2-3 (cells 4-9) = sedang
+ *                     rows 4-8 (cells 10-24) = kecil
  */
-export const lockers = Array.from({ length: 48 }, (_, i) => {
+export const lockers = Array.from({ length: 24 }, (_, i) => {
   const n = i + 1;
   let size = "kecil";
-  if (n <= 6) size = "besar";
-  else if (n <= 18) size = "sedang";
+  if (n <= 3) size = "besar";
+  else if (n <= 9) size = "sedang";
   return {
     id: `L-${String(n).padStart(2, "0")}`,
     number: n,
@@ -76,7 +76,7 @@ export const staff = [
     dept: "Biologi",
     initials: "LK",
     rfid: "04A1B2C7",
-    lockerId: "L-28"
+    lockerId: "L-19"
   },
   {
     nip: "198505232010121001",
@@ -94,7 +94,7 @@ export const staff = [
     dept: "Sekretariat FST",
     initials: "RA",
     rfid: "04A1B2C9",
-    lockerId: "L-31"
+    lockerId: "L-20"
   },
   {
     nip: "198812152013041005",
@@ -112,7 +112,7 @@ export const staff = [
     dept: "Teknik Informatika",
     initials: "MP",
     rfid: "04A1B2CB",
-    lockerId: "L-35"
+    lockerId: "L-21"
   },
   {
     nip: "198001112006041003",
@@ -256,6 +256,50 @@ export function occupyLocker(id, ownerNip = null) {
   return l;
 }
 
+// --- Mail lifecycle ---------------------------------------------------
+
+let deliverySeq = 100;
+
+/** Register a completed courier deposit as claimable incoming mail. */
+export function recordDelivery({ lockerId, recipientNip, type, sender = "Kurir", note = "Titipan kurir" }) {
+  deliverySeq += 1;
+  const m = {
+    id: `M-${deliverySeq}`,
+    recipientNip,
+    sender,
+    type,
+    note,
+    arrivedAt: new Date().toISOString(),
+    lockerId
+  };
+  incomingMail.push(m);
+  const l = lockerById(lockerId);
+  if (l) l.hasMail = true;
+  return m;
+}
+
+/**
+ * Complete a mail claim: remove the item, refresh the locker's mail flag,
+ * and free the locker again if it was a courier-assigned one (not the
+ * recipient's permanent locker) with nothing left inside.
+ */
+export function claimMail(mailId) {
+  const idx = incomingMail.findIndex((m) => m.id === mailId);
+  if (idx === -1) return null;
+  const [m] = incomingMail.splice(idx, 1);
+  const l = lockerById(m.lockerId);
+  if (l) {
+    l.hasMail = incomingMail.some((x) => x.lockerId === l.id);
+    const owner = staff.find((s) => s.nip === m.recipientNip);
+    const isPermanent = Boolean(owner && owner.lockerId === l.id);
+    if (!isPermanent && !l.hasMail && l.state === "occupied") {
+      l.state = "available";
+      l.ownerNip = null;
+    }
+  }
+  return m;
+}
+
 /** Utility: how many free lockers of a given size bucket. */
 export function countFree(size) {
   return lockers.filter((l) => l.size === size && l.state === "available").length;
@@ -273,14 +317,71 @@ export function mailFor(nip) {
     .sort((a, b) => new Date(b.arrivedAt) - new Date(a.arrivedAt));
 }
 
-/** Utility: search staff by free-text query (name / NIP / dept). */
+// --- Staff search ------------------------------------------------------
+// Couriers type names from package labels: no academic titles, honorifics
+// ("Pak Budi"), and the occasional typo. Matching is therefore fuzzy:
+// titles/degrees are stripped, query tokens may appear in any order, and
+// tokens of 4+ characters tolerate a single-character typo.
+
+const TITLE_TOKENS = new Set([
+  // academic titles & common degree fragments
+  "dr", "prof", "drs", "dra", "ir", "st", "mt", "msi", "mkom", "skom",
+  "ssi", "se", "mm", "mpd", "spd", "msc", "phd", "ph", "d", "magri", "magr",
+  // honorifics couriers might type
+  "pak", "bu", "ibu", "bapak", "mas", "mbak"
+]);
+
+function tokenize(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((t) => t && !TITLE_TOKENS.has(t));
+}
+
+/** True if a and b differ by at most one edit (insert/delete/substitute). */
+function withinOneEdit(a, b) {
+  if (Math.abs(a.length - b.length) > 1) return false;
+  if (a === b) return true;
+  const [short, long] = a.length <= b.length ? [a, b] : [b, a];
+  let i = 0;
+  let j = 0;
+  let edits = 0;
+  while (i < short.length && j < long.length) {
+    if (short[i] === long[j]) {
+      i += 1;
+      j += 1;
+      continue;
+    }
+    if (edits) return false;
+    edits = 1;
+    if (short.length === long.length) i += 1; // substitution
+    j += 1; // insertion in the longer string
+  }
+  return true;
+}
+
+function tokenMatches(queryToken, targetToken) {
+  if (targetToken.includes(queryToken)) return true;
+  if (queryToken.length >= 4 && withinOneEdit(queryToken, targetToken)) return true;
+  return false;
+}
+
+/** Utility: fuzzy search staff by free-text query (name / NIP / dept). */
 export function searchStaff(q) {
-  const s = q.trim().toLowerCase();
-  if (!s) return staff;
-  return staff.filter(
-    (x) =>
-      x.name.toLowerCase().includes(s) ||
-      x.nip.includes(s) ||
-      x.dept.toLowerCase().includes(s)
-  );
+  const raw = q.trim().toLowerCase();
+  if (!raw) return staff;
+
+  // digit queries search the NIP directly
+  const digits = raw.replace(/\D/g, "");
+  const queryTokens = tokenize(raw);
+
+  return staff.filter((x) => {
+    if (digits.length >= 4 && x.nip.includes(digits)) return true;
+    if (queryTokens.length === 0) return false;
+    const targetTokens = [...tokenize(x.name), ...tokenize(x.dept)];
+    return queryTokens.every((qt) =>
+      targetTokens.some((tt) => tokenMatches(qt, tt))
+    );
+  });
 }

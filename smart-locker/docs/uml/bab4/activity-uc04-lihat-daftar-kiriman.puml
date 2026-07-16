@@ -1,0 +1,41 @@
+@startuml activity-uc04-lihat-daftar-kiriman
+title Activity Diagram UC-04 — Lihat Daftar Kiriman
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Staf|
+|#FFF7E0|Sistem Kiosk|
+
+|Staf|
+start
+:Tap "Surat & Paket"
+di Dashboard;
+
+|Sistem Kiosk|
+:Ambil kiriman milik staf
+mailFor(nip), urut terbaru;
+if (Ada kiriman?) then (ya)
+  :Render daftar kiriman:
+  pengirim, jenis, nomor loker,
+  waktu tiba (relatif);
+
+  |Staf|
+  :Melihat / menggulir daftar;
+  if (Ambil salah satu?) then (ya)
+    :Tap "Ambil" (lanjut UC-05);
+    stop
+  else (tidak)
+    :Kembali ke Dashboard;
+    stop
+  endif
+else (tidak)
+  :Render keadaan kosong
+  "Tidak ada kiriman";
+  stop
+endif
+
+@enduml

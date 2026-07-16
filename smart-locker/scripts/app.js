@@ -38,12 +38,50 @@ export const state = {
 let currentCleanup = null;
 let inactivityCheckerId = null;
 let lastUserInteraction = Date.now();
-const IDLE_TIMEOUT_MS = 60_000;
-const IDLE_CHECK_INTERVAL = 1_000;
+
+// ?idle=SECONDS overrides the timeout (useful for testing and demos).
+const idleParam = Number(new URLSearchParams(window.location.search).get("idle"));
+const IDLE_TIMEOUT_MS = idleParam > 0 ? idleParam * 1000 : 60_000;
+// Warn 10s before reset (but never before half the timeout has passed).
+const IDLE_WARNING_MS = Math.max(IDLE_TIMEOUT_MS - 10_000, IDLE_TIMEOUT_MS / 2);
+const IDLE_CHECK_INTERVAL = 500;
 
 /** Record a real user interaction (not a programmatic navigate). */
 function onUserActivity() {
   lastUserInteraction = Date.now();
+  hideIdleWarning();
+}
+
+// --- Idle warning overlay ---------------------------------------------
+// Shown IDLE_WARNING_MS into inactivity; any touch dismisses it (via the
+// global activity listeners). If it runs out, the checker resets to idle.
+
+let idleWarningEl = null;
+
+function showIdleWarning(secondsLeft) {
+  if (!idleWarningEl) {
+    const kiosk = qs("[data-kiosk]");
+    if (!kiosk) return;
+    idleWarningEl = document.createElement("div");
+    idleWarningEl.className = "idle-warning";
+    idleWarningEl.setAttribute("data-idle-warning", "");
+    idleWarningEl.innerHTML = `
+      <div class="idle-warning__card">
+        <p class="idle-warning__title">Masih di sana?</p>
+        <p class="idle-warning__count" data-idle-count>10</p>
+        <p class="idle-warning__sub">Sentuh layar untuk melanjutkan sesi Anda.</p>
+      </div>`;
+    kiosk.appendChild(idleWarningEl);
+  }
+  const count = idleWarningEl.querySelector("[data-idle-count]");
+  if (count) count.textContent = String(secondsLeft);
+}
+
+function hideIdleWarning() {
+  if (idleWarningEl) {
+    idleWarningEl.remove();
+    idleWarningEl = null;
+  }
 }
 
 /** Navigate to a screen, optionally with a context payload. */
@@ -73,6 +111,9 @@ export function navigate(screen, ctx = {}) {
 
   currentCleanup = mount(stage, state) || null;
 
+  hideIdleWarning();
+  closeHelp();
+
   // Start or stop the idle checker based on current screen
   manageIdleChecker();
 }
@@ -100,12 +141,16 @@ function manageIdleChecker() {
     if (state.screen === "idle") {
       clearInterval(inactivityCheckerId);
       inactivityCheckerId = null;
+      hideIdleWarning();
       return;
     }
 
-    if (Date.now() - lastUserInteraction >= IDLE_TIMEOUT_MS) {
+    const idleMs = Date.now() - lastUserInteraction;
+
+    if (idleMs >= IDLE_TIMEOUT_MS) {
       clearInterval(inactivityCheckerId);
       inactivityCheckerId = null;
+      hideIdleWarning();
       // Auto-return to idle, clearing transient state.
       // Release any locker reserved by an abandoned courier flow; the
       // from-state guard makes this a no-op after a completed deposit.
@@ -120,6 +165,11 @@ function manageIdleChecker() {
         completedLocker: null
       });
       navigate("idle");
+      return;
+    }
+
+    if (idleMs >= IDLE_WARNING_MS) {
+      showIdleWarning(Math.ceil((IDLE_TIMEOUT_MS - idleMs) / 1000));
     }
   }, IDLE_CHECK_INTERVAL);
 }
@@ -144,6 +194,55 @@ export function toast(msg, { duration = 3200 } = {}) {
     el.style.transition = "opacity 320ms ease, transform 320ms ease";
     setTimeout(() => el.remove(), 400);
   }, duration);
+}
+
+// --- Help overlay ------------------------------------------------------
+// Always-available escape hatch: contact info for stuck users. Front-of-house
+// copy only — reporting a problem is a human process in the prototype.
+
+let helpEl = null;
+
+function openHelp() {
+  if (helpEl) return;
+  const kiosk = qs("[data-kiosk]");
+  if (!kiosk) return;
+  helpEl = document.createElement("div");
+  helpEl.className = "help-overlay";
+  helpEl.setAttribute("data-help-overlay", "");
+  helpEl.innerHTML = `
+    <div class="help-overlay__card">
+      <p class="help-overlay__title">Butuh bantuan?</p>
+      <div class="help-overlay__row">
+        <span class="help-overlay__label">Lokasi</span>
+        <span>Sekretariat FST, Gedung Utama Lt. 1 (10 m dari loker)</span>
+      </div>
+      <div class="help-overlay__row">
+        <span class="help-overlay__label">Jam layanan</span>
+        <span>Senin&ndash;Jumat, 07.30&ndash;16.00 WIB</span>
+      </div>
+      <div class="help-overlay__row">
+        <span class="help-overlay__label">Telepon</span>
+        <span class="mono">(021) 743-0000 ext. 101</span>
+      </div>
+      <div class="help-overlay__row">
+        <span class="help-overlay__label">Laporkan masalah</span>
+        <span>Loker macet, kartu tidak terbaca, atau kiriman hilang &mdash; sampaikan nomor loker ke petugas Sekretariat.</span>
+      </div>
+      <button class="btn btn--ghost" type="button" data-help-close>Tutup</button>
+    </div>`;
+  helpEl.addEventListener("click", (e) => {
+    if (e.target === helpEl || e.target.closest("[data-help-close]")) {
+      closeHelp();
+    }
+  });
+  kiosk.appendChild(helpEl);
+}
+
+function closeHelp() {
+  if (helpEl) {
+    helpEl.remove();
+    helpEl = null;
+  }
 }
 
 // --- Viewport fit ------------------------------------------------------
@@ -182,6 +281,8 @@ function boot() {
     dateEl: qs("[data-clock-date]"),
     timeEl: qs("[data-clock-time]")
   });
+  const helpBtn = qs("[data-help-button]");
+  if (helpBtn) helpBtn.addEventListener("click", openHelp);
   navigate("idle");
 }
 

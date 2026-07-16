@@ -1,0 +1,66 @@
+@startuml sequence-kurir-loker-pintar-fst
+title Sequence Diagram — Aktor Tamu / Kurir
+
+' Skenario makro aktor Kurir: cari penerima → pilih ukuran →
+' titipkan paket → terima kode bukti. Notasi panah UML baku:
+'   ->   permintaan sinkron  (garis lurus, mata panah tertutup/solid)
+'   -->> balikan data        (garis putus-putus, mata panah terbuka)
+
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #2A403C
+  ActorBorderColor #2A403C
+  LifeLineBackgroundColor #F4F1E8
+  LifeLineBorderColor #2A403C
+  ParticipantBorderColor #2A403C
+  ParticipantBackgroundColor #D9CFA9
+  GroupBorderColor #8A6A1F
+  GroupBackgroundColor #FFF7E0
+}
+
+actor "Kurir" as Kurir
+participant "Kiosk UI\n(Frontend)" as UI
+participant "DataRepository\n(Backend Service)" as Repo
+participant "Locker Hardware" as HW
+participant "Notification\nService <<planned>>" as Notif
+
+== Cari Penerima (UC-06) ==
+Kurir -> UI : tap "Kirim Surat atau Paket"
+loop sampai penerima ditemukan
+  Kurir -> UI : ketik nama / dept / NIP
+  UI -> Repo : searchStaff(query)
+  Repo -->> UI : daftar Staf (fuzzy:\ngelar diabaikan, toleransi 1 typo)
+  UI -->> Kurir : tampilkan hasil + jumlah
+end
+Kurir -> UI : pilih penerima
+
+== Pilih Ukuran Paket (UC-07) ==
+UI -> Repo : countFree(tiap ukuran)
+Repo -->> UI : jumlah loker kosong per ukuran
+UI -->> Kurir : tampilkan tile ukuran\n(tile habis dinonaktifkan)
+Kurir -> UI : pilih ukuran paket
+UI -> Repo : findFreeLocker(bucket)
+Repo -->> UI : Loker kosong
+UI -> Repo : reserveLocker(id)
+Repo -->> UI : Loker {AVAILABLE → DELIVERING}
+UI -->> Kurir : tampilkan peta loker + ringkasan
+
+== Titipkan Paket (UC-08) ==
+Kurir -> UI : tap "Buka Loker & Titipkan"
+UI -> HW : unlock(lockerId)
+HW -->> UI : ack (pintu terbuka)
+Kurir -> UI : letakkan paket,\ntutup pintu, tap "Sudah Diletakkan"
+UI -> Repo : occupyLocker(id, nip penerima)
+Repo -->> UI : Loker {DELIVERING → OCCUPIED}
+UI -> Repo : recordDelivery(lockerId, nip, jenis)
+Repo -->> UI : Kiriman baru (bisa diklaim penerima)
+UI -> HW : autoLock(lockerId)
+HW -->> UI : ack (terkunci)
+UI -> Notif : notify(penerima, kiriman)
+note right of Notif
+  <<planned>> — belum
+  diimplementasikan (backlog B-01)
+end note
+UI -->> Kurir : layar Done + Kode Bukti Titip\n"FST-XXXXX" (15 detik untuk difoto)
+
+@enduml

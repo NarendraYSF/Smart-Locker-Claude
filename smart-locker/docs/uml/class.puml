@@ -51,10 +51,18 @@ package "Domain" {
 
   enum LockerState {
     AVAILABLE
-    ASSIGNED
-    OCCUPIED
     DELIVERING
+    OCCUPIED
   }
+
+  note bottom of LockerState
+    Transisi dijaga oleh DataRepository:
+    AVAILABLE -> DELIVERING  (reserveLocker)
+    DELIVERING -> AVAILABLE  (releaseLocker: batal / timeout)
+    DELIVERING -> OCCUPIED   (occupyLocker: titipan sukses)
+    OCCUPIED -> AVAILABLE    (claimMail, loker non-permanen kosong)
+    Lihat locker-state.puml
+  end note
 
   class Mail {
     + id : String
@@ -90,10 +98,19 @@ package "Data" {
     + incomingMail : List<Mail>
     + packageSizes : List<PackageSize>
     --
+    .. pencarian (fuzzy: gelar dihapus, toleransi 1 typo) ..
     + searchStaff(q : String) : List<Staff>
     + mailFor(nip : String) : List<Mail>
+    .. inventori loker (transisi terjaga) ..
     + countFree(size : LockerSize) : int
     + findFreeLocker(size : LockerSize) : Locker?
+    + reserveLocker(id : String) : Locker?
+    + releaseLocker(id : String) : Locker?
+    + occupyLocker(id : String, ownerNip : String?) : Locker?
+    .. siklus hidup kiriman ..
+    + recordDelivery(spec : DeliverySpec) : Mail
+    + claimMail(mailId : String) : Mail?
+    --
     - seed() : void
   }
 }
@@ -107,7 +124,11 @@ package "App Core" {
     + navigate(screen : String, ctx : Object) : void
     + toast(msg : String, opts : Object) : void
     + boot() : void
-    - resetInactivity() : void
+    - fitKiosk() : void
+    - showIdleWarning(secondsLeft : int) : void
+    - hideIdleWarning() : void
+    - openHelp() : void
+    - closeHelp() : void
   }
 
   class KioskState {
@@ -118,6 +139,7 @@ package "App Core" {
     + assignedLocker : Locker?
     + openReason : OpenReason?
     + claimedMailId : String?
+    + completedLocker : Locker?
   }
 
   enum OpenReason {
@@ -127,13 +149,22 @@ package "App Core" {
   }
 
   class InactivityTimer {
-    - timeoutMs : long = 60000
+    - timeoutMs : long = 60000 (override: ?idle=detik)
+    - warningMs : long = timeoutMs - 10000
     - timerId : int
     --
     + reset() : void
     + cancel() : void
+    + onWarning() : void
     + onTimeout() : void
   }
+
+  note bottom of InactivityTimer
+    onWarning: overlay "Masih di sana?"
+    dengan hitung mundur 10 detik.
+    onTimeout: releaseLocker(reserved),
+    hapus state transient, kembali ke Idle.
+  end note
 
   class ClockService {
     - intervalId : int
@@ -156,18 +187,33 @@ package "Screens (Mountable Modules)" {
   }
 
   class IdleScreen
-  class TapCardScreen
+  class TapCardScreen {
+    - autoTapMs : int = 3500 (hanya mode ?demo)
+  }
   class DashboardScreen
   class OpeningLockerScreen {
     - countdownSeconds : int = 30
     + tick() : void
     + finish() : void
+    + cancel() : void
   }
-  class CourierSearchScreen
+  class CourierSearchScreen {
+    - visibleCount : int = 12 (+12 per "Tampilkan lebih banyak")
+  }
   class CourierSizeScreen
   class CourierAssignScreen
   class MailScreen
-  class DoneScreen
+  class DoneScreen {
+    - autoReturnSeconds : int = 5 (deliver: 15)
+    - receiptCode() : String
+  }
+
+  note bottom of OpeningLockerScreen
+    finish(): deliver -> occupyLocker + recordDelivery;
+    claim-mail -> claimMail. Lanjut ke DoneScreen.
+    cancel(): kembali ke layar asal tanpa layar sukses;
+    deliver -> releaseLocker dulu.
+  end note
 
   Screen <|-- IdleScreen
   Screen <|-- TapCardScreen

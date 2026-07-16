@@ -1,5 +1,5 @@
 @startuml sequence-loker-pintar-fst
-title Sequence Diagram — Loker Pintar FST (3 Skenario)
+title Sequence Diagram — Loker Pintar FST (3 Skenario + Inactivity)
 
 skinparam shadowing false
 skinparam sequence {
@@ -21,12 +21,13 @@ participant "DataRepository" as Repo
 participant "InactivityTimer" as Timer
 participant "RFID Reader" as RFID
 participant "Locker Hardware" as HW
-participant "Notification\nService" as Notif
+participant "Notification\nService <<planned>>" as Notif
 
 == Boot ==
 User -> App : open kiosk URL
 activate App
 App -> App : boot()
+App -> App : fitKiosk()  // skala 1080x1920 ke viewport
 App -> App : startClock()
 App -> App : navigate("idle")
 App -> Screen : mountIdle(stage, state)
@@ -38,7 +39,11 @@ Screen -> App   : navigate("tap-card")
 App   -> Screen : mountTapCard(stage, state)
 
 User  -> RFID   : tempel kartu
-RFID  -> Screen : onTap(uid)  // simulated 3.5s / Enter
+RFID  -> Screen : onTap(uid)
+note right of Screen
+  Simulasi: Enter / tombol "Simulasikan Tap".
+  Auto-tap 3.5s HANYA pada mode ?demo.
+end note
 Screen -> Repo  : staff.find(by rfid)
 Repo  --> Screen : Staff{nip, name, role, lockerId}
 Screen -> App   : navigate("dashboard", {user})
@@ -56,18 +61,22 @@ Screen -> HW    : unlock(locker.id)
 HW    --> Screen : ack
 Screen -> Screen : startCountdown(30s)
 
-alt Pengguna selesai sebelum 30s
+alt Selesai — tap "Selesai" / pintu tertutup / countdown habis
   User   -> Screen : tap "Selesai"
-else Door sensor menutup
-  HW     -> Screen : doorClosed()
-else Timeout 30s
-  Screen -> Screen : tick → 0
+  Screen -> HW    : autoLock(locker.id)
+  Screen -> App   : navigate("done-screen")
+  App    -> Screen : mountDone(stage, state)
+  Screen -> Screen : auto-back ke idle (5s)
+  Screen -> App   : navigate("idle")
+else Batal — cancel()
+  User   -> Screen : tap "Batal"
+  Screen -> HW    : autoLock(locker.id)
+  Screen -> App   : navigate("dashboard")
+  note right of Screen
+    Kembali ke layar asal,
+    TANPA layar sukses.
+  end note
 end
-Screen -> HW    : autoLock(locker.id)
-Screen -> App   : navigate("done-screen")
-App   -> Screen : mountDone(stage, state)
-Screen -> Screen : auto-back ke idle (5s)
-Screen -> App   : navigate("idle")
 
 == Skenario 2 — Staf mengambil kiriman masuk ==
 User  -> Screen : (di Dashboard) tap "Surat & Paket"
@@ -85,10 +94,23 @@ Screen -> Repo  : lockers.find(mail.lockerId)
 Repo  --> Screen : Locker
 Screen -> HW    : unlock(locker.id)
 HW    --> Screen : ack
-User  -> Screen : ambil kiriman, tap "Sudah Diambil"
-Screen -> Repo  : mark mail = claimed
-Screen -> HW    : autoLock(locker.id)
-Screen -> App   : navigate("done-screen")
+
+alt Sudah Diambil — finish()
+  User   -> Screen : ambil kiriman, tap "Sudah Diambil"
+  Screen -> Repo  : claimMail(M-001)
+  note right of Repo
+    Hapus mail dari incomingMail.
+    Loker kurir (non-permanen) yang
+    kosong kembali AVAILABLE; loker
+    permanen staf tetap OCCUPIED.
+  end note
+  Screen -> HW    : autoLock(locker.id)
+  Screen -> App   : navigate("done-screen")
+else Batal — cancel()
+  User   -> Screen : tap "Batal"
+  Screen -> HW    : autoLock(locker.id)
+  Screen -> App   : navigate("mail")
+end
 
 == Skenario 3 — Kurir menitipkan paket ==
 User  -> Screen : (di Idle) tap "Kirim Surat atau Paket"
@@ -98,7 +120,12 @@ App   -> Screen : mountCourierSearch(stage, state)
 loop pencarian iteratif
   User  -> Screen : ketik query
   Screen -> Repo  : searchStaff(q)
-  Repo  --> Screen : Staff[]
+  note right of Repo
+    Fuzzy: gelar/degree dihapus,
+    token bebas urutan, toleransi
+    1 typo (token >= 4 huruf).
+  end note
+  Repo  --> Screen : Staff[] (+ jumlah hasil, "Tampilkan lebih banyak")
 end
 User  -> Screen : pilih penerima
 Screen -> App   : navigate("courier-size", {recipient})
@@ -115,29 +142,71 @@ alt Loker tersedia
   Repo  --> Screen : Locker
   Screen -> App   : navigate("courier-assign", {packageSize, assignedLocker})
   App   -> Screen : mountCourierAssign(stage, state)
-  Screen -> Screen : locker.state = "delivering"
+  Screen -> Repo  : reserveLocker(locker.id)
+  note right of Repo : AVAILABLE -> DELIVERING
 else Tidak ada
   Repo  --> Screen : null
   Screen -> Screen : disable tile ukuran
 end
 
-User  -> Screen : tap "Buka Loker & Titipkan"
-Screen -> App   : navigate("opening-locker", {openReason: "deliver"})
-App   -> Screen : mountOpeningLocker(stage, state)
-Screen -> HW    : unlock(assignedLocker.id)
-HW    --> Screen : ack
-User  -> Screen : letakkan paket, tap "Sudah Diletakkan"
-Screen -> Repo  : create Mail{recipientNip, sender, type, lockerId}
-Screen -> Repo  : assignedLocker.state = "occupied"
-Screen -> HW    : autoLock(assignedLocker.id)
-Screen -> Notif : notify(recipient, mail)
-Notif --> Screen : queued
-Screen -> App   : navigate("done-screen")
+alt Lanjut — tap "Buka Loker & Titipkan"
+  User  -> Screen : tap "Buka Loker & Titipkan"
+  Screen -> App   : navigate("opening-locker", {openReason: "deliver"})
+  App   -> Screen : mountOpeningLocker(stage, state)
+  Screen -> HW    : unlock(assignedLocker.id)
+  HW    --> Screen : ack
 
-== Cross-cutting — Inactivity ==
-User  -> Timer : (no input ≥ 60s)
-Timer -> App   : onTimeout()
-App   -> App   : clear transient state
-App   -> Screen : mountIdle(stage, state)
+  alt Sudah Diletakkan — finish()
+    User   -> Screen : letakkan paket, tap "Sudah Diletakkan"
+    Screen -> Repo  : occupyLocker(id, recipient.nip)
+    note right of Repo : DELIVERING -> OCCUPIED
+    Screen -> Repo  : recordDelivery({lockerId, recipientNip, type})
+    note right of Repo
+      Paket terdaftar sebagai Mail
+      yang bisa diklaim penerima.
+    end note
+    Screen -> HW    : autoLock(assignedLocker.id)
+    Screen -> Notif : notify(recipient, mail)  <<planned>>
+    note right of Notif
+      BELUM diimplementasikan —
+      backlog: kanal WA/SMS/email.
+    end note
+    Screen -> App   : navigate("done-screen")
+    App    -> Screen : mountDone(stage, state)
+    Screen -> Screen : tampilkan Kode Bukti Titip "FST-XXXXX"
+    Screen -> Screen : auto-back ke idle (15s, bisa difoto kurir)
+  else Batal — cancel()
+    User   -> Screen : tap "Batal"
+    Screen -> Repo  : releaseLocker(assignedLocker.id)
+    note right of Repo : DELIVERING -> AVAILABLE
+    Screen -> HW    : autoLock(assignedLocker.id)
+    Screen -> App   : navigate("courier-size")
+  end
+else Kembali — tap "Ganti Ukuran"
+  User  -> Screen : tap "Ganti Ukuran"
+  Screen -> Repo  : releaseLocker(assignedLocker.id)
+  Screen -> App   : navigate("courier-size")
+end
+
+== Cross-cutting — Inactivity (semua layar non-idle) ==
+User  -> Timer : (tidak ada input 50s)
+Timer -> App   : onWarning()
+App   -> App   : tampilkan overlay "Masih di sana?"\n(hitung mundur 10 detik)
+alt Pengguna menyentuh layar
+  User -> App : pointerdown / keydown / touchstart
+  App  -> Timer : reset()
+  App  -> App   : sembunyikan overlay, sesi lanjut
+else Tidak ada respons (total 60s)
+  Timer -> App : onTimeout()
+  App   -> Repo : releaseLocker(state.assignedLocker?)
+  note right of Repo : loker DELIVERING yang\nterbengkalai dibebaskan
+  App   -> App  : hapus state transient
+  App   -> Screen : mountIdle(stage, state)
+end
+note over Timer
+  Timeout default 60s;
+  override via ?idle=detik
+  (untuk pengujian).
+end note
 
 @enduml

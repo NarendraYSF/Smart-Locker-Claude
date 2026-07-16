@@ -28,7 +28,7 @@ if (Pilih jalur?) then (**Staf Akademik**)
 
   |Sistem Kiosk|
   :Baca UID kartu
-  (timeout simulasi 3.5s);
+  (auto-tap 3.5s hanya mode ?demo);
   if (Kartu valid?) then (ya)
     :Muat data Staf
     (nama, NIP, role, lockerId);
@@ -53,17 +53,23 @@ if (Pilih jalur?) then (**Staf Akademik**)
     (pintu terbuka);
 
     |Pengguna|
-    :Ambil/letakkan barang;
-    :Tutup pintu;
+    if (Selesai atau batal?) then (**Selesai**)
+      :Ambil/letakkan barang;
+      :Tutup pintu;
 
-    |Hardware Loker|
-    :Sensor mendeteksi
-    pintu tertutup;
+      |Hardware Loker|
+      :Sensor mendeteksi
+      pintu tertutup;
 
-    |Sistem Kiosk|
-    :Hentikan countdown;
-    :Render **Done**
-    "Selesai";
+      |Sistem Kiosk|
+      :Hentikan countdown;
+      :Render **Done** "Selesai";
+    else (**Batal**)
+      |Sistem Kiosk|
+      :cancel() → kembali ke
+      **Dashboard** tanpa layar sukses;
+      stop
+    endif
 
   else (**Surat & Paket**)
 
@@ -83,11 +89,25 @@ if (Pilih jalur?) then (**Staf Akademik**)
     :Buka loker target;
 
     |Pengguna|
-    :Ambil kiriman, tutup pintu;
+    if (Selesai atau batal?) then (**Sudah Diambil**)
+      :Ambil kiriman, tutup pintu;
 
-    |Sistem Kiosk|
-    :Tandai mail = claimed;
-    :Render **Done**;
+      |Sistem Kiosk|
+      :claimMail(id) —
+      hapus mail dari daftar;
+      if (Loker non-permanen
+      dan kosong?) then (ya)
+        :locker.state = AVAILABLE;
+      else (tidak, loker permanen)
+        :Tetap OCCUPIED;
+      endif
+      :Render **Done**;
+    else (**Batal**)
+      |Sistem Kiosk|
+      :cancel() → kembali ke
+      daftar **Mail**;
+      stop
+    endif
 
   endif
 
@@ -99,7 +119,9 @@ else (**Tamu / Kurir**)
 
   |Pengguna|
   :Cari penerima
-  (nama / dept / NIP);
+  (nama / dept / NIP,
+  fuzzy: gelar diabaikan,
+  toleransi 1 typo);
   :Pilih penerima;
 
   |Sistem Kiosk|
@@ -114,7 +136,8 @@ else (**Tamu / Kurir**)
   if (Loker tersedia
   untuk ukuran ini?) then (ya)
     :findFreeLocker(bucket);
-    :Tandai locker.state = delivering;
+    :reserveLocker(id)
+    AVAILABLE → DELIVERING;
     :Render **Courier — Assign**
     (peta loker + ringkasan);
   else (tidak)
@@ -123,29 +146,52 @@ else (**Tamu / Kurir**)
   endif
 
   |Pengguna|
-  :Tap **Buka Loker & Titipkan**;
+  if (Lanjut titipkan?) then (**Buka Loker & Titipkan**)
 
-  |Sistem Kiosk|
-  :Render **Opening Locker**
-  reason = "deliver"
-  accent = emas;
+    |Sistem Kiosk|
+    :Render **Opening Locker**
+    reason = "deliver"
+    accent = emas;
 
-  |Hardware Loker|
-  :Buka loker target;
+    |Hardware Loker|
+    :Buka loker target;
 
-  |Pengguna|
-  :Letakkan paket, tutup pintu;
+    |Pengguna|
+    if (Selesai atau batal?) then (**Sudah Diletakkan**)
+      :Letakkan paket, tutup pintu;
 
-  |Sistem Kiosk|
-  :Tandai locker.state = occupied;
-  :Buat record mail untuk penerima;
-  :Kirim notifikasi ke penerima;
-  :Render **Done**;
+      |Sistem Kiosk|
+      :occupyLocker(id, recipient.nip)
+      DELIVERING → OCCUPIED;
+      :recordDelivery() —
+      paket jadi Mail yang
+      bisa diklaim penerima;
+      :Kirim notifikasi ke penerima
+      **(planned — belum ada)**;
+      :Render **Done** +
+      **Kode Bukti Titip** "FST-XXXXX"
+      (tahan 15 detik untuk difoto);
+    else (**Batal**)
+      |Sistem Kiosk|
+      :cancel() → releaseLocker(id)
+      DELIVERING → AVAILABLE;
+      :Kembali ke **Courier — Size**;
+      stop
+    endif
+
+  else (**Ganti Ukuran**)
+    |Sistem Kiosk|
+    :releaseLocker(id)
+    DELIVERING → AVAILABLE;
+    :Kembali ke **Courier — Size**;
+    stop
+  endif
 
 endif
 
 |Sistem Kiosk|
-:Tampilkan konfirmasi 5 detik;
+:Tampilkan konfirmasi
+(5 detik; deliver: 15 detik);
 :Reset state transient
 (user, recipient, package, locker);
 :Kembali ke **Idle**;
@@ -154,11 +200,16 @@ stop
 
 ' --- Inactivity branch (cross-cutting) ---
 note right
-  Cross-cutting: kapan pun
-  tidak ada interaksi 60 detik
-  pada layar non-idle, sistem
-  otomatis kembali ke **Idle**
-  dan menghapus state transient.
+  Cross-cutting (semua layar non-idle):
+  * 50 detik tanpa interaksi → overlay
+    "Masih di sana?" hitung mundur 10 detik;
+    sentuhan apa pun melanjutkan sesi.
+  * 60 detik → releaseLocker(loker DELIVERING
+    yang terbengkalai), hapus state transient,
+    kembali ke **Idle**.
+  * Override timeout via ?idle=detik.
+  Tombol "Butuh bantuan?" di footer selalu
+  tersedia (lokasi, jam layanan, telepon).
 end note
 
 @enduml

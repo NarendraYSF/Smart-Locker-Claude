@@ -99,6 +99,19 @@ smart-locker/
     pattern-geo.svg          # subtle 8-point star backdrop
 ```
 
+## Product Docs
+
+- `docs/PRD.md` — pilot PRD: problem, success metrics, scope, requirements
+- `docs/BACKLOG.md` — living backlog: Sprint 1 results + prioritized next stories
+- `docs/RUNBOOK.md` — kiosk ops: deployment, URL params, recovery steps (ID) + `docs/ops/start-kiosk.ps1`
+- `docs/INTEGRATION-SPEC.md` — hardware integration contract: ESP32/Pi options, WebSocket + serial protocols, failure modes, B-04 acceptance tests
+- `docs/prd/` — per-screen functional spec (9 screens), enum dictionary, navigation map, reverse-engineered backend API inventory
+- `docs/TEST-PLAN.md` — rencana pengujian black-box (ID): 64 kasus uji dipetakan ke 11 use case BAB IV + UAT per persona
+- `docs/print/` — materi cetak sisi kios (ID): poster kurir "3 Langkah", panduan staf, log kertas §3.6 — buka di browser lalu Cetak/Print; screenshot di-refresh via `capture-screens.mjs`
+- `docs/DATA-ONBOARDING.md` — prosedur memuat direktori staf asli: formulir CSV Sekretariat, sesi pendataan kartu RFID, konverter `docs/ops/csv-to-data.mjs`
+- `docs/product-review.html` — full product & UX review (printable)
+- `docs/uml/` — five PlantUML diagrams, current with the post-Sprint 1 code
+
 ## UX Research
 
 Research artifacts live in `docs/research/` (produced with the `cs-ux-researcher` workflow):

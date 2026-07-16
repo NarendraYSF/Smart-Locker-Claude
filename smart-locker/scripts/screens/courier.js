@@ -26,8 +26,11 @@ export function mount(stage, state, step) {
 // Step 1 — search recipient
 // -------------------------------------------------------------------
 
+const SEARCH_PAGE_SIZE = 12;
+
 function mountSearch(stage, state) {
   let query = "";
+  let visibleCount = SEARCH_PAGE_SIZE;
 
   const root = h(
     "section.courier.stagger",
@@ -75,10 +78,16 @@ function mountSearch(stage, state) {
           autocomplete: "off",
           oninput: (e) => {
             query = e.target.value;
+            visibleCount = SEARCH_PAGE_SIZE;
             renderList();
           }
         })
-      )
+      ),
+      h("p", {
+        class: "eyebrow",
+        "data-result-count": "",
+        style: { marginTop: "var(--space-3)", minHeight: "16px" }
+      })
     ),
 
     h("div.recipient-list", { "data-list": "" }),
@@ -112,10 +121,26 @@ function mountSearch(stage, state) {
     if (!list) return;
     list.innerHTML = "";
 
-    const results = searchStaff(query).slice(0, 12);
+    const all = searchStaff(query);
+    const results = all.slice(0, visibleCount);
+
+    const countEl = root.querySelector("[data-result-count]");
+    if (countEl) {
+      countEl.textContent =
+        all.length === 0
+          ? "0 hasil"
+          : all.length > results.length
+          ? `Menampilkan ${results.length} dari ${all.length} hasil`
+          : `${all.length} hasil`;
+    }
+
     if (results.length === 0) {
       list.appendChild(
-        h("div.recipient-empty", {}, "Tidak ada staf cocok dengan pencarian.")
+        h(
+          "div.recipient-empty",
+          {},
+          "Tidak ada staf cocok dengan pencarian. Coba nama tanpa gelar, departemen, atau NIP."
+        )
       );
       return;
     }
@@ -156,6 +181,23 @@ function mountSearch(stage, state) {
             )
           ),
           icon("arrowRight", { className: "recipient__arrow" })
+        )
+      );
+    }
+
+    if (all.length > results.length) {
+      list.appendChild(
+        h(
+          "button.btn.btn--ghost",
+          {
+            type: "button",
+            style: { width: "100%", minHeight: "72px" },
+            onclick: () => {
+              visibleCount += SEARCH_PAGE_SIZE;
+              renderList();
+            }
+          },
+          `Tampilkan lebih banyak (${all.length - results.length} lagi)`
         )
       );
     }
@@ -482,7 +524,7 @@ function lockerGrid(target) {
             color: "var(--fg-muted)"
           }
         },
-        "6 \u00D7 8"
+        "3 \u00D7 8"
       )
     ),
     h(

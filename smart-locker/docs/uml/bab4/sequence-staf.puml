@@ -1,0 +1,61 @@
+@startuml sequence-staf-loker-pintar-fst
+title Sequence Diagram — Aktor Staf (Dosen / Tenaga Kependidikan)
+
+' Skenario makro aktor Staf: autentikasi → dashboard → buka loker
+' pribadi → ambil kiriman. Notasi panah UML baku:
+'   ->   permintaan sinkron  (garis lurus, mata panah tertutup/solid)
+'   -->> balikan data        (garis putus-putus, mata panah terbuka)
+
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #2A403C
+  ActorBorderColor #2A403C
+  LifeLineBackgroundColor #F4F1E8
+  LifeLineBorderColor #2A403C
+  ParticipantBorderColor #2A403C
+  ParticipantBackgroundColor #D9CFA9
+  GroupBorderColor #8A6A1F
+  GroupBackgroundColor #FFF7E0
+}
+
+actor "Staf" as Staf
+participant "Kiosk UI\n(Frontend)" as UI
+participant "DataRepository\n(Backend Service)" as Repo
+participant "Locker Hardware" as HW
+
+== Autentikasi (UC-01) & Dashboard (UC-02) ==
+Staf -> UI : tap "Staf Akademik"
+Staf -> UI : tempel kartu RFID
+UI -> Repo : cariStaf(uid)
+Repo -->> UI : data Staf {nip, nama, role, lockerId}
+UI -> Repo : mailFor(nip)
+Repo -->> UI : daftar Kiriman
+UI -> Repo : dataLoker(lockerId)
+Repo -->> UI : Loker {nomor, ukuran, status}
+UI -->> Staf : tampilkan Dashboard personal
+
+== Buka Loker Pribadi (UC-03) ==
+Staf -> UI : tap "Buka Loker Saya"
+UI -> HW : unlock(lockerId)
+HW -->> UI : ack (pintu terbuka)
+Staf -> UI : ambil/letakkan barang,\ntutup pintu, tap "Selesai"
+UI -> HW : autoLock(lockerId)
+HW -->> UI : ack (terkunci)
+UI -->> Staf : layar Done, kembali ke Idle (5 detik)
+
+== Ambil Kiriman (UC-04 & UC-05) ==
+Staf -> UI : tap "Surat & Paket"
+UI -> Repo : mailFor(nip)
+Repo -->> UI : daftar Kiriman
+UI -->> Staf : tampilkan daftar kiriman
+Staf -> UI : tap "Ambil" pada kiriman
+UI -> HW : unlock(mail.lockerId)
+HW -->> UI : ack (pintu terbuka)
+Staf -> UI : ambil kiriman, tap "Sudah Diambil"
+UI -> Repo : claimMail(mailId)
+Repo -->> UI : Kiriman terhapus,\nloker non-permanen → AVAILABLE
+UI -> HW : autoLock(lockerId)
+HW -->> UI : ack (terkunci)
+UI -->> Staf : layar Done, kembali ke Idle (5 detik)
+
+@enduml

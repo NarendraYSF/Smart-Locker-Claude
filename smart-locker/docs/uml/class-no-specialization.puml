@@ -1,0 +1,151 @@
+@startuml class-no-specialization-loker-pintar-fst
+title Class Diagram (Tanpa Spesialisasi) — Loker Pintar FST
+
+' Versi FLAT: tidak ada generalisasi/inheritance sama sekali.
+' Variasi dimodelkan sebagai ATRIBUT (role, size, screen), persis seperti
+' implementasi nyata di scripts/data.js dan scripts/app.js.
+' Bandingkan dengan class-specialization.puml untuk versi hierarki.
+
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F4F1E8
+  BorderColor #2A403C
+  ArrowColor #2A403C
+  HeaderBackgroundColor #D9CFA9
+}
+hide circle
+
+' ================== Domain (flat) ==================
+package "Domain" {
+
+  class Pengguna {
+    + nip : String
+    + name : String
+    + role : String  {"dosen" | "tendik" | "kurir"}
+    + dept : String?
+    + rfid : String?  {null untuk kurir}
+    + lockerId : String?  {null untuk kurir}
+    --
+    + isStaf() : boolean
+    + isKurir() : boolean
+  }
+
+  class Loker {
+    + id : String
+    + number : int
+    + size : String  {"kecil" | "sedang" | "besar"}
+    + state : String  {"available" | "delivering" | "occupied"}
+    + ownerNip : String?
+    + hasMail : boolean
+    --
+    + isFree() : boolean
+  }
+
+  class Kiriman {
+    + id : String
+    + recipientNip : String
+    + sender : String
+    + type : String
+    + note : String
+    + arrivedAt : ISODateTime
+    + lockerId : String
+  }
+
+  class UkuranPaket {
+    + id : String
+    + name : String
+    + dim : String
+    + bucket : String  {"kecil" | "sedang" | "besar"}
+  }
+}
+
+' ================== Data Layer ==================
+package "Data" {
+  class DataRepository <<module>> {
+    + staff : List<Pengguna>
+    + lockers : List<Loker>
+    + incomingMail : List<Kiriman>
+    + packageSizes : List<UkuranPaket>
+    --
+    + searchStaff(q : String) : List<Pengguna>
+    + mailFor(nip : String) : List<Kiriman>
+    + countFree(size : String) : int
+    + findFreeLocker(size : String) : Loker?
+    + reserveLocker(id : String) : Loker?
+    + releaseLocker(id : String) : Loker?
+    + occupyLocker(id : String, ownerNip : String?) : Loker?
+    + recordDelivery(spec) : Kiriman
+    + claimMail(mailId : String) : Kiriman?
+  }
+}
+
+' ================== App Core ==================
+package "App Core" {
+
+  class KioskApp <<module>> {
+    + state : KioskState
+    --
+    + navigate(screen : String, ctx : Object) : void
+    + toast(msg : String) : void
+    + boot() : void
+  }
+
+  class KioskState {
+    + screen : String  {"idle" | "tap-card" | "dashboard" | ...}
+    + user : Pengguna?
+    + recipient : Pengguna?
+    + packageSize : UkuranPaket?
+    + assignedLocker : Loker?
+    + openReason : String?  {"self" | "claim-mail" | "deliver"}
+    + claimedMailId : String?
+    + completedLocker : Loker?
+  }
+
+  class InactivityTimer {
+    - timeoutMs : long = 60000
+    - warningMs : long = 50000
+    --
+    + reset() : void
+    + onWarning() : void
+    + onTimeout() : void
+  }
+
+  ' Tanpa spesialisasi: setiap layar adalah satu modul mandiri dengan
+  ' fungsi mount() masing-masing — tidak ada kelas induk "Screen".
+  class ScreenRouter <<module>> {
+    + screens : Map<String, mountFn>
+    --
+    + mount(name : String, stage, state) : Cleanup?
+  }
+}
+
+' ================== Relationships (asosiasi saja) ==================
+Pengguna "1" -- "0..1" Loker   : memiliki >
+Pengguna "1" -- "0..*" Kiriman : menerima >
+Kiriman  "0..*" -- "1" Loker   : disimpan di >
+UkuranPaket "1" -- "0..*" Loker : dipetakan ke ukuran >
+
+DataRepository "1" o-- "*" Pengguna
+DataRepository "1" o-- "*" Loker
+DataRepository "1" o-- "*" Kiriman
+DataRepository "1" o-- "*" UkuranPaket
+
+KioskApp "1" *-- "1" KioskState
+KioskApp "1" *-- "1" InactivityTimer
+KioskApp "1" *-- "1" ScreenRouter
+KioskApp ..> DataRepository : queries
+
+KioskState --> Pengguna : user / recipient
+KioskState --> Loker    : assignedLocker
+KioskState --> UkuranPaket : packageSize
+
+note bottom of Pengguna
+  Tanpa spesialisasi, perbedaan Dosen /
+  Tenaga Kependidikan / Kurir hanyalah
+  nilai atribut "role" — akibatnya atribut
+  rfid dan lockerId harus nullable karena
+  kurir tidak memilikinya.
+end note
+
+@enduml

@@ -1,0 +1,71 @@
+@startuml bab4-use-case-loker-pintar-fst
+title Use Case Diagram — Loker Pintar FST (11 Use Case)
+
+' Versi BAB IV sesuai catatan dosen: hanya use case yang bermakna bagi
+' aktor (11 buah). Langkah internal sistem (alokasi loker, deteksi pintu,
+' kunci otomatis, reset idle) TIDAK menjadi use case tersendiri —
+' langkah-langkah itu muncul di dalam activity diagram masing-masing.
+' Setiap use case di sini memiliki tepat SATU activity diagram (1:1),
+' lihat activity-uc01 s.d. activity-uc11.
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #F4F1E8
+  BorderColor #2A403C
+  ArrowColor #2A403C
+}
+
+' ---------- Aktor ----------
+actor "Dosen / Tenaga\nKependidikan (Staf)" as Staf
+actor "Tamu / Kurir" as Kurir
+actor "Admin Sekretariat\nFST" as Admin
+
+' ---------- Batas Sistem ----------
+rectangle "Sistem Loker Pintar FST" {
+  usecase "UC-01\nAutentikasi via RFID" as UC01
+  usecase "UC-02\nLihat Dashboard Personal" as UC02
+  usecase "UC-03\nBuka Loker Pribadi" as UC03
+  usecase "UC-04\nLihat Daftar Kiriman" as UC04
+  usecase "UC-05\nAmbil Kiriman" as UC05
+  usecase "UC-06\nCari Penerima" as UC06
+  usecase "UC-07\nPilih Ukuran Paket" as UC07
+  usecase "UC-08\nTitipkan Paket" as UC08
+  usecase "UC-09\nBatalkan Operasi" as UC09
+  usecase "UC-10\nLihat Bantuan" as UC10
+  usecase "UC-11\nKelola Data Staf & Loker" as UC11
+}
+
+' ---------- Relasi Staf ----------
+Staf --> UC01
+Staf --> UC02
+Staf --> UC03
+Staf --> UC04
+Staf --> UC05
+Staf --> UC10
+
+UC02 ..> UC01 : <<include>>
+UC03 ..> UC01 : <<include>>
+UC04 ..> UC01 : <<include>>
+UC05 ..> UC04 : <<include>>
+
+' ---------- Relasi Kurir ----------
+Kurir --> UC06
+Kurir --> UC07
+Kurir --> UC08
+Kurir --> UC10
+
+UC07 ..> UC06 : <<include>>
+UC08 ..> UC07 : <<include>>
+
+' ---------- Batalkan (extend: opsional) ----------
+UC03 <.. UC09 : <<extend>>
+UC05 <.. UC09 : <<extend>>
+UC08 <.. UC09 : <<extend>>
+
+' ---------- Admin ----------
+Admin --> UC11
+
+@enduml

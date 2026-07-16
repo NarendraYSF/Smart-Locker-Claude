@@ -1,0 +1,41 @@
+@startuml activity-uc10-lihat-bantuan
+title Activity Diagram UC-10 — Lihat Bantuan
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Pengguna|
+|#FFF7E0|Sistem Kiosk|
+
+|Pengguna|
+start
+:Tap tombol "Butuh bantuan?"
+di footer (tersedia di semua layar);
+
+|Sistem Kiosk|
+:Tampilkan overlay bantuan:
+* lokasi Sekretariat FST
+* jam layanan
+* nomor telepon
+* cara melaporkan masalah;
+
+|Pengguna|
+:Membaca informasi bantuan;
+if (Tutup overlay?) then (tap "Tutup" / area luar)
+  |Sistem Kiosk|
+  :Tutup overlay,
+  kembali ke layar sebelumnya
+  (sesi tidak terganggu);
+  stop
+else (tidak ada interaksi)
+  |Sistem Kiosk|
+  :Timer inaktivitas tetap berjalan —
+  60 detik tanpa sentuhan
+  kiosk kembali ke Idle;
+  stop
+endif
+
+@enduml

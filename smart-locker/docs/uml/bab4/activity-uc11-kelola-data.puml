@@ -1,0 +1,53 @@
+@startuml activity-uc11-kelola-data
+title Activity Diagram UC-11 — Kelola Data Staf & Loker
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Admin Sekretariat|
+|#FFF7E0|Sistem|
+
+|Admin Sekretariat|
+start
+:Perlu perubahan data
+(staf baru, kartu hilang,
+loker rusak / reassign);
+
+|Sistem|
+:Buka sumber data
+(prototipe: berkas data.js;
+rencana: konsol admin — backlog B-03);
+
+|Admin Sekretariat|
+if (Jenis perubahan?) then (Data staf)
+  :Tambah / ubah / hapus entri staf
+  (nama, NIP, role, dept, RFID,
+  loker permanen);
+elseif (Data loker) then
+  :Ubah status / kepemilikan loker,
+  tandai loker rusak
+  "TIDAK DIPAKAI";
+else (Pantau status)
+  :Periksa okupansi loker
+  dan kiriman tak diambil;
+endif
+
+|Sistem|
+:Terapkan perubahan;
+note right
+  Prototipe: perubahan berlaku
+  setelah muat ulang kiosk
+  (data seed in-memory).
+end note
+
+|Admin Sekretariat|
+:Verifikasi di kiosk +
+catat di log kertas
+(RUNBOOK bagian 3.6);
+
+stop
+
+@enduml

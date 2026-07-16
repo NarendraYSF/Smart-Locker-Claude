@@ -1,0 +1,39 @@
+@startuml activity-uc01-autentikasi-rfid
+title Activity Diagram UC-01 — Autentikasi via RFID
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Staf|
+|#FFF7E0|Sistem Kiosk|
+
+|Staf|
+start
+:Tap tombol "Staf Akademik"
+di layar Idle;
+
+|Sistem Kiosk|
+:Tampilkan layar **Tap Card**;
+
+|Staf|
+:Tempelkan kartu RFID
+ke reader;
+
+|Sistem Kiosk|
+:Baca UID kartu;
+if (Kartu terdaftar?) then (ya)
+  :Muat data staf
+  (nama, NIP, role, lockerId);
+  :Navigasi ke **Dashboard**;
+  stop
+else (tidak)
+  :Tampilkan toast
+  "Kartu tidak dikenali";
+  :Tetap di layar Tap Card;
+  stop
+endif
+
+@enduml

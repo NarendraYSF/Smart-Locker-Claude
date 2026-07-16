@@ -254,6 +254,112 @@
   pointer-events: auto;
 }
 
+/* --- Idle warning overlay ------------------------------------------ */
+
+.idle-warning {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: rgba(11, 20, 16, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: stagger-in var(--dur-med) var(--ease-entrance) both;
+}
+
+.idle-warning__card {
+  text-align: center;
+  padding: var(--space-9) var(--space-10);
+  border-radius: var(--radius-xl);
+  background: var(--bg-card-strong);
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--elev-2);
+}
+
+.idle-warning__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  color: var(--fg-primary);
+}
+
+.idle-warning__count {
+  font-family: var(--font-mono);
+  font-size: var(--fs-4xl);
+  font-weight: 700;
+  color: var(--warning);
+  margin-top: var(--space-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.idle-warning__sub {
+  font-size: var(--fs-md);
+  color: var(--fg-muted);
+  margin-top: var(--space-4);
+}
+
+/* --- Help overlay --------------------------------------------------- */
+
+.help-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: rgba(11, 20, 16, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: stagger-in var(--dur-med) var(--ease-entrance) both;
+}
+
+.help-overlay__card {
+  width: 720px;
+  max-width: 86%;
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  background: var(--bg-card-strong);
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--elev-2);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.help-overlay__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  color: var(--fg-primary);
+}
+
+.help-overlay__row {
+  display: flex;
+  gap: var(--space-4);
+  align-items: baseline;
+  font-size: var(--fs-md);
+  color: var(--fg-secondary);
+}
+
+.help-overlay__label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+  min-width: 140px;
+}
+
+.kiosk__footer-help {
+  align-self: flex-start;
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--fg-secondary);
+}
+
 /* --- Inputs ------------------------------------------------------- */
 
 .field {

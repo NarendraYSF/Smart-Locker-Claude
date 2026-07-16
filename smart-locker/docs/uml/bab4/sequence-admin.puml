@@ -1,0 +1,55 @@
+@startuml sequence-admin-loker-pintar-fst
+title Sequence Diagram — Aktor Admin Sekretariat FST
+
+' Skenario makro aktor Admin: kelola data staf & loker dan pantau
+' status. Pada prototipe, "backend" adalah berkas data seed
+' (data.js); konsol admin adalah rencana (backlog B-03).
+' Notasi panah UML baku:
+'   ->   permintaan sinkron  (garis lurus, mata panah tertutup/solid)
+'   -->> balikan data        (garis putus-putus, mata panah terbuka)
+
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #2A403C
+  ActorBorderColor #2A403C
+  LifeLineBackgroundColor #F4F1E8
+  LifeLineBorderColor #2A403C
+  ParticipantBorderColor #2A403C
+  ParticipantBackgroundColor #D9CFA9
+  GroupBorderColor #8A6A1F
+  GroupBackgroundColor #FFF7E0
+}
+
+actor "Admin\nSekretariat" as Admin
+participant "Konsol Admin\n(Frontend) <<planned>>" as Console
+participant "DataRepository\n(Backend Service)" as Repo
+participant "Kiosk UI\n(Frontend)" as UI
+
+== Kelola Data Staf (UC-11) ==
+Admin -> Console : tambah / ubah staf\n(nama, NIP, RFID, loker permanen)
+Console -> Repo : simpanStaf(data)
+Repo -->> Console : Staf tersimpan
+Console -->> Admin : konfirmasi perubahan
+note over Console, Repo
+  Prototipe saat ini: Admin menyunting
+  data seed (data.js) langsung; perubahan
+  aktif setelah kiosk dimuat ulang.
+end note
+
+== Kelola Data Loker (UC-11) ==
+Admin -> Console : ubah status loker\n(rusak / reassign pemilik)
+Console -> Repo : perbaruiLoker(id, status)
+Repo -->> Console : Loker diperbarui
+Console -->> Admin : konfirmasi perubahan
+
+== Pantau Status Loker (UC-11) ==
+Admin -> Console : buka panel pemantauan
+Console -> Repo : daftarLoker() + kirimanTakDiambil()
+Repo -->> Console : okupansi loker,\nkiriman menunggu diambil
+Console -->> Admin : tampilkan ringkasan status
+
+== Sinkronisasi ke Kiosk ==
+UI -> Repo : muat data saat boot
+Repo -->> UI : staf, loker, kiriman terbaru
+
+@enduml

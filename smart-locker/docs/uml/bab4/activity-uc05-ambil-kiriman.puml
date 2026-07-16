@@ -1,0 +1,52 @@
+@startuml activity-uc05-ambil-kiriman
+title Activity Diagram UC-05 — Ambil Kiriman
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Staf|
+|#FFF7E0|Sistem Kiosk|
+|#EAEAEA|Hardware Loker|
+
+|Staf|
+start
+:Tap "Ambil" pada salah satu
+kiriman di daftar (UC-04);
+
+|Sistem Kiosk|
+:Render layar **Opening Locker**
+(reason = claim-mail, aksen emas);
+
+|Hardware Loker|
+:Buka pintu loker
+tempat kiriman disimpan;
+
+|Staf|
+:Ambil kiriman;
+:Tutup pintu, tap "Sudah Diambil";
+
+|Sistem Kiosk|
+:claimMail(id) —
+hapus kiriman dari daftar;
+if (Loker non-permanen
+dan sudah kosong?) then (ya)
+  :Ubah status loker
+  OCCUPIED → AVAILABLE;
+else (tidak — loker permanen staf)
+  :Status loker tetap OCCUPIED;
+endif
+
+|Hardware Loker|
+:Kunci otomatis;
+
+|Sistem Kiosk|
+:Render layar **Done**;
+:Kembali otomatis ke Idle
+setelah 5 detik;
+
+stop
+
+@enduml

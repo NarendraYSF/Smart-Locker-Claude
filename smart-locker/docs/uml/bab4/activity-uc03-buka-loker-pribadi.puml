@@ -1,0 +1,50 @@
+@startuml activity-uc03-buka-loker-pribadi
+title Activity Diagram UC-03 — Buka Loker Pribadi
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Staf|
+|#FFF7E0|Sistem Kiosk|
+|#EAEAEA|Hardware Loker|
+
+|Staf|
+start
+:Tap "Buka Loker Saya"
+di Dashboard;
+
+|Sistem Kiosk|
+:Render layar **Opening Locker**
+(nomor loker besar, aksen hijau);
+:Mulai hitung mundur 30 detik;
+
+|Hardware Loker|
+:Aktifkan solenoid —
+pintu loker terbuka;
+
+|Staf|
+:Ambil / letakkan barang;
+:Tutup pintu loker;
+
+|Hardware Loker|
+:Sensor mendeteksi
+pintu tertutup;
+:Kunci otomatis;
+
+|Sistem Kiosk|
+:Hentikan hitung mundur;
+:Render layar **Done** "Selesai";
+:Kembali otomatis ke Idle
+setelah 5 detik;
+
+stop
+
+note right
+  Jalur "Batal" dimodelkan
+  terpisah di UC-09.
+end note
+
+@enduml

@@ -1,0 +1,47 @@
+@startuml activity-uc09-batalkan-operasi
+title Activity Diagram UC-09 — Batalkan Operasi
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Pengguna|
+|#FFF7E0|Sistem Kiosk|
+|#EAEAEA|Hardware Loker|
+
+|Pengguna|
+start
+:Tap "Batal" pada layar
+**Opening Locker**;
+
+|Sistem Kiosk|
+:Hentikan hitung mundur;
+
+|Hardware Loker|
+:Kunci kembali pintu loker;
+
+|Sistem Kiosk|
+if (Jenis operasi?) then (Titip paket — deliver)
+  :releaseLocker(id) —
+  DELIVERING → AVAILABLE
+  (loker kembali ke inventori);
+  :Toast "Penitipan dibatalkan";
+  :Kembali ke layar
+  **Pilih Ukuran Paket**;
+elseif (Ambil kiriman — claim-mail) then
+  :Kiriman TIDAK dihapus
+  dari daftar;
+  :Toast "Pengambilan dibatalkan";
+  :Kembali ke daftar **Kiriman**;
+else (Loker pribadi — self)
+  :Kembali ke **Dashboard**;
+endif
+
+:TIDAK ada layar sukses —
+kembali langsung ke layar asal;
+
+stop
+
+@enduml

@@ -1,14 +1,28 @@
-// Done screen: brief success confirmation, then auto-return to idle after 5s.
+// Done screen: brief success confirmation, then auto-return to idle.
+// Courier deposits show a receipt code and linger longer so it can be
+// photographed as proof of delivery.
 
 import { h, icon } from "../utils/dom.js";
 import { navigate } from "../app.js";
 
-const AUTO_RETURN_MS = 5000;
+// Unambiguous alphabet: no 0/O, 1/I/L to keep the code phone-photo friendly.
+const CODE_ALPHABET = "23456789ABCDEFGHJKMNPQRSTUVWXYZ";
+
+function receiptCode() {
+  let s = "";
+  for (let i = 0; i < 5; i++) {
+    s += CODE_ALPHABET[Math.floor(Math.random() * CODE_ALPHABET.length)];
+  }
+  return `FST-${s}`;
+}
 
 export function mount(stage, state) {
   const reason = state.openReason || "self";
   const isGold = reason === "deliver" || reason === "claim-mail";
   const locker = state.completedLocker;
+  const isDeliver = reason === "deliver";
+  const code = isDeliver ? receiptCode() : null;
+  const autoReturnSeconds = isDeliver ? 15 : 5;
 
   const title =
     reason === "deliver"
@@ -19,7 +33,7 @@ export function mount(stage, state) {
 
   const sub =
     reason === "deliver"
-      ? "Penerima akan menerima notifikasi dan dapat mengambil kiriman kapan saja dalam jam layanan."
+      ? "Tunjukkan atau foto kode di bawah ini sebagai bukti penitipan. Penerima dapat mengambil kiriman dalam jam layanan."
       : reason === "claim-mail"
       ? "Semoga harinya menyenangkan. Jangan lupa tutup kembali pintu loker dengan rapat."
       : "Semoga harinya menyenangkan, hati-hati di perjalanan.";
@@ -52,6 +66,15 @@ export function mount(stage, state) {
 
     h("p.done__sub", {}, sub),
 
+    code
+      ? h(
+          "div.done__receipt",
+          { "data-receipt": "" },
+          h("p.done__receipt-label", {}, "Kode Bukti Titip"),
+          h("p.done__receipt-code", {}, code)
+        )
+      : null,
+
     locker
       ? h(
           "div.done__detail",
@@ -73,13 +96,17 @@ export function mount(stage, state) {
         { type: "button", onclick: () => navigate("idle", clearedState) },
         "Kembali Sekarang"
       ),
-      h("p.done__auto", { "data-auto": "" }, "Kembali otomatis dalam 5 detik")
+      h(
+        "p.done__auto",
+        { "data-auto": "" },
+        `Kembali otomatis dalam ${autoReturnSeconds} detik`
+      )
     )
   );
 
   stage.appendChild(root);
 
-  let remaining = 5;
+  let remaining = autoReturnSeconds;
   const label = root.querySelector("[data-auto]");
   const id = setInterval(() => {
     remaining -= 1;
@@ -91,12 +118,7 @@ export function mount(stage, state) {
     }
   }, 1000);
 
-  const autoReturn = setTimeout(() => {}, AUTO_RETURN_MS); // handled above
-
-  return () => {
-    clearInterval(id);
-    clearTimeout(autoReturn);
-  };
+  return () => clearInterval(id);
 }
 
 function renderTitle(tokens) {

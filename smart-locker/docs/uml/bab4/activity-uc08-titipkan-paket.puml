@@ -1,0 +1,52 @@
+@startuml activity-uc08-titipkan-paket
+title Activity Diagram UC-08 — Titipkan Paket
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Kurir|
+|#FFF7E0|Sistem Kiosk|
+|#EAEAEA|Hardware Loker|
+
+|Kurir|
+start
+:Tap "Buka Loker & Titipkan"
+di layar Assign (UC-07);
+
+|Sistem Kiosk|
+:Render layar **Opening Locker**
+(reason = deliver, aksen emas);
+
+|Hardware Loker|
+:Buka pintu loker
+yang sudah direservasi;
+
+|Kurir|
+:Letakkan paket di dalam loker;
+:Tutup pintu, tap "Sudah Diletakkan";
+
+|Sistem Kiosk|
+:occupyLocker(id, nip penerima) —
+DELIVERING → OCCUPIED;
+:recordDelivery() —
+paket terdaftar sebagai kiriman
+yang bisa diklaim penerima;
+:Kirim notifikasi ke penerima
+**(planned — belum diimplementasikan)**;
+
+|Hardware Loker|
+:Kunci otomatis;
+
+|Sistem Kiosk|
+:Render layar **Done** +
+**Kode Bukti Titip** "FST-XXXXX";
+:Tahan 15 detik agar kurir
+sempat memfoto kode;
+:Kembali otomatis ke Idle;
+
+stop
+
+@enduml

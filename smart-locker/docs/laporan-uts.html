@@ -1130,10 +1130,11 @@
     <li class="subbab-row"><span class="num">1.2</span><span class="title-text">Identifikasi Masalah</span><span class="dots"></span><span class="pg">6</span></li>
     <li class="subbab-row"><span class="num">1.3</span><span class="title-text">Rumusan Masalah</span><span class="dots"></span><span class="pg">6</span></li>
     <li class="subbab-row"><span class="num">1.4</span><span class="title-text">Batasan Masalah</span><span class="dots"></span><span class="pg">7</span></li>
-    <li class="subbab-row"><span class="num">1.5</span><span class="title-text">Tujuan Project</span><span class="dots"></span><span class="pg">8</span></li>
-    <li class="subbab-row"><span class="num">1.6</span><span class="title-text">Manfaat Project</span><span class="dots"></span><span class="pg">8</span></li>
-    <li class="subbab-row"><span class="num">1.7</span><span class="title-text">Metode Pengumpulan Data</span><span class="dots"></span><span class="pg">9</span></li>
-    <li class="subbab-row"><span class="num">1.8</span><span class="title-text">Sistematika Penulisan</span><span class="dots"></span><span class="pg">10</span></li>
+    <li class="subbab-row"><span class="num">1.5</span><span class="title-text">Tujuan Project</span><span class="dots"></span><span class="pg">9</span></li>
+    <li class="subbab-row"><span class="num">1.6</span><span class="title-text">Manfaat Project</span><span class="dots"></span><span class="pg">9</span></li>
+    <li class="subbab-row"><span class="num">1.7</span><span class="title-text">Metode Pengumpulan Data</span><span class="dots"></span><span class="pg">10</span></li>
+    <li class="subbab-row"><span class="num">1.8</span><span class="title-text">Metode Pengembangan Sistem</span><span class="dots"></span><span class="pg">11</span></li>
+    <li class="subbab-row"><span class="num">1.9</span><span class="title-text">Sistematika Penulisan</span><span class="dots"></span><span class="pg">12</span></li>
 
     <li class="bab-row"><span class="num">BAB II</span><span class="title-text">ANALISIS SISTEM BERJALAN</span><span class="dots"></span><span class="pg">12</span></li>
     <li class="subbab-row"><span class="num">2.1</span><span class="title-text">Gambaran Umum Objek Penelitian</span><span class="dots"></span><span class="pg">12</span></li>
@@ -1178,9 +1179,7 @@
   <h1 class="bab">BAB I<br/>PENDAHULUAN</h1>
 
   <h2 class="subbab">1.1 Latar Belakang</h2>
-  <p>Perkembangan teknologi informasi dewasa ini telah mendorong terjadinya transformasi digital di berbagai sektor, termasuk dalam pengelolaan fasilitas perkantoran dan akademik. Salah satu fasilitas penting yang masih dikelola secara konvensional pada banyak perguruan tinggi di Indonesia adalah loker pribadi bagi dosen dan tenaga kependidikan. Loker ini umumnya digunakan untuk menyimpan barang pribadi, dokumen perkuliahan, hasil ujian, alat tulis, hingga surat dan paket yang dititipkan oleh pihak ketiga seperti kurir, mahasiswa, atau rekan sejawat.</p>
-
-  <p>Pada Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta, jumlah dosen dan tenaga kependidikan yang aktif mencapai ratusan orang yang tersebar pada tujuh program studi, yaitu Teknik Informatika, Sistem Informasi, Matematika, Fisika, Kimia, Biologi, dan Agribisnis. Kondisi ini menyebabkan kebutuhan akan loker pribadi menjadi sangat tinggi. Selain itu, intensitas pengiriman surat resmi, paket buku ajar, hasil koreksi ujian, serta dokumen administrasi antar pihak juga cukup padat setiap harinya.</p>
+  <p>Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta memiliki ratusan dosen dan tenaga kependidikan aktif yang tersebar pada tujuh program studi, yaitu Teknik Informatika, Sistem Informasi, Matematika, Fisika, Kimia, Biologi, dan Agribisnis. Untuk menunjang aktivitas akademik sehari-hari, fakultas menyediakan loker pribadi yang digunakan untuk menyimpan barang pribadi, dokumen perkuliahan, hasil ujian, alat tulis, hingga surat dan paket yang dititipkan oleh pihak ketiga seperti kurir, mahasiswa, atau rekan sejawat. Intensitas pengiriman surat resmi, paket buku ajar, hasil koreksi ujian, serta dokumen administrasi antar pihak juga cukup padat setiap harinya, sehingga loker dan layanan penitipan menjadi fasilitas yang bersentuhan langsung dengan kelancaran operasional fakultas.</p>
 
   <p>Pengelolaan loker yang berjalan saat ini masih bersifat manual, di mana setiap dosen atau tenaga kependidikan menerima satu buah kunci fisik untuk loker yang diberikan. Penitipan surat dan paket dilakukan melalui staf sekretariat fakultas, kemudian diletakkan pada rak terbuka atau diserahkan langsung ke loker yang bersangkutan menggunakan kunci cadangan. Mekanisme ini menimbulkan beberapa permasalahan, antara lain risiko kehilangan kunci, antrean panjang pada jam sibuk, ketidakjelasan status penerimaan kiriman, serta tidak adanya catatan riwayat akses loker untuk keperluan audit.</p>
 
@@ -1188,7 +1187,7 @@
 
   <p>Berangkat dari kondisi tersebut, dibutuhkan sebuah sistem loker pintar (<em>smart locker</em>) yang mengintegrasikan teknologi RFID (<em>Radio Frequency Identification</em>) sebagai mekanisme autentikasi, perangkat keras pengunci elektromekanis (<em>solenoid</em>) untuk membuka dan mengunci pintu loker secara otomatis, serta antarmuka kios layar sentuh (<em>kiosk touchscreen interface</em>) sebagai jembatan interaksi pengguna. Sistem ini diharapkan mampu meningkatkan efisiensi, keamanan, transparansi, dan akuntabilitas pengelolaan loker di lingkungan FST UIN Syarif Hidayatullah Jakarta.</p>
 
-  <p>Penelitian ini bertujuan untuk menganalisis sistem berjalan dan menghasilkan rancangan sistem loker pintar yang sesuai dengan kebutuhan pengguna, baik dari sisi dosen dan tenaga kependidikan sebagai pemilik loker, kurir atau tamu sebagai pengirim paket, maupun admin sekretariat sebagai pengelola sistem. Hasil rancangan ini diharapkan dapat menjadi dasar implementasi nyata sistem loker pintar pertama di lingkungan UIN Syarif Hidayatullah Jakarta.</p>
+  <p>Penelitian ini bertujuan untuk menganalisis sistem berjalan dan menghasilkan rancangan sistem loker pintar yang sesuai dengan kebutuhan pengguna, baik dari sisi dosen dan tenaga kependidikan sebagai pemilik loker, kurir atau tamu sebagai pengirim paket, maupun admin sekretariat sebagai pengelola sistem. Target konkret yang ingin dicapai setelah sistem diimplementasikan adalah: (1) menghilangkan ketergantungan pada kunci fisik sehingga risiko kehilangan dan duplikasi kunci menjadi nol, (2) memangkas antrean penitipan paket di sekretariat karena kurir dapat menitipkan secara mandiri melalui kios, (3) memastikan penerima mengetahui adanya kiriman melalui notifikasi otomatis, dan (4) tersedianya catatan riwayat akses loker yang lengkap sebagai dasar audit. Hasil rancangan ini diharapkan dapat menjadi dasar implementasi nyata sistem loker pintar pertama di lingkungan UIN Syarif Hidayatullah Jakarta.</p>
 </section>
 
 
@@ -1224,16 +1223,34 @@
   <span class="pageno">3</span>
 
   <h2 class="subbab">1.4 Batasan Masalah</h2>
-  <p>Agar pembahasan dalam laporan ini tidak meluas dan tetap berfokus pada tujuan yang ingin dicapai, maka penulis memberikan batasan masalah sebagai berikut:</p>
+  <p>Agar pembahasan dalam laporan ini tidak meluas dan tetap berfokus pada tujuan yang ingin dicapai, batasan masalah disusun mengikuti kerangka manajemen proyek <em>Triple Constraints</em>, yaitu ruang lingkup (<em>scope</em>), biaya (<em>cost</em>), dan waktu (<em>time</em>), sebagai berikut:</p>
+
+  <h3 class="subsubbab">1.4.1 Ruang Lingkup (Scope)</h3>
   <ol>
     <li>Objek penelitian terbatas pada lingkungan Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta, khususnya unit kerja sekretariat fakultas dan ruang loker dosen serta tenaga kependidikan.</li>
-    <li>Pengguna sistem terbatas pada tiga aktor utama, yaitu dosen dan tenaga kependidikan, kurir atau tamu pengirim paket, serta admin sekretariat fakultas.</li>
-    <li>Sistem dirancang untuk perangkat kios <em>touchscreen</em> berorientasi <em>portrait</em> dengan resolusi 1080 × 1920 piksel sebagai antarmuka utama interaksi pengguna.</li>
-    <li>Mekanisme autentikasi yang digunakan terbatas pada teknologi RFID (kartu identitas dosen/tendik), tanpa mencakup biometrik wajah maupun sidik jari.</li>
-    <li>Ukuran paket dibagi menjadi tiga kategori utama, yaitu kecil, sedang, dan besar, dengan tambahan kategori khusus untuk surat.</li>
-    <li>Pembahasan dalam laporan UTS ini terbatas pada tahap analisis dan kebutuhan sistem (BAB I sampai dengan BAB III), sedangkan tahap perancangan UML, implementasi, dan pengujian akan dibahas pada laporan UAS.</li>
-    <li>Notifikasi penerima kiriman dibatasi melalui jalur surel resmi UIN Syarif Hidayatullah Jakarta dan tidak mencakup integrasi dengan layanan pesan instan eksternal.</li>
+    <li>Aktor yang terlibat terbatas pada tiga aktor utama, yaitu dosen dan tenaga kependidikan, kurir atau tamu pengirim paket, serta admin sekretariat fakultas.</li>
+    <li>Fitur utama yang dicakup meliputi autentikasi RFID, pembukaan loker pribadi, penitipan surat dan paket secara mandiri oleh kurir, pengambilan kiriman, alokasi loker otomatis berdasarkan ukuran, notifikasi kepada penerima, serta dashboard pemantauan bagi admin.</li>
+    <li>Fitur yang <strong>tidak</strong> dicakup oleh sistem antara lain: autentikasi biometrik (wajah maupun sidik jari), integrasi dengan layanan pesan instan eksternal (notifikasi dibatasi melalui surel resmi UIN Syarif Hidayatullah Jakarta), pembayaran atau sewa loker, serta integrasi dengan sistem kepegawaian universitas.</li>
+    <li>Sistem dirancang untuk perangkat kios <em>touchscreen</em> berorientasi <em>portrait</em> dengan resolusi 1080 × 1920 piksel sebagai antarmuka utama interaksi pengguna, dan ukuran paket dibagi menjadi tiga kategori utama (kecil, sedang, besar) dengan tambahan kategori khusus untuk surat.</li>
   </ol>
+
+  <h3 class="subsubbab">1.4.2 Biaya (Cost)</h3>
+  <ol>
+    <li>Seluruh perangkat lunak yang digunakan bersifat <em>open-source</em> atau tanpa biaya lisensi: antarmuka kios dibangun dengan teknologi web standar (HTML, CSS, JavaScript murni) tanpa <em>framework</em> berbayar, disajikan melalui server HTTP bawaan Python, dan dijalankan pada peramban Chrome dalam mode kios.</li>
+    <li>Infrastruktur tidak memerlukan layanan <em>cloud</em> berbayar; seluruh sistem berjalan secara lokal (<em>on-premise</em>) pada satu unit PC/mini-PC yang dapat memanfaatkan perangkat inventaris fakultas yang sudah ada.</li>
+    <li>Komponen perangkat keras dibatasi pada modul yang terjangkau dan tersedia di pasar lokal, yaitu pembaca RFID, pengunci elektromekanis (<em>solenoid</em>), dan sensor pintu.</li>
+  </ol>
+
+  <h3 class="subsubbab">1.4.3 Waktu (Time)</h3>
+  <ol>
+    <li>Pengerjaan mengikuti kalender akademik semester berjalan: tahap analisis sistem dan kebutuhan (BAB I sampai dengan BAB III) diselesaikan hingga Ujian Tengah Semester (UTS), sedangkan tahap perancangan UML, pembangunan prototipe, dan pengujian diselesaikan hingga Ujian Akhir Semester (UAS).</li>
+    <li>Pembahasan dalam laporan UTS ini dibatasi pada tahap analisis dan kebutuhan sistem; tahap perancangan, implementasi, dan pengujian akan dibahas pada laporan UAS.</li>
+  </ol>
+</section>
+
+
+<section class="page">
+  <span class="pageno"></span>
 
   <h2 class="subbab">1.5 Tujuan Project</h2>
   <p>Tujuan yang ingin dicapai dalam penyusunan laporan analisis dan desain sistem loker pintar ini adalah sebagai berikut:</p>
@@ -1292,13 +1309,30 @@
 
 
 <section class="page">
+  <span class="pageno"></span>
+
+  <h2 class="subbab">1.8 Metode Pengembangan Sistem</h2>
+  <p>Metode pengembangan sistem yang digunakan dalam project ini adalah metode <strong>Prototyping</strong>. Metode ini dipilih karena kebutuhan pengguna terhadap sistem loker pintar belum pernah didokumentasikan sebelumnya di lingkungan FST, sehingga rancangan perlu divalidasi secara cepat melalui purwarupa (<em>prototype</em>) yang dapat langsung dicoba oleh calon pengguna sebelum sistem dibangun secara penuh. Tahapan pengembangan dilakukan secara berurutan sebagai berikut:</p>
+  <ol>
+    <li><strong>Pengumpulan Data (<em>Collecting Data</em>).</strong> Menggali kondisi sistem berjalan dan kebutuhan pemangku kepentingan melalui observasi lapangan, wawancara dengan Kepala Sekretariat, staf administrasi, dosen, dan kurir, serta studi dokumen, sebagaimana diuraikan pada subbab 1.7.</li>
+    <li><strong>Analisis Sistem (<em>System Analysis</em>).</strong> Menganalisis prosedur sistem berjalan beserta permasalahannya (BAB II), kemudian merumuskan kebutuhan fungsional, nonfungsional, perangkat keras, perangkat lunak, dan data dari sistem usulan (BAB III).</li>
+    <li><strong>Perancangan Sistem (<em>System Design</em>).</strong> Memodelkan sistem usulan menggunakan diagram UML (use case, activity, sequence, dan class diagram), merancang basis data, serta merancang antarmuka pengguna kios (BAB IV).</li>
+    <li><strong>Pembangunan Purwarupa (<em>Build Prototype</em>).</strong> Membangun purwarupa antarmuka kios berbasis web dengan resolusi 1080 × 1920 piksel yang mensimulasikan seluruh alur utama: autentikasi RFID, pembukaan loker, penitipan paket oleh kurir, dan pengambilan kiriman.</li>
+    <li><strong>Evaluasi Purwarupa (<em>Prototype Evaluation</em>).</strong> Menguji purwarupa kepada calon pengguna (dosen, tenaga kependidikan, dan kurir) untuk memvalidasi alur, keterbacaan antarmuka, dan kesesuaian dengan kebutuhan yang telah dirumuskan.</li>
+    <li><strong>Perbaikan dan Iterasi (<em>Refinement</em>).</strong> Memperbaiki rancangan dan purwarupa berdasarkan temuan evaluasi, kemudian mengulang siklus evaluasi hingga rancangan dinilai layak menjadi dasar implementasi penuh beserta integrasi perangkat keras (RFID, solenoid, dan sensor pintu).</li>
+  </ol>
+  <p>Sesuai batasan waktu pada subbab 1.4.3, laporan UTS ini mencakup tahap 1 dan 2, sedangkan tahap 3 sampai 6 akan dibahas pada laporan UAS.</p>
+</section>
+
+
+<section class="page">
   <span class="pageno">6</span>
 
-  <h2 class="subbab">1.8 Sistematika Penulisan</h2>
+  <h2 class="subbab">1.9 Sistematika Penulisan</h2>
   <p>Untuk memberikan gambaran yang jelas mengenai isi laporan ini, berikut adalah sistematika penulisan yang digunakan:</p>
 
   <p><strong>BAB I PENDAHULUAN</strong></p>
-  <p>Bab ini berisi latar belakang penelitian, identifikasi masalah, rumusan masalah, batasan masalah, tujuan project, manfaat project, metode pengumpulan data, serta sistematika penulisan laporan secara keseluruhan.</p>
+  <p>Bab ini berisi latar belakang penelitian, identifikasi masalah, rumusan masalah, batasan masalah yang disusun berdasarkan kerangka <em>triple constraints</em> (scope, cost, time), tujuan project, manfaat project, metode pengumpulan data, metode pengembangan sistem, serta sistematika penulisan laporan secara keseluruhan.</p>
 
   <p><strong>BAB II ANALISIS SISTEM BERJALAN</strong></p>
   <p>Bab ini menguraikan gambaran umum objek penelitian yaitu Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta, profil instansi, struktur organisasi, tugas dan fungsi setiap pihak yang terlibat, prosedur sistem berjalan, dokumen masukan dan keluaran, permasalahan yang ditemukan pada sistem berjalan, serta solusi sistem yang diusulkan.</p>

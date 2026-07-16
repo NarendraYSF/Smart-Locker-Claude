@@ -6,8 +6,15 @@
 //   'deliver'     -> courier dropping a package into assigned locker
 
 import { h, icon } from "../utils/dom.js";
-import { navigate } from "../app.js";
-import { lockers, incomingMail, occupyLocker } from "../data.js";
+import { navigate, toast } from "../app.js";
+import {
+  lockers,
+  incomingMail,
+  occupyLocker,
+  releaseLocker,
+  recordDelivery,
+  claimMail
+} from "../data.js";
 
 const COUNTDOWN_SECONDS = 30;
 
@@ -130,7 +137,7 @@ export function mount(stage, state) {
         "button.btn.btn--ghost",
         {
           type: "button",
-          onclick: () => finish()
+          onclick: cancel
         },
         "Batal"
       )
@@ -161,12 +168,37 @@ export function mount(stage, state) {
 
   function finish() {
     clearInterval(id);
-    // Complete the deposit: delivering -> occupied (records the recipient)
     if (reason === "deliver") {
-      occupyLocker(locker.id, state.recipient ? state.recipient.nip : null);
+      // Complete the deposit: delivering -> occupied, then register the
+      // package as claimable mail for the recipient.
+      const recipientNip = state.recipient ? state.recipient.nip : null;
+      occupyLocker(locker.id, recipientNip);
+      if (recipientNip) {
+        recordDelivery({
+          lockerId: locker.id,
+          recipientNip,
+          type: state.packageSize ? state.packageSize.name : "Paket"
+        });
+      }
+    } else if (reason === "claim-mail" && state.claimedMailId) {
+      claimMail(state.claimedMailId);
     }
-    // Go to an appropriate "done" screen
     navigate("done-screen", { openReason: reason, completedLocker: locker });
+  }
+
+  // Abort without a success screen: return to where the user came from.
+  function cancel() {
+    clearInterval(id);
+    if (reason === "deliver") {
+      releaseLocker(locker.id);
+      toast("Penitipan dibatalkan");
+      navigate("courier-size", { assignedLocker: null, openReason: null });
+    } else if (reason === "claim-mail") {
+      toast("Pengambilan dibatalkan");
+      navigate("mail", { claimedMailId: null, openReason: null });
+    } else {
+      navigate("dashboard", { openReason: null });
+    }
   }
 
   return () => clearInterval(id);

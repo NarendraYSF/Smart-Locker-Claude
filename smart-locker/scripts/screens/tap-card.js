@@ -84,8 +84,11 @@ export function mount(stage) {
 
   stage.appendChild(root);
 
-  // auto-success after 3.5s for pure ambient demo
-  const autoId = setTimeout(simulate, 3500);
+  // Auto-success after 3.5s ONLY in ambient demo mode (?demo). In normal
+  // operation the screen waits for a real tap (Enter / button), so bystanders
+  // are never signed in and usability-test timings stay clean.
+  const demoMode = new URLSearchParams(window.location.search).has("demo");
+  const autoId = demoMode ? setTimeout(simulate, 3500) : null;
 
   const keyHandler = (e) => {
     if (e.key === "Enter" || e.code === "Enter") {

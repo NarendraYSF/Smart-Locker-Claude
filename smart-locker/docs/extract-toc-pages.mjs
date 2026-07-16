@@ -52,7 +52,8 @@ const entries = [
   { tocText: "Tujuan Project",         key: "1.5 Tujuan Project"                 },
   { tocText: "Manfaat Project",        key: "1.6 Manfaat Project"                },
   { tocText: "Metode Pengumpulan Data",key: "1.7 Metode Pengumpulan Data"        },
-  { tocText: "Sistematika Penulisan",  key: "1.8 Sistematika Penulisan"          },
+  { tocText: "Metode Pengembangan Sistem", key: "1.8 Metode Pengembangan Sistem" },
+  { tocText: "Sistematika Penulisan",  key: "1.9 Sistematika Penulisan"          },
   { tocText: "ANALISIS SISTEM BERJALAN", key: "Objek penelitian dalam laporan ini adalah", bab: true },
   { tocText: "Gambaran Umum Objek Penelitian", key: "2.1 Gambaran Umum Objek Penelitian" },
   { tocText: "Profil Instansi",         key: "2.2 Profil Instansi"               },
@@ -110,7 +111,7 @@ function toRoman(n) {
 // mulai dengan mencari paragraf pertama 1.1 Latar Belakang yang TIDAK
 // muncul di Daftar Isi (Daftar Isi cuma punya teks "Latar Belakang"
 // sebagai item, BUKAN paragraf "Perkembangan teknologi informasi...").
-const BODY_START_MARKER = "Perkembangan teknologi informasi";
+const BODY_START_MARKER = "memiliki ratusan dosen dan tenaga kependidikan aktif";
 let bodyStartIndex = pageTexts.findIndex((t) => t.includes(BODY_START_MARKER));
 if (bodyStartIndex < 0) {
   console.warn(`PERINGATAN: marker body tidak ditemukan, fallback ke index 3`);

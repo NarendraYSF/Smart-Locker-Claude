@@ -37,9 +37,13 @@ rectangle "Sistem Loker Pintar FST" {
 
   usecase "Alokasikan Loker Kosong\nTerdekat Sesuai Ukuran" as UC_Allocate
   usecase "Buka Pintu Loker\n(unlock 30 detik)" as UC_Unlock
+  usecase "Batalkan Operasi\n(kembali tanpa layar sukses,\nloker dibebaskan)" as UC_Cancel
+  usecase "Terbitkan Kode\nBukti Titip (FST-XXXXX)" as UC_Receipt
   usecase "Deteksi Pintu Tertutup" as UC_DoorClose
   usecase "Kunci Otomatis\n(timeout)" as UC_AutoLock
-  usecase "Kirim Notifikasi\nke Penerima" as UC_Notify
+  usecase "Kirim Notifikasi\nke Penerima <<planned>>" as UC_Notify
+  usecase "Lihat Bantuan\n(lokasi, jam, telepon)" as UC_Help
+  usecase "Peringatan Idle\n(50 detik, hitung mundur 10s)" as UC_IdleWarn
   usecase "Reset ke Idle\n(setelah 60 detik diam)" as UC_AutoIdle
 
   usecase "Kelola Data Staf\n& Loker" as UC_Manage
@@ -68,7 +72,16 @@ UC_Search   <.. UC_PickSize : <<include>>
 UC_PickSize <.. UC_Deliver  : <<include>>
 UC_Deliver  ..> UC_Allocate : <<include>>
 UC_Deliver  ..> UC_Unlock   : <<include>>
+UC_Deliver  ..> UC_Receipt  : <<include>>
 UC_Deliver  ..> UC_Notify   : <<include>>
+
+' ---------- Cancel & Help (Sprint 1) ----------
+UC_OpenSelf <.. UC_Cancel : <<extend>>
+UC_Claim    <.. UC_Cancel : <<extend>>
+UC_Deliver  <.. UC_Cancel : <<extend>>
+
+Staf  --> UC_Help
+Kurir --> UC_Help
 
 ' ---------- Hardware / system actors ----------
 UC_Unlock    --> Hardware
@@ -78,9 +91,15 @@ UC_Unlock    <.. UC_DoorClose : <<extend>>
 UC_Unlock    <.. UC_AutoLock  : <<extend>>
 
 UC_Notify --> Notif
+note bottom of UC_Notify
+  Belum diimplementasikan —
+  backlog (WA / SMS / email)
+end note
 
+UC_IdleWarn <-- Timer
 UC_AutoIdle <-- Timer
-UC_Idle <.. UC_AutoIdle : <<extend>>
+UC_AutoIdle <.. UC_IdleWarn : <<extend>>
+UC_Idle     <.. UC_AutoIdle : <<extend>>
 
 ' ---------- Admin ----------
 Admin --> UC_Manage

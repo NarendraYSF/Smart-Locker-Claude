@@ -1,0 +1,46 @@
+@startuml activity-uc07-pilih-ukuran-paket
+title Activity Diagram UC-07 — Pilih Ukuran Paket
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Kurir|
+|#FFF7E0|Sistem Kiosk|
+
+|Kurir|
+start
+:Selesai memilih penerima (UC-06);
+
+|Sistem Kiosk|
+:Render layar **Courier — Size**
+(Langkah 2/3);
+:Hitung ketersediaan tiap ukuran
+countFree(kecil / sedang / besar);
+:Nonaktifkan tile ukuran
+yang lokernya habis;
+
+|Kurir|
+:Pilih ukuran paket
+(Surat / Kecil / Sedang / Besar);
+
+|Sistem Kiosk|
+if (Loker tersedia
+untuk ukuran itu?) then (ya)
+  :findFreeLocker(bucket);
+  :reserveLocker(id) —
+  AVAILABLE → DELIVERING;
+  :Render **Courier — Assign**
+  (peta loker + ringkasan,
+  Langkah 3/3);
+  stop
+else (tidak)
+  :Tile sudah nonaktif —
+  kurir memilih ukuran lain
+  atau membatalkan;
+  stop
+endif
+
+@enduml

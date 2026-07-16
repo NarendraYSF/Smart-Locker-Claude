@@ -891,7 +891,7 @@
 /* Grid viewport for locker visualisation */
 .locker-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-2);
   padding: var(--space-5);
   background: var(--bg-raised);
@@ -1062,6 +1062,35 @@
   color: var(--fg-secondary);
   line-height: var(--lh-snug);
   max-width: 780px;
+}
+
+/* Courier proof-of-deposit code — sized to be read/photographed from ~1m */
+.done__receipt {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  padding: var(--space-6) var(--space-9);
+  background: var(--bg-card-gold);
+  border: 1px solid rgba(212, 168, 75, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elev-gold);
+}
+
+.done__receipt-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.done__receipt-code {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--fg-primary);
+  font-variant-numeric: tabular-nums;
 }
 
 .done__detail {
