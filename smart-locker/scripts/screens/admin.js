@@ -179,8 +179,23 @@ export function mount(stage, state) {
         "div",
         { style: { display: "flex", justifyContent: "flex-end" } },
         h(
-          "button.btn.btn--primary",
+          "button",
           {
+            style: {
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              background: "var(--accent-glow-soft)",
+              border: "1px solid var(--line-accent)",
+              color: "var(--accent-glow)",
+              display: "grid",
+              placeItems: "center",
+              cursor: "pointer",
+              transition: "transform var(--dur-fast)"
+            },
+            onmousedown: (e) => e.currentTarget.style.transform = "scale(0.95)",
+            onmouseup: (e) => e.currentTarget.style.transform = "none",
+            onmouseleave: (e) => e.currentTarget.style.transform = "none",
             onclick: () => {
               showModal("Tambah Staf Baru", (close) => h(
                 "div", { style: { display: "grid", gap: "var(--space-3)" } },
@@ -210,7 +225,7 @@ export function mount(stage, state) {
               ));
             }
           },
-          "+ Tambah Staf"
+          icon("plus")
         )
       );
       
