@@ -197,32 +197,43 @@ export function mount(stage, state) {
             onmouseup: (e) => e.currentTarget.style.transform = "none",
             onmouseleave: (e) => e.currentTarget.style.transform = "none",
             onclick: () => {
-              showModal("Tambah Staf Baru", (close) => h(
-                "div", { style: { display: "grid", gap: "var(--space-3)" } },
-                h("button.btn.btn--primary", { 
-                  onclick: () => { 
-                    const nip = prompt("Masukkan NIP:");
-                    if (!nip) return;
-                    const name = prompt("Masukkan Nama Lengkap:");
-                    if (!name) return;
-                    const dept = prompt("Masukkan Departemen:");
-                    if (!dept) return;
-                    
-                    staff.unshift({
-                      nip,
-                      name,
-                      role: "Dosen", // Default to Dosen
-                      dept,
-                      initials: name.slice(0, 2).toUpperCase(),
-                      rfid: "N" + Math.floor(Math.random()*1000), // Mock RFID
-                      lockerId: null
-                    });
-                    renderBody();
-                    close(); 
-                  } 
-                }, "Isi Data & Simpan"),
-                h("button.btn.btn--ghost", { onclick: close }, "Batal")
-              ));
+              showModal("Tambah Staf Baru", (close) => {
+                const inputStyle = { padding: "var(--space-4)", borderRadius: "var(--radius-md)", border: "1px solid var(--line-soft)", background: "var(--bg-elevated)", color: "var(--fg-primary)", outline: "none", fontSize: "var(--fs-md)" };
+                const nipInput = h("input", { type: "text", placeholder: "NIP", style: inputStyle });
+                const nameInput = h("input", { type: "text", placeholder: "Nama Lengkap", style: inputStyle });
+                const deptInput = h("input", { type: "text", placeholder: "Departemen", style: inputStyle });
+                
+                return h(
+                  "div", { style: { display: "grid", gap: "var(--space-3)" } },
+                  nipInput,
+                  nameInput,
+                  deptInput,
+                  h("div", { style: { display: "flex", gap: "var(--space-3)", marginTop: "var(--space-2)" } },
+                    h("button.btn.btn--ghost", { style: { flex: 1 }, onclick: close }, "Batal"),
+                    h("button.btn.btn--primary", { 
+                      style: { flex: 1 },
+                      onclick: () => { 
+                        const nip = nipInput.value.trim();
+                        const name = nameInput.value.trim();
+                        const dept = deptInput.value.trim();
+                        if (!nip || !name || !dept) return;
+                        
+                        staff.unshift({
+                          nip,
+                          name,
+                          role: "Dosen", // Default to Dosen
+                          dept,
+                          initials: name.slice(0, 2).toUpperCase(),
+                          rfid: "N" + Math.floor(Math.random()*1000), // Mock RFID
+                          lockerId: null
+                        });
+                        renderBody();
+                        close(); 
+                      } 
+                    }, "Simpan")
+                  )
+                );
+              });
             }
           },
           icon("plus")
@@ -239,24 +250,33 @@ export function mount(stage, state) {
             {
               style: { cursor: "pointer" },
               onclick: () => {
-                showModal(`Kelola Staf: ${s.name}`, (close) => h(
-                  "div", { style: { display: "grid", gap: "var(--space-3)" } },
-                  h("button.btn.btn--primary", { 
-                    onclick: () => { 
-                      const newName = prompt("Ubah Nama Staf:", s.name); 
-                      if (newName) { s.name = newName; renderBody(); }
-                      close(); 
-                    } 
-                  }, "Ubah Nama"),
-                  h("button.btn.btn--primary", { 
-                    onclick: () => { 
-                      const newDept = prompt("Ubah Departemen:", s.dept); 
-                      if (newDept) { s.dept = newDept; renderBody(); }
-                      close(); 
-                    } 
-                  }, "Ubah Departemen"),
-                  h("button.btn.btn--ghost", { onclick: close }, "Batal")
-                ));
+                showModal(`Kelola Staf: ${s.name}`, (close) => {
+                  const inputStyle = { padding: "var(--space-4)", borderRadius: "var(--radius-md)", border: "1px solid var(--line-soft)", background: "var(--bg-elevated)", color: "var(--fg-primary)", outline: "none", fontSize: "var(--fs-md)" };
+                  const nameInput = h("input", { type: "text", value: s.name, placeholder: "Nama Lengkap", style: inputStyle });
+                  const deptInput = h("input", { type: "text", value: s.dept, placeholder: "Departemen", style: inputStyle });
+                  
+                  return h(
+                    "div", { style: { display: "grid", gap: "var(--space-3)" } },
+                    h("label", { style: { color: "var(--fg-secondary)", fontSize: "var(--fs-sm)" } }, "Nama Staf"),
+                    nameInput,
+                    h("label", { style: { color: "var(--fg-secondary)", fontSize: "var(--fs-sm)", marginTop: "var(--space-2)" } }, "Departemen"),
+                    deptInput,
+                    h("div", { style: { display: "flex", gap: "var(--space-3)", marginTop: "var(--space-4)" } },
+                      h("button.btn.btn--ghost", { style: { flex: 1 }, onclick: close }, "Batal"),
+                      h("button.btn.btn--primary", { 
+                        style: { flex: 1 },
+                        onclick: () => { 
+                          const newName = nameInput.value.trim();
+                          const newDept = deptInput.value.trim();
+                          if (newName) s.name = newName; 
+                          if (newDept) s.dept = newDept;
+                          renderBody();
+                          close(); 
+                        } 
+                      }, "Simpan")
+                    )
+                  );
+                });
               }
             },
             h(
