@@ -66,7 +66,7 @@ export function mount(stage) {
         "button.btn.btn--primary",
         {
           type: "button",
-          onclick: simulate
+          onclick: () => simulate()
         },
         icon("card", { className: "btn__icon" }),
         "Simulasikan Tap"
