@@ -63,6 +63,15 @@ export function mount(stage) {
         "Batal"
       ),
       h(
+        "button.btn.btn--ghost",
+        {
+          type: "button",
+          onclick: () => simulate("199607122020121011") // Rina Agustina (Admin)
+        },
+        icon("settings", { className: "btn__icon" }),
+        "Tap Admin (Dev)"
+      ),
+      h(
         "button.btn.btn--primary",
         {
           type: "button",
