@@ -1167,6 +1167,8 @@
     <li class="subbab-row"><span class="num">4.7</span><span class="title-text">Perancangan Basis Data</span><span class="dots"></span><span class="pg">55</span></li>
     <li class="subbab-row"><span class="num">4.8</span><span class="title-text">Struktur Tabel</span><span class="dots"></span><span class="pg">57</span></li>
     <li class="subbab-row"><span class="num">4.9</span><span class="title-text">Rancangan Antarmuka</span><span class="dots"></span><span class="pg">62</span></li>
+
+    <li class="bab-row" style="margin-top:1em;"><span class="num"></span><span class="title-text">DAFTAR PUSTAKA</span><span class="dots"></span><span class="pg">67</span></li>
   </ul>
 </section>
 
@@ -1179,15 +1181,15 @@
   <h1 class="bab">BAB I<br/>PENDAHULUAN</h1>
 
   <h2 class="subbab">1.1 Latar Belakang</h2>
-  <p>Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta memiliki ratusan dosen dan tenaga kependidikan aktif yang tersebar pada tujuh program studi, yaitu Teknik Informatika, Sistem Informasi, Matematika, Fisika, Kimia, Biologi, dan Agribisnis. Untuk menunjang aktivitas akademik sehari-hari, fakultas menyediakan loker pribadi yang digunakan untuk menyimpan barang pribadi, dokumen perkuliahan, hasil ujian, alat tulis, hingga surat dan paket yang dititipkan oleh pihak ketiga seperti kurir, mahasiswa, atau rekan sejawat. Intensitas pengiriman surat resmi, paket buku ajar, hasil koreksi ujian, serta dokumen administrasi antar pihak juga cukup padat setiap harinya, sehingga loker dan layanan penitipan menjadi fasilitas yang bersentuhan langsung dengan kelancaran operasional fakultas.</p>
+  <p>Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta memiliki ratusan dosen dan tenaga kependidikan aktif yang tersebar pada tujuh program studi, yaitu Teknik Informatika, Sistem Informasi, Matematika, Fisika, Kimia, Biologi, dan Agribisnis. Intensitas pengiriman surat resmi, paket buku ajar, hasil koreksi ujian, serta dokumen administrasi antar pihak cukup padat setiap harinya. Namun hingga saat ini, FST belum memiliki fasilitas penyimpanan pribadi berupa loker bagi dosen dan tenaga kependidikan. Pengelolaan surat dan paket yang masuk sepenuhnya bergantung pada petugas keamanan (<em>security</em>) di pos keamanan gedung FST.</p>
 
-  <p>Pengelolaan loker yang berjalan saat ini masih bersifat manual, di mana setiap dosen atau tenaga kependidikan menerima satu buah kunci fisik untuk loker yang diberikan. Penitipan surat dan paket dilakukan melalui staf sekretariat fakultas, kemudian diletakkan pada rak terbuka atau diserahkan langsung ke loker yang bersangkutan menggunakan kunci cadangan. Mekanisme ini menimbulkan beberapa permasalahan, antara lain risiko kehilangan kunci, antrean panjang pada jam sibuk, ketidakjelasan status penerimaan kiriman, serta tidak adanya catatan riwayat akses loker untuk keperluan audit.</p>
+  <p>Sistem penitipan yang berjalan saat ini bersifat sangat sederhana dan informal. Kurir yang membawa kiriman menyerahkannya kepada petugas keamanan di pos keamanan pintu masuk gedung FST. Petugas keamanan kemudian mencatat kiriman pada buku catatan penitipan sederhana dan menyimpan kiriman di rak atau meja terbuka di area pos keamanan. Selanjutnya, petugas keamanan menghubungi penerima melalui pesan singkat atau telepon untuk memberitahu adanya kiriman. Penerima kemudian datang ke pos keamanan untuk mengambil kirimannya. Mekanisme ini menimbulkan beberapa permasalahan, antara lain risiko kehilangan dan tertukarnya kiriman, tidak adanya privasi bagi penerima, serta terbebaninya petugas keamanan dengan tugas penitipan yang bukan merupakan tugas utamanya.</p>
 
-  <p>Selain itu, sistem manual ini juga rentan terhadap human error, seperti salah penempatan paket pada loker yang bukan milik penerima, terlewatkannya proses penyerahan kiriman, hingga keterlambatan informasi kepada penerima bahwa terdapat kiriman baru. Hal ini berdampak pada menurunnya efektivitas operasional fakultas dan dapat mengurangi kepuasan pengguna terhadap layanan administrasi yang diberikan.</p>
+  <p>Selain itu, sistem penitipan berbasis pos keamanan ini juga rentan terhadap <em>human error</em>, seperti kiriman yang tercecer atau tertukar karena disimpan di area terbuka tanpa pemisahan, petugas keamanan yang lupa memberitahu penerima karena disibukkan tugas keamanan utamanya, hingga kiriman yang menumpuk berhari-hari di meja pos keamanan. Hal ini berdampak pada menurunnya efektivitas operasional fakultas dan dapat mengurangi kepuasan pengguna terhadap layanan administrasi yang diberikan.</p>
 
-  <p>Berangkat dari kondisi tersebut, dibutuhkan sebuah sistem loker pintar (<em>smart locker</em>) yang mengintegrasikan teknologi RFID (<em>Radio Frequency Identification</em>) sebagai mekanisme autentikasi, perangkat keras pengunci elektromekanis (<em>solenoid</em>) untuk membuka dan mengunci pintu loker secara otomatis, serta antarmuka kios layar sentuh (<em>kiosk touchscreen interface</em>) sebagai jembatan interaksi pengguna. Sistem ini diharapkan mampu meningkatkan efisiensi, keamanan, transparansi, dan akuntabilitas pengelolaan loker di lingkungan FST UIN Syarif Hidayatullah Jakarta.</p>
+  <p>Berangkat dari kondisi tersebut, dibutuhkan sebuah fasilitas dan sistem baru berupa loker pintar (<em>smart locker</em>) yang mengintegrasikan teknologi RFID (<em>Radio Frequency Identification</em>) sebagai mekanisme autentikasi (Finkenzeller, 2010), perangkat keras pengunci elektromekanis (<em>solenoid</em>) untuk membuka dan mengunci pintu loker secara otomatis, serta antarmuka kios layar sentuh (<em>kiosk touchscreen interface</em>) sebagai jembatan interaksi pengguna. Sistem ini diharapkan mampu menyediakan fasilitas penyimpanan pribadi yang aman bagi dosen dan tenaga kependidikan, sekaligus meningkatkan efisiensi, keamanan, transparansi, dan akuntabilitas pengelolaan surat dan paket di lingkungan FST UIN Syarif Hidayatullah Jakarta.</p>
 
-  <p>Penelitian ini bertujuan untuk menganalisis sistem berjalan dan menghasilkan rancangan sistem loker pintar yang sesuai dengan kebutuhan pengguna, baik dari sisi dosen dan tenaga kependidikan sebagai pemilik loker, kurir atau tamu sebagai pengirim paket, maupun admin sekretariat sebagai pengelola sistem. Target konkret yang ingin dicapai setelah sistem diimplementasikan adalah: (1) menghilangkan ketergantungan pada kunci fisik sehingga risiko kehilangan dan duplikasi kunci menjadi nol, (2) memangkas antrean penitipan paket di sekretariat karena kurir dapat menitipkan secara mandiri melalui kios, (3) memastikan penerima mengetahui adanya kiriman melalui notifikasi otomatis, dan (4) tersedianya catatan riwayat akses loker yang lengkap sebagai dasar audit. Hasil rancangan ini diharapkan dapat menjadi dasar implementasi nyata sistem loker pintar pertama di lingkungan UIN Syarif Hidayatullah Jakarta.</p>
+  <p>Penelitian ini bertujuan untuk menganalisis sistem penitipan surat dan paket yang berjalan saat ini dan menghasilkan rancangan sistem loker pintar yang sesuai dengan kebutuhan pengguna, baik dari sisi dosen dan tenaga kependidikan sebagai penerima kiriman, kurir atau tamu sebagai pengirim paket, maupun admin sekretariat sebagai pengelola sistem. Target konkret yang ingin dicapai setelah sistem diimplementasikan adalah: (1) menyediakan fasilitas penyimpanan pribadi (loker) yang aman bagi dosen dan tenaga kependidikan yang belum tersedia saat ini, (2) memangkas ketergantungan pada petugas keamanan untuk penitipan paket karena kurir dapat menitipkan secara mandiri melalui kios, (3) memastikan penerima mengetahui adanya kiriman melalui notifikasi otomatis, dan (4) tersedianya catatan riwayat akses yang lengkap sebagai dasar audit. Hasil rancangan ini diharapkan dapat menjadi dasar implementasi nyata sistem loker pintar pertama di lingkungan UIN Syarif Hidayatullah Jakarta.</p>
 </section>
 
 
@@ -1195,23 +1197,23 @@
   <span class="pageno">2</span>
 
   <h2 class="subbab">1.2 Identifikasi Masalah</h2>
-  <p>Berdasarkan latar belakang yang telah diuraikan, maka dapat diidentifikasi beberapa permasalahan pada pengelolaan loker dosen dan tenaga kependidikan di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta sebagai berikut:</p>
+  <p>Berdasarkan latar belakang yang telah diuraikan, maka dapat diidentifikasi beberapa permasalahan pada pengelolaan penitipan surat dan paket bagi dosen dan tenaga kependidikan di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta sebagai berikut:</p>
   <ol>
-    <li>Pengelolaan loker masih bersifat manual menggunakan kunci fisik yang rentan hilang, rusak, atau diduplikasi tanpa izin.</li>
-    <li>Tidak adanya mekanisme autentikasi terpusat sehingga sulit dilakukan pelacakan siapa yang mengakses loker tertentu pada waktu tertentu.</li>
-    <li>Penitipan surat dan paket masih dilakukan secara manual oleh staf sekretariat, sehingga rawan kesalahan penempatan dan keterlambatan informasi kepada penerima.</li>
-    <li>Tidak tersedianya notifikasi otomatis kepada penerima ketika kiriman telah diletakkan pada loker.</li>
-    <li>Tidak adanya catatan riwayat (<em>log</em>) penggunaan loker yang dapat dijadikan dasar audit dan evaluasi.</li>
-    <li>Antrean penyerahan paket sering terjadi pada jam sibuk operasional fakultas.</li>
-    <li>Sulitnya mengelola alokasi loker yang tersedia berdasarkan ukuran paket yang dititipkan.</li>
-    <li>Tidak terdapat dashboard pemantauan status loker secara <em>real-time</em> bagi pihak pengelola.</li>
+    <li>Belum tersedianya fasilitas penyimpanan pribadi (loker) bagi dosen dan tenaga kependidikan di lingkungan FST.</li>
+    <li>Penitipan surat dan paket masih bergantung pada petugas keamanan yang memiliki tugas utama menjaga keamanan gedung.</li>
+    <li>Kiriman disimpan di rak dan meja terbuka di pos keamanan tanpa pengamanan yang memadai, sehingga rawan hilang atau tertukar.</li>
+    <li>Tidak tersedianya notifikasi otomatis kepada penerima ketika kiriman telah tiba.</li>
+    <li>Tidak adanya catatan riwayat (<em>log</em>) penitipan yang terstruktur dan dapat dijadikan dasar audit dan evaluasi.</li>
+    <li>Antrean kurir di pos keamanan mengganggu tugas utama petugas keamanan dan kelancaran akses gedung.</li>
+    <li>Privasi penerima tidak terjaga karena kiriman terlihat oleh siapa saja yang melewati pos keamanan.</li>
+    <li>Kapasitas penyimpanan di pos keamanan sangat terbatas sehingga kiriman sering menumpuk.</li>
   </ol>
 
   <h2 class="subbab">1.3 Rumusan Masalah</h2>
   <p>Berdasarkan identifikasi masalah di atas, maka rumusan masalah dalam laporan ini dapat diuraikan sebagai berikut:</p>
   <ol>
-    <li>Bagaimana menganalisis sistem pengelolaan loker yang berjalan saat ini di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta?</li>
-    <li>Bagaimana merancang sistem loker pintar yang dapat melakukan autentikasi pengguna secara aman menggunakan kartu RFID?</li>
+    <li>Bagaimana menganalisis sistem penitipan surat dan paket yang berjalan saat ini di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta?</li>
+    <li>Bagaimana merancang sistem loker pintar yang dapat menyediakan fasilitas penyimpanan pribadi yang aman bagi dosen dan tenaga kependidikan menggunakan autentikasi kartu RFID?</li>
     <li>Bagaimana merancang alur penitipan surat dan paket yang efisien sehingga kurir atau tamu dapat menitipkan kiriman tanpa harus berinteraksi langsung dengan staf sekretariat?</li>
     <li>Bagaimana merancang mekanisme alokasi loker secara otomatis berdasarkan ukuran paket yang akan dititipkan?</li>
     <li>Bagaimana mendokumentasikan kebutuhan fungsional dan nonfungsional sistem loker pintar dalam bentuk spesifikasi kebutuhan perangkat lunak (<em>Software Requirements Specification</em>) yang sistematis?</li>
@@ -1223,11 +1225,11 @@
   <span class="pageno">3</span>
 
   <h2 class="subbab">1.4 Batasan Masalah</h2>
-  <p>Agar pembahasan dalam laporan ini tidak meluas dan tetap berfokus pada tujuan yang ingin dicapai, batasan masalah disusun mengikuti kerangka manajemen proyek <em>Triple Constraints</em>, yaitu ruang lingkup (<em>scope</em>), biaya (<em>cost</em>), dan waktu (<em>time</em>), sebagai berikut:</p>
+  <p>Agar pembahasan dalam laporan ini tidak meluas dan tetap berfokus pada tujuan yang ingin dicapai, batasan masalah disusun mengikuti kerangka manajemen proyek <em>Triple Constraints</em> (Schwalbe, 2018), yaitu ruang lingkup (<em>scope</em>), biaya (<em>cost</em>), dan waktu (<em>time</em>), sebagai berikut:</p>
 
   <h3 class="subsubbab">1.4.1 Ruang Lingkup (Scope)</h3>
   <ol>
-    <li>Objek penelitian terbatas pada lingkungan Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta, khususnya unit kerja sekretariat fakultas dan ruang loker dosen serta tenaga kependidikan.</li>
+    <li>Objek penelitian terbatas pada lingkungan Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta, khususnya pos keamanan gedung FST yang saat ini menangani penitipan surat dan paket, serta area yang direncanakan untuk penempatan loker pintar.</li>
     <li>Aktor yang terlibat terbatas pada tiga aktor utama, yaitu dosen dan tenaga kependidikan, kurir atau tamu pengirim paket, serta admin sekretariat fakultas.</li>
     <li>Fitur utama yang dicakup meliputi autentikasi RFID, pembukaan loker pribadi, penitipan surat dan paket secara mandiri oleh kurir, pengambilan kiriman, alokasi loker otomatis berdasarkan ukuran, notifikasi kepada penerima, serta dashboard pemantauan bagi admin.</li>
     <li>Fitur yang <strong>tidak</strong> dicakup oleh sistem antara lain: autentikasi biometrik (wajah maupun sidik jari), integrasi dengan layanan pesan instan eksternal (notifikasi dibatasi melalui surel resmi UIN Syarif Hidayatullah Jakarta), pembayaran atau sewa loker, serta integrasi dengan sistem kepegawaian universitas.</li>
@@ -1246,6 +1248,30 @@
     <li>Pengerjaan mengikuti kalender akademik semester berjalan: tahap analisis sistem dan kebutuhan (BAB I sampai dengan BAB III) diselesaikan hingga Ujian Tengah Semester (UTS), sedangkan tahap perancangan UML, pembangunan prototipe, dan pengujian diselesaikan hingga Ujian Akhir Semester (UAS).</li>
     <li>Pembahasan dalam laporan UTS ini dibatasi pada tahap analisis dan kebutuhan sistem; tahap perancangan, implementasi, dan pengujian akan dibahas pada laporan UAS.</li>
   </ol>
+
+  <h3 class="subsubbab">1.4.4 Proses</h3>
+  <ol>
+    <li>Metode pengembangan sistem yang digunakan dalam penelitian ini adalah metode <em>Prototyping</em> yang terdiri atas enam tahapan berurutan, yaitu Pengumpulan Data, Analisis Sistem, Perancangan Sistem, Pembangunan Purwarupa, Evaluasi Purwarupa, serta Perbaikan dan Iterasi, sebagaimana dijabarkan secara rinci pada subbab 1.8 laporan ini.</li>
+    <li>Laporan Ujian Tengah Semester (UTS) ini hanya mencakup dua tahapan awal dari keseluruhan siklus <em>Prototyping</em>, yakni tahap Pengumpulan Data (<em>Collecting Data</em>) dan tahap Analisis Sistem (<em>System Analysis</em>), yang pembahasannya tertuang pada BAB II (analisis sistem berjalan beserta permasalahannya) dan BAB III (perumusan kebutuhan fungsional, nonfungsional, perangkat keras, perangkat lunak, serta kebutuhan data sistem usulan).</li>
+    <li>Empat tahapan lanjutan, yaitu Perancangan Sistem (<em>System Design</em>), Pembangunan Purwarupa (<em>Build Prototype</em>), Evaluasi Purwarupa (<em>Prototype Evaluation</em>), dan Perbaikan serta Iterasi (<em>Refinement</em>), berada di luar lingkup laporan UTS ini dan akan dibahas secara menyeluruh pada laporan Ujian Akhir Semester (UAS).</li>
+    <li>Alur bisnis yang dianalisis pada laporan ini dibatasi pada dua proses utama yang berlangsung dalam pengelolaan penitipan surat dan paket saat ini, yaitu prosedur penitipan kiriman oleh kurir melalui pos keamanan, serta prosedur pengambilan kiriman oleh dosen atau tenaga kependidikan dari pos keamanan.</li>
+  </ol>
+
+  <h3 class="subsubbab">1.4.5 Tools (Alat)</h3>
+  <ol>
+    <li>Alat bantu analisis dan pemodelan sistem pada laporan UTS ini menggunakan notasi <em>Unified Modeling Language</em> (UML) versi 2.5.1 (OMG, 2017) yang divisualisasikan melalui perangkat lunak StarUML, PlantUML, atau Draw.io; ketiga <em>tools</em> tersebut bersifat <em>open-source</em> atau tersedia dalam versi gratis sehingga konsisten dengan batasan biaya pada subbab 1.4.2.</li>
+    <li>Perancangan <em>mockup</em> dan <em>prototype</em> antarmuka pengguna kios memanfaatkan <em>tools</em> desain antarmuka seperti Figma atau Adobe XD sebagaimana tercantum pada tabel kebutuhan perangkat lunak di BAB III (Tabel 3.5), sementara implementasi antarmuka kios itu sendiri dibangun menggunakan teknologi <em>web</em> standar (HTML5, CSS3, JavaScript ES6+ murni) tanpa <em>framework</em> atau <em>build tools</em> tambahan.</li>
+    <li>Komponen perangkat keras pendukung sistem dibatasi pada modul pembaca RFID (<em>Radio Frequency Identification</em>), pengunci elektromekanis (<em>solenoid lock</em>), dan sensor pintu (<em>magnetic reed switch</em>) yang sepenuhnya tersedia di pasar lokal; pemilihan dan spesifikasi perangkat keras lebih lanjut akan dirinci pada tahap Perancangan Sistem di laporan UAS.</li>
+    <li>Seluruh <em>tools</em> yang digunakan, baik untuk pemodelan maupun pengembangan, bersifat <em>open-source</em> atau tanpa biaya lisensi sehingga tidak menambah beban biaya proyek di luar perangkat keras yang telah disebutkan pada subbab 1.4.2.</li>
+  </ol>
+
+  <h3 class="subsubbab">1.4.6 Objek</h3>
+  <ol>
+    <li>Objek penelitian difokuskan pada unit kerja Sekretariat Fakultas Sains dan Teknologi (FST) UIN Syarif Hidayatullah Jakarta yang berlokasi di Gedung FST, Jalan Ir. H. Juanda No. 95, Ciputat, Tangerang Selatan, Banten, khususnya pada pos keamanan gedung FST yang saat ini menangani penitipan surat dan paket bagi dosen dan tenaga kependidikan.</li>
+    <li>Ruang lingkup fisik yang diamati mencakup area pos keamanan beserta rak dan meja penyimpanan kiriman yang ada saat ini, serta area yang direncanakan untuk penempatan 48 unit loker pintar dalam tiga kategori ukuran (besar, sedang, dan kecil) sebagaimana diuraikan pada deskripsi gambaran umum objek penelitian di BAB II.</li>
+    <li>Subjek penelitian dibatasi pada tiga kelompok aktor yang berinteraksi langsung dengan sistem penitipan surat dan paket tersebut, yaitu dosen dan tenaga kependidikan selaku penerima kiriman, kurir atau tamu pengirim surat dan paket, serta petugas keamanan selaku pelaksana harian penitipan yang bertanggung jawab atas penerimaan, penyimpanan, dan penyerahan kiriman.</li>
+    <li>Penelitian ini tidak mencakup integrasi dengan sistem informasi kepegawaian universitas, sistem pembayaran atau sewa loker, maupun layanan pesan instan eksternal; notifikasi kepada pengguna dibatasi melalui surel resmi institusi sebagaimana telah ditetapkan pada batasan ruang lingkup di subbab 1.4.1.</li>
+  </ol>
 </section>
 
 
@@ -1255,7 +1281,7 @@
   <h2 class="subbab">1.5 Tujuan Project</h2>
   <p>Tujuan yang ingin dicapai dalam penyusunan laporan analisis dan desain sistem loker pintar ini adalah sebagai berikut:</p>
   <ol>
-    <li>Menghasilkan analisis sistem pengelolaan loker yang berjalan saat ini di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta beserta permasalahan yang ditemukan.</li>
+    <li>Menghasilkan analisis sistem penitipan surat dan paket yang berjalan saat ini di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta beserta permasalahan yang ditemukan.</li>
     <li>Merancang sistem loker pintar berbasis RFID yang dapat melakukan autentikasi pengguna secara aman, cepat, dan terdokumentasi dengan baik.</li>
     <li>Merancang alur kerja penitipan surat dan paket yang dapat dilakukan secara mandiri oleh kurir atau tamu melalui antarmuka kios <em>touchscreen</em>.</li>
     <li>Merancang mekanisme alokasi loker otomatis sesuai ukuran paket yang dititipkan agar pemanfaatan loker menjadi optimal.</li>
@@ -1279,9 +1305,9 @@
 
   <h3 class="subsubbab">1.6.2 Manfaat Praktis</h3>
   <ol>
-    <li><strong>Bagi Dosen dan Tenaga Kependidikan:</strong> mempermudah akses ke loker pribadi tanpa perlu membawa kunci fisik, mendapatkan notifikasi <em>real-time</em> ketika ada surat atau paket masuk, serta meningkatkan keamanan barang pribadi yang disimpan.</li>
+    <li><strong>Bagi Dosen dan Tenaga Kependidikan:</strong> memiliki fasilitas penyimpanan pribadi (loker) yang aman dan terdedikasi, tidak perlu lagi mengambil kiriman di pos keamanan, mendapatkan notifikasi <em>real-time</em> ketika ada surat atau paket masuk, serta meningkatkan keamanan dan privasi barang serta kiriman.</li>
     <li><strong>Bagi Kurir dan Tamu:</strong> memungkinkan penitipan surat atau paket secara mandiri kapan saja selama jam operasional, tanpa harus menunggu antrean di sekretariat.</li>
-    <li><strong>Bagi Admin Sekretariat FST:</strong> mengurangi beban kerja administratif dalam mengelola penitipan paket, menyediakan dashboard pemantauan status loker secara <em>real-time</em>, dan memudahkan audit penggunaan loker melalui catatan riwayat (<em>log</em>) yang tersimpan otomatis.</li>
+    <li><strong>Bagi Admin Sekretariat FST:</strong> menghilangkan beban penitipan dari petugas keamanan, menyediakan dashboard pemantauan status loker secara <em>real-time</em>, dan memudahkan audit melalui catatan riwayat (<em>log</em>) yang tersimpan otomatis.</li>
     <li><strong>Bagi Fakultas Sains dan Teknologi:</strong> meningkatkan kualitas layanan administrasi, mendukung citra fakultas yang adaptif terhadap teknologi, serta menjadi <em>showcase</em> implementasi sistem cerdas yang dapat direplikasi di fakultas lain di lingkungan UIN Syarif Hidayatullah Jakarta.</li>
     <li><strong>Bagi Penulis:</strong> mengaplikasikan ilmu yang telah diperoleh selama perkuliahan, khususnya pada mata kuliah Analisis dan Desain Sistem, serta memperdalam pemahaman terhadap metodologi pengembangan perangkat lunak.</li>
   </ol>
@@ -1295,16 +1321,16 @@
   <p>Dalam menyusun laporan analisis dan desain sistem loker pintar ini, penulis menggunakan beberapa metode pengumpulan data sebagai berikut:</p>
 
   <h3 class="subsubbab">1.7.1 Observasi</h3>
-  <p>Penulis melakukan pengamatan langsung terhadap aktivitas pengelolaan loker di lingkungan Sekretariat Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. Observasi dilakukan untuk memahami alur kerja yang berjalan, mulai dari penyerahan kunci loker, proses penitipan paket oleh kurir, hingga proses pengambilan kiriman oleh dosen atau tenaga kependidikan.</p>
+  <p>Penulis melakukan pengamatan langsung (<em>observasi</em>) terhadap aktivitas penitipan surat dan paket di pos keamanan gedung Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. Menurut Sugiyono (2019), observasi merupakan teknik pengumpulan data yang dilakukan melalui pengamatan dan pencatatan secara sistematis terhadap fenomena yang diteliti. Observasi dilakukan untuk memahami alur kerja yang berjalan, mulai dari penerimaan kiriman oleh petugas keamanan, pencatatan di buku penitipan, pemberitahuan kepada penerima, hingga proses pengambilan kiriman oleh dosen atau tenaga kependidikan.</p>
 
   <h3 class="subsubbab">1.7.2 Wawancara</h3>
-  <p>Wawancara dilakukan kepada pihak-pihak yang berkaitan dengan sistem berjalan, antara lain Kepala Sekretariat FST, dua orang staf administrasi, tiga orang dosen dari program studi yang berbeda, serta satu orang kurir layanan pengiriman yang rutin mengantar paket ke fakultas. Tujuan wawancara adalah untuk menggali kebutuhan, harapan, serta keluhan dari setiap pemangku kepentingan terhadap sistem yang berjalan saat ini.</p>
+  <p>Wawancara dilakukan kepada pihak-pihak yang berkaitan dengan sistem berjalan, antara lain Kepala Sekretariat FST, dua orang staf administrasi, tiga orang dosen dari program studi yang berbeda, serta satu orang kurir layanan pengiriman yang rutin mengantar paket ke fakultas. Wawancara merupakan teknik pengumpulan data yang dilakukan melalui tanya jawab langsung dengan narasumber untuk memperoleh informasi secara mendalam (Sugiyono, 2019). Tujuan wawancara adalah untuk menggali kebutuhan, harapan, serta keluhan dari setiap pemangku kepentingan terhadap sistem yang berjalan saat ini.</p>
 
   <h3 class="subsubbab">1.7.3 Studi Pustaka</h3>
-  <p>Penulis mempelajari berbagai literatur ilmiah yang relevan, antara lain jurnal nasional dan internasional terkait <em>smart locker system</em>, RFID, IoT, serta metodologi analisis dan desain sistem berorientasi objek. Selain itu, penulis juga merujuk pada buku teks Analisis dan Desain Sistem Informasi serta dokumentasi resmi UML 2.5 sebagai standar notasi pemodelan.</p>
+  <p>Penulis mempelajari berbagai literatur ilmiah yang relevan, antara lain jurnal nasional dan internasional terkait <em>smart locker system</em>, RFID (Finkenzeller, 2010), IoT, serta metodologi analisis dan desain sistem berorientasi objek. Selain itu, penulis juga merujuk pada buku teks Analisis dan Desain Sistem Informasi (Dennis <em>et al.</em>, 2015; Pressman &amp; Maxim, 2020) serta dokumentasi resmi UML 2.5.1 oleh <em>Object Management Group</em> (OMG, 2017) sebagai standar notasi pemodelan.</p>
 
   <h3 class="subsubbab">1.7.4 Dokumentasi</h3>
-  <p>Penulis mengumpulkan dokumen-dokumen pendukung yang berkaitan dengan sistem berjalan, seperti formulir penitipan paket, daftar kepemilikan loker, struktur organisasi FST, serta foto kondisi ruang loker dan rak penyimpanan paket. Dokumen-dokumen ini menjadi dasar untuk memahami bentuk masukan dan keluaran sistem berjalan.</p>
+  <p>Penulis mengumpulkan dokumen-dokumen pendukung yang berkaitan dengan sistem berjalan, seperti formulir penitipan paket, buku catatan penitipan di pos keamanan, struktur organisasi FST, serta foto kondisi pos keamanan dan rak penyimpanan kiriman. Studi dokumentasi merupakan pelengkap dari penggunaan metode observasi dan wawancara dalam penelitian (Sugiyono, 2019). Dokumen-dokumen ini menjadi dasar untuk memahami bentuk masukan dan keluaran sistem berjalan.</p>
 </section>
 
 
@@ -1312,7 +1338,7 @@
   <span class="pageno"></span>
 
   <h2 class="subbab">1.8 Metode Pengembangan Sistem</h2>
-  <p>Metode pengembangan sistem yang digunakan dalam project ini adalah metode <strong>Prototyping</strong>. Metode ini dipilih karena kebutuhan pengguna terhadap sistem loker pintar belum pernah didokumentasikan sebelumnya di lingkungan FST, sehingga rancangan perlu divalidasi secara cepat melalui purwarupa (<em>prototype</em>) yang dapat langsung dicoba oleh calon pengguna sebelum sistem dibangun secara penuh. Tahapan pengembangan dilakukan secara berurutan sebagai berikut:</p>
+  <p>Metode pengembangan sistem yang digunakan dalam project ini adalah metode <strong>Prototyping</strong> (Pressman &amp; Maxim, 2020). Metode ini dipilih karena kebutuhan pengguna terhadap sistem loker pintar belum pernah didokumentasikan sebelumnya di lingkungan FST, sehingga rancangan perlu divalidasi secara cepat melalui purwarupa (<em>prototype</em>) yang dapat langsung dicoba oleh calon pengguna sebelum sistem dibangun secara penuh. Tahapan pengembangan dilakukan secara berurutan sebagai berikut:</p>
   <ol>
     <li><strong>Pengumpulan Data (<em>Collecting Data</em>).</strong> Menggali kondisi sistem berjalan dan kebutuhan pemangku kepentingan melalui observasi lapangan, wawancara dengan Kepala Sekretariat, staf administrasi, dosen, dan kurir, serta studi dokumen, sebagaimana diuraikan pada subbab 1.7.</li>
     <li><strong>Analisis Sistem (<em>System Analysis</em>).</strong> Menganalisis prosedur sistem berjalan beserta permasalahannya (BAB II), kemudian merumuskan kebutuhan fungsional, nonfungsional, perangkat keras, perangkat lunak, dan data dari sistem usulan (BAB III).</li>
@@ -1332,7 +1358,7 @@
   <p>Untuk memberikan gambaran yang jelas mengenai isi laporan ini, berikut adalah sistematika penulisan yang digunakan:</p>
 
   <p><strong>BAB I PENDAHULUAN</strong></p>
-  <p>Bab ini berisi latar belakang penelitian, identifikasi masalah, rumusan masalah, batasan masalah yang disusun berdasarkan kerangka <em>triple constraints</em> (scope, cost, time), tujuan project, manfaat project, metode pengumpulan data, metode pengembangan sistem, serta sistematika penulisan laporan secara keseluruhan.</p>
+  <p>Bab ini berisi latar belakang penelitian, identifikasi masalah, rumusan masalah, batasan masalah yang disusun berdasarkan kerangka <em>triple constraints</em> (scope, cost, time) serta dilengkapi batasan proses, tools, dan objek penelitian, tujuan project, manfaat project, metode pengumpulan data, metode pengembangan sistem, serta sistematika penulisan laporan secara keseluruhan.</p>
 
   <p><strong>BAB II ANALISIS SISTEM BERJALAN</strong></p>
   <p>Bab ini menguraikan gambaran umum objek penelitian yaitu Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta, profil instansi, struktur organisasi, tugas dan fungsi setiap pihak yang terlibat, prosedur sistem berjalan, dokumen masukan dan keluaran, permasalahan yang ditemukan pada sistem berjalan, serta solusi sistem yang diusulkan.</p>
@@ -1354,10 +1380,10 @@
 
   <p>FST UIN Syarif Hidayatullah Jakarta menaungi tujuh program studi, yaitu Teknik Informatika, Sistem Informasi, Matematika, Fisika, Kimia, Biologi, dan Agribisnis. Saat ini, FST didukung oleh ratusan dosen tetap, dosen tidak tetap, serta tenaga kependidikan yang menjalankan kegiatan tridharma perguruan tinggi yaitu pendidikan, penelitian, dan pengabdian kepada masyarakat.</p>
 
-  <p>Salah satu fasilitas penunjang kegiatan akademik dan administratif yang disediakan FST adalah ruang loker khusus dosen dan tenaga kependidikan. Ruang loker ini terletak berdekatan dengan area sekretariat fakultas dan digunakan sebagai tempat penyimpanan dokumen pribadi, hasil ujian, paket buku ajar, surat dinas, serta titipan dari kurir maupun rekan sejawat. Ruang loker terdiri dari 48 unit loker dengan tiga ukuran berbeda, yaitu loker besar pada baris pertama, loker sedang pada baris kedua dan ketiga, serta loker kecil pada baris keempat hingga kedelapan. Ilustrasi tata letak fisik ruang loker dapat dilihat pada Gambar 2.1.</p>
+  <p>Saat ini, FST tidak memiliki fasilitas loker khusus yang terdedikasi. Sebagai gantinya, penitipan surat dan paket untuk dosen dan tenaga kependidikan ditangani oleh petugas keamanan (security) di pos keamanan yang terletak di pintu masuk gedung FST. Pos keamanan ini memiliki meja dan rak terbuka sederhana yang digunakan untuk menyimpan kiriman sementara sebelum diambil oleh penerima. Area ini tidak dilengkapi fasilitas penyimpanan tertutup, sehingga kiriman dibiarkan terbuka tanpa pengamanan khusus. Sebagai solusi, diusulkan pembangunan fasilitas loker pintar dengan tata letak sebagai berikut:</p>
 
   <div class="locker-layout">
-    <div class="ll-title">RUANG LOKER FST - 6 KOLOM × 8 BARIS = 48 UNIT</div>
+    <div class="ll-title">RENCANA TATA LETAK LOKER PINTAR FST (USULAN)</div>
     <div class="ll-grid">
       <!-- Baris 1: Loker Besar (6 unit) -->
       <div class="ll-cell ll-large">L-01</div>
@@ -1417,7 +1443,7 @@
       <span class="leg"><span class="sw" style="background:#fff;"></span> Kecil (30 unit, baris 4–8)</span>
     </div>
   </div>
-  <p class="caption small">Gambar 2.1 Tata Letak Fisik Ruang Loker FST UIN Syarif Hidayatullah Jakarta</p>
+  <p class="caption small">Gambar 2.1 Rencana Tata Letak Fisik Ruang Loker Pintar FST (Usulan)</p>
 </section>
 
 
@@ -1432,7 +1458,7 @@
     <tr><th>Alamat</th><td>Jalan Ir. H. Juanda No. 95, Ciputat, Tangerang Selatan, Banten 15412</td></tr>
     <tr><th>Bidang Kegiatan</th><td>Pendidikan Tinggi, Penelitian, dan Pengabdian kepada Masyarakat</td></tr>
     <tr><th>Jumlah Program Studi</th><td>7 (tujuh) program studi: Teknik Informatika, Sistem Informasi, Matematika, Fisika, Kimia, Biologi, Agribisnis</td></tr>
-    <tr><th>Layanan Utama</th><td>Penyelenggaraan pendidikan jenjang Sarjana (S1), pengelolaan kegiatan akademik, pelayanan administrasi mahasiswa dan dosen, serta pengelolaan fasilitas penunjang akademik termasuk ruang loker dosen dan tenaga kependidikan</td></tr>
+    <tr><th>Layanan Utama</th><td>Penyelenggaraan pendidikan jenjang Sarjana (S1), pengelolaan kegiatan akademik, pelayanan administrasi mahasiswa dan dosen, serta pengelolaan fasilitas penunjang akademik termasuk layanan penitipan surat dan paket bagi dosen dan tenaga kependidikan</td></tr>
     <tr><th>Visi</th><td>Menjadi fakultas yang unggul, kompetitif, dan berkarakter Islami dalam pengembangan ilmu pengetahuan dan teknologi pada tingkat nasional maupun internasional</td></tr>
     <tr><th>Misi</th><td>Menyelenggarakan pendidikan tinggi yang berkualitas, melaksanakan penelitian yang inovatif, serta melakukan pengabdian kepada masyarakat dengan mengintegrasikan ilmu pengetahuan dan keislaman</td></tr>
   </table>
@@ -1444,7 +1470,7 @@
   <span class="pageno">9</span>
 
   <h2 class="subbab">2.3 Struktur Organisasi</h2>
-  <p>Pengelolaan loker di lingkungan Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta melibatkan beberapa pihak yang masing-masing memiliki peran khusus. Bagan hierarki pihak-pihak yang terlibat secara langsung pada sistem pengelolaan loker dapat dilihat pada Gambar 2.2.</p>
+  <p>Pengelolaan penitipan surat dan paket di lingkungan Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta melibatkan beberapa pihak yang masing-masing memiliki peran khusus. Bagan hierarki pihak-pihak yang terlibat secara langsung pada sistem pengelolaan penitipan surat dan paket dapat dilihat pada Gambar 2.2.</p>
 
   <div class="org-chart">
     <div class="org-row org-1">
@@ -1460,15 +1486,15 @@
     </div>
     <div class="org-line">│</div>
     <div class="org-row org-1">
-      <div class="org-node lvl3">Staf Sekretariat (Admin Loker)<span class="role">Pelaksana harian sistem loker</span></div>
+      <div class="org-node lvl3">Petugas Keamanan (Security)<span class="role">Pelaksana harian penitipan surat dan paket</span></div>
     </div>
     <div class="org-line">┌──────────────────┴──────────────────┐</div>
     <div class="org-row org-2">
-      <div class="org-node lvl3">Dosen &amp; Tenaga Kependidikan<span class="role">Pengguna utama loker (internal)</span></div>
+      <div class="org-node lvl3">Dosen &amp; Tenaga Kependidikan<span class="role">Penerima kiriman (internal)</span></div>
       <div class="org-node lvl3">Kurir / Tamu Pengirim<span class="role">Pengirim kiriman (eksternal)</span></div>
     </div>
   </div>
-  <p class="caption small">Gambar 2.2 Bagan Struktur Organisasi Pengelolaan Loker FST</p>
+  <p class="caption small">Gambar 2.2 Bagan Struktur Organisasi Pengelolaan Penitipan Surat dan Paket FST</p>
 
   <p>Keterangan rinci jabatan dan keterlibatan masing-masing pihak diuraikan pada Tabel 2.2 berikut.</p>
 
@@ -1477,14 +1503,14 @@
       <th style="width:35%">Jabatan</th>
       <th>Keterangan</th>
     </tr>
-    <tr><td>Dekan Fakultas Sains dan Teknologi</td><td>Pimpinan tertinggi fakultas yang memberikan arahan strategis terhadap penyelenggaraan layanan administrasi termasuk fasilitas loker</td></tr>
+    <tr><td>Dekan Fakultas Sains dan Teknologi</td><td>Pimpinan tertinggi fakultas yang memberikan arahan strategis terhadap penyelenggaraan layanan administrasi termasuk layanan penitipan surat dan paket</td></tr>
     <tr><td>Wakil Dekan Bidang Administrasi Umum dan Keuangan</td><td>Membawahi langsung unit kerja sekretariat dan menjadi penanggung jawab pengelolaan fasilitas penunjang akademik</td></tr>
-    <tr><td>Kepala Sekretariat FST</td><td>Bertanggung jawab terhadap operasional harian sekretariat termasuk pengelolaan loker dan penitipan surat/paket</td></tr>
-    <tr><td>Staf Sekretariat (Admin Loker)</td><td>Melayani penyerahan kunci loker, menerima titipan paket dari kurir, mendistribusikan kiriman ke loker yang sesuai, dan mencatat aktivitas penggunaan loker</td></tr>
-    <tr><td>Dosen dan Tenaga Kependidikan</td><td>Pengguna utama loker yang menyimpan dokumen, barang pribadi, atau menerima kiriman</td></tr>
+    <tr><td>Kepala Sekretariat FST</td><td>Bertanggung jawab terhadap operasional harian sekretariat dan mengawasi sistem penitipan berbasis pos keamanan</td></tr>
+    <tr><td>Petugas Keamanan (Security)</td><td>Menerima titipan surat dan paket dari kurir, mencatat di buku catatan penitipan, menyimpan kiriman di rak/meja pos keamanan, dan memberitahu penerima melalui telepon atau pesan singkat</td></tr>
+    <tr><td>Dosen dan Tenaga Kependidikan</td><td>Penerima kiriman yang mengambil surat dan paket dari pos keamanan</td></tr>
     <tr><td>Kurir / Tamu Pengirim</td><td>Pihak eksternal yang mengantarkan surat atau paket untuk dosen maupun tenaga kependidikan</td></tr>
   </table>
-  <p class="caption small">Tabel 2.2 Pihak-pihak yang Terlibat dalam Sistem Pengelolaan Loker</p>
+  <p class="caption small">Tabel 2.2 Pihak-pihak yang Terlibat dalam Sistem Pengelolaan Penitipan Surat dan Paket</p>
 </section>
 
 
@@ -1492,37 +1518,37 @@
   <span class="pageno">10</span>
 
   <h2 class="subbab">2.4 Tugas dan Fungsi</h2>
-  <p>Berikut adalah uraian tugas dan fungsi dari masing-masing pihak yang berkaitan dengan sistem pengelolaan loker di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta:</p>
+  <p>Berikut adalah uraian tugas dan fungsi dari masing-masing pihak yang berkaitan dengan sistem penitipan surat dan paket di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta:</p>
 
   <h3 class="subsubbab">2.4.1 Kepala Sekretariat FST</h3>
   <ol>
-    <li>Mengoordinasikan kegiatan operasional sekretariat fakultas, termasuk pengelolaan loker.</li>
-    <li>Menyusun kebijakan internal terkait penggunaan loker dan penitipan paket.</li>
-    <li>Menerima laporan bulanan dari staf sekretariat mengenai aktivitas penggunaan loker.</li>
-    <li>Memberikan persetujuan terhadap pengaduan, penggantian kunci, atau perubahan data kepemilikan loker.</li>
+    <li>Mengoordinasikan kegiatan operasional sekretariat fakultas, termasuk pengawasan sistem penitipan surat dan paket.</li>
+    <li>Menyusun kebijakan internal terkait prosedur penitipan dan pengambilan kiriman.</li>
+    <li>Menerima laporan bulanan dari petugas keamanan mengenai aktivitas penitipan surat dan paket.</li>
+    <li>Menangani pengaduan terkait kiriman yang hilang atau tertukar.</li>
   </ol>
 
-  <h3 class="subsubbab">2.4.2 Staf Sekretariat (Admin Loker)</h3>
+  <h3 class="subsubbab">2.4.2 Petugas Keamanan (Security)</h3>
   <ol>
-    <li>Mendata setiap dosen dan tenaga kependidikan yang berhak memperoleh loker.</li>
-    <li>Menyerahkan kunci loker kepada pengguna baru dan mencatat kepemilikan loker pada buku register.</li>
-    <li>Menerima titipan surat dan paket dari kurir atau tamu, kemudian meletakkannya pada loker yang dituju menggunakan kunci cadangan.</li>
-    <li>Memberitahukan kepada dosen atau tenaga kependidikan bahwa terdapat kiriman pada lokernya, baik melalui pesan singkat, telepon, maupun surel.</li>
-    <li>Membuat laporan rekapitulasi aktivitas loker secara berkala.</li>
+    <li>Menerima titipan surat dan paket dari kurir atau tamu pengirim di pos keamanan.</li>
+    <li>Mencatat kiriman yang masuk pada buku catatan penitipan (nama pengirim, penerima, tanggal, jenis kiriman).</li>
+    <li>Menyimpan kiriman pada rak atau meja di area pos keamanan.</li>
+    <li>Memberitahukan kepada dosen atau tenaga kependidikan bahwa terdapat kiriman, melalui pesan singkat atau telepon.</li>
+    <li>Menyerahkan kiriman kepada penerima saat datang mengambil dan meminta tanda tangan pengambilan.</li>
   </ol>
 
   <h3 class="subsubbab">2.4.3 Dosen dan Tenaga Kependidikan</h3>
   <ol>
-    <li>Membuka dan mengunci loker pribadi menggunakan kunci fisik yang telah diberikan.</li>
-    <li>Menyimpan dokumen, barang pribadi, dan kiriman pada lokernya masing-masing.</li>
-    <li>Menjaga keamanan kunci loker dari kemungkinan hilang, rusak, atau diduplikasi.</li>
-    <li>Mengambil kiriman yang telah dititipkan setelah menerima pemberitahuan dari staf sekretariat.</li>
+    <li>Menerima pemberitahuan dari petugas keamanan bahwa terdapat kiriman.</li>
+    <li>Datang ke pos keamanan untuk mengambil kiriman.</li>
+    <li>Menunjukkan identitas dan menandatangani buku pengambilan kiriman.</li>
+    <li>Membawa kiriman dari pos keamanan.</li>
   </ol>
 
   <h3 class="subsubbab">2.4.4 Kurir / Tamu Pengirim</h3>
   <ol>
     <li>Mengantarkan surat, paket, dokumen resmi, atau buku kepada dosen maupun tenaga kependidikan FST.</li>
-    <li>Menyerahkan kiriman kepada staf sekretariat sebagai pihak penerima atas nama tujuan kiriman.</li>
+    <li>Menyerahkan kiriman kepada petugas keamanan sebagai pihak penerima atas nama tujuan kiriman.</li>
     <li>Meminta tanda terima atau tanda tangan sebagai bukti penyerahan paket.</li>
   </ol>
 </section>
@@ -1532,30 +1558,29 @@
   <span class="pageno">11</span>
 
   <h2 class="subbab">2.5 Prosedur Sistem Berjalan</h2>
-  <p>Berikut adalah uraian prosedur sistem pengelolaan loker yang berjalan saat ini di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. Terdapat dua alur utama, yaitu alur pembukaan loker pribadi oleh dosen/tenaga kependidikan, dan alur penitipan kiriman oleh kurir.</p>
+  <p>Berikut adalah uraian prosedur sistem penitipan surat dan paket yang berjalan saat ini di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. Terdapat dua alur utama, yaitu alur penitipan kiriman oleh kurir dan alur pengambilan kiriman oleh dosen/tenaga kependidikan.</p>
 
-  <h3 class="subsubbab">2.5.1 Prosedur Pembukaan Loker Pribadi</h3>
+  <h3 class="subsubbab">2.5.1 Prosedur Pengambilan Kiriman oleh Dosen/Tenaga Kependidikan</h3>
   <ol>
-    <li>Dosen atau tenaga kependidikan datang ke ruang loker yang berada dekat dengan sekretariat fakultas.</li>
-    <li>Pengguna mengeluarkan kunci fisik loker yang telah diberikan oleh staf sekretariat.</li>
-    <li>Pengguna mencocokkan nomor loker pada kunci dengan nomor pintu loker.</li>
-    <li>Pengguna memasukkan kunci ke lubang kunci dan memutarnya untuk membuka pintu loker.</li>
-    <li>Pengguna melakukan kegiatan menyimpan atau mengambil barang pribadi maupun kiriman.</li>
-    <li>Pengguna menutup kembali pintu loker dan memutar kunci untuk menguncinya.</li>
-    <li>Pengguna meninggalkan ruang loker dan menyimpan kunci di tempat aman.</li>
+    <li>Dosen atau tenaga kependidikan menerima pemberitahuan dari petugas keamanan bahwa terdapat kiriman (melalui telepon atau pesan singkat).</li>
+    <li>Penerima datang ke pos keamanan gedung FST.</li>
+    <li>Penerima menyebutkan nama dan menunjukkan kartu identitas kepada petugas keamanan.</li>
+    <li>Petugas keamanan mencari kiriman yang sesuai di rak atau meja penyimpanan.</li>
+    <li>Petugas keamanan menyerahkan kiriman kepada penerima.</li>
+    <li>Penerima menandatangani buku pengambilan kiriman sebagai bukti telah mengambil.</li>
+    <li>Penerima meninggalkan pos keamanan dengan membawa kirimannya.</li>
   </ol>
 
   <h3 class="subsubbab">2.5.2 Prosedur Penitipan Surat dan Paket oleh Kurir</h3>
   <ol>
-    <li>Kurir tiba di area resepsionis atau sekretariat FST.</li>
+    <li>Kurir tiba di pos keamanan gedung FST.</li>
     <li>Kurir menyebutkan nama, NIP, atau program studi dari penerima kiriman.</li>
-    <li>Staf sekretariat mengecek data dosen atau tenaga kependidikan yang dimaksud pada buku register loker untuk mengetahui nomor lokernya.</li>
-    <li>Kurir menyerahkan kiriman kepada staf sekretariat dan menerima tanda tangan sebagai bukti penyerahan.</li>
-    <li>Staf sekretariat memeriksa apakah ukuran kiriman dapat dimasukkan ke loker. Jika tidak muat, kiriman akan diletakkan pada rak terbuka.</li>
-    <li>Staf sekretariat menggunakan kunci cadangan untuk membuka loker tujuan dan meletakkan kiriman di dalamnya.</li>
-    <li>Staf sekretariat mencatat aktivitas penitipan pada buku catatan harian.</li>
-    <li>Staf sekretariat menghubungi dosen atau tenaga kependidikan yang bersangkutan melalui pesan singkat atau panggilan telepon untuk memberitahukan adanya kiriman baru.</li>
-    <li>Penerima datang dan membuka lokernya menggunakan kunci pribadi untuk mengambil kiriman.</li>
+    <li>Petugas keamanan mengecek nama penerima pada daftar pegawai fakultas.</li>
+    <li>Kurir menyerahkan kiriman kepada petugas keamanan dan menerima tanda tangan sebagai bukti penyerahan.</li>
+    <li>Petugas keamanan mencatat detail kiriman pada buku catatan penitipan (nama pengirim, penerima, tanggal, jenis kiriman).</li>
+    <li>Petugas keamanan menyimpan kiriman pada rak atau meja di area pos keamanan.</li>
+    <li>Petugas keamanan menghubungi penerima melalui pesan singkat atau telepon untuk memberitahukan adanya kiriman baru.</li>
+    <li>Penerima datang ke pos keamanan dan mengambil kiriman sesuai prosedur pada subbab 2.5.1.</li>
   </ol>
 </section>
 
@@ -1567,21 +1592,21 @@
   <p>Berikut adalah ilustrasi alur sistem berjalan secara sederhana untuk prosedur penitipan paket oleh kurir:</p>
 
   <div style="margin:1em 1.5cm;">
-    <div class="flow-step">Kurir tiba di Sekretariat FST</div>
+    <div class="flow-step">Kurir tiba di Pos Keamanan Gedung FST</div>
     <div class="flow-arrow">↓</div>
     <div class="flow-step">Kurir menyebutkan nama / NIP penerima</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">Staf mengecek data penerima &amp; nomor loker pada buku register</div>
+    <div class="flow-step">Petugas keamanan mengecek data penerima pada daftar pegawai</div>
     <div class="flow-arrow">↓</div>
     <div class="flow-step">Kurir menyerahkan paket dan menandatangani bukti penyerahan</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">Staf membuka loker menggunakan kunci cadangan</div>
+    <div class="flow-step">Petugas keamanan mencatat kiriman di buku penitipan</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">Staf meletakkan paket dan mengunci kembali loker</div>
+    <div class="flow-step">Petugas keamanan menyimpan kiriman di rak / meja pos keamanan</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">Staf menghubungi penerima melalui SMS / telepon</div>
+    <div class="flow-step">Petugas keamanan menghubungi penerima melalui SMS / telepon</div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-step">Penerima datang dan membuka loker dengan kunci pribadi</div>
+    <div class="flow-step">Penerima datang ke pos keamanan dan mengambil kiriman</div>
   </div>
   <p class="caption small">Gambar 2.3 Diagram Alur Prosedur Penitipan Paket pada Sistem Berjalan</p>
 </section>
@@ -1593,7 +1618,7 @@
   <h2 class="subbab">2.6 Dokumen Masukan dan Keluaran</h2>
 
   <h3 class="subsubbab">2.6.1 Dokumen Masukan</h3>
-  <p>Dokumen masukan merupakan dokumen-dokumen yang menjadi input bagi sistem pengelolaan loker yang berjalan saat ini, antara lain:</p>
+  <p>Dokumen masukan merupakan dokumen-dokumen yang menjadi input bagi sistem penitipan surat dan paket yang berjalan saat ini, antara lain:</p>
 
   <table>
     <tr>
@@ -1601,15 +1626,15 @@
       <th style="width:25%">Sumber</th>
       <th>Keterangan</th>
     </tr>
-    <tr><td>Kartu Identitas Dosen / Tendik</td><td>Pengguna</td><td>Digunakan sebagai bukti identitas saat pengambilan kunci loker dari sekretariat</td></tr>
+    <tr><td>Kartu Identitas Dosen / Tendik</td><td>Pengguna</td><td>Digunakan sebagai bukti identitas saat pengambilan kiriman dari pos keamanan</td></tr>
     <tr><td>Resi Pengiriman / Surat Tugas</td><td>Kurir</td><td>Diserahkan kepada staf sekretariat sebagai bukti pengiriman paket atau surat</td></tr>
-    <tr><td>Formulir Penitipan Paket</td><td>Sekretariat</td><td>Diisi oleh staf untuk mencatat detail kiriman yang masuk (nama pengirim, penerima, tanggal, nomor loker)</td></tr>
-    <tr><td>Buku Register Loker</td><td>Sekretariat</td><td>Berisi data pemilik tetap setiap loker (nomor loker, NIP, nama, departemen)</td></tr>
+    <tr><td>Formulir Penitipan Paket</td><td>Sekretariat</td><td>Diisi oleh petugas keamanan untuk mencatat detail kiriman yang masuk (nama pengirim, penerima, tanggal, jenis kiriman)</td></tr>
+    <tr><td>Buku Catatan Penitipan</td><td>Pos Keamanan</td><td>Berisi catatan harian kiriman yang masuk dan diambil (nama pengirim, penerima, tanggal masuk, tanggal pengambilan)</td></tr>
   </table>
   <p class="caption small">Tabel 2.3 Daftar Dokumen Masukan Sistem Berjalan</p>
 
   <h3 class="subsubbab">2.6.2 Dokumen Keluaran</h3>
-  <p>Dokumen keluaran merupakan dokumen yang dihasilkan oleh sistem pengelolaan loker yang berjalan, antara lain:</p>
+  <p>Dokumen keluaran merupakan dokumen yang dihasilkan oleh sistem penitipan surat dan paket yang berjalan, antara lain:</p>
 
   <table>
     <tr>
@@ -1618,9 +1643,9 @@
       <th>Keterangan</th>
     </tr>
     <tr><td>Tanda Terima Paket</td><td>Kurir</td><td>Diberikan kepada kurir sebagai bukti bahwa paket telah diterima oleh sekretariat</td></tr>
-    <tr><td>Pemberitahuan Kiriman (SMS / Telepon)</td><td>Penerima Kiriman</td><td>Berisi informasi bahwa terdapat kiriman pada loker pribadi penerima</td></tr>
-    <tr><td>Laporan Aktivitas Loker Bulanan</td><td>Kepala Sekretariat</td><td>Berisi rekapitulasi penitipan paket, peminjaman kunci cadangan, dan kasus kehilangan kunci</td></tr>
-    <tr><td>Surat Permohonan Penggantian Kunci</td><td>Kepala Sekretariat</td><td>Diajukan ketika dosen/tendik kehilangan kunci pribadi loker</td></tr>
+    <tr><td>Pemberitahuan Kiriman (SMS / Telepon)</td><td>Penerima Kiriman</td><td>Berisi informasi bahwa terdapat kiriman di pos keamanan untuk penerima</td></tr>
+    <tr><td>Laporan Aktivitas Penitipan Bulanan</td><td>Kepala Sekretariat</td><td>Berisi rekapitulasi penitipan paket, jumlah kiriman masuk dan keluar, serta kasus kiriman hilang atau tertukar</td></tr>
+    <tr><td>Buku Pengambilan Kiriman</td><td>Pos Keamanan</td><td>Berisi tanda tangan penerima sebagai bukti kiriman telah diambil dari pos keamanan</td></tr>
   </table>
   <p class="caption small">Tabel 2.4 Daftar Dokumen Keluaran Sistem Berjalan</p>
 </section>
@@ -1630,17 +1655,17 @@
   <span class="pageno">14</span>
 
   <h2 class="subbab">2.7 Permasalahan Sistem Berjalan</h2>
-  <p>Berdasarkan hasil observasi dan wawancara yang dilakukan terhadap beberapa pemangku kepentingan, ditemukan sejumlah permasalahan pada sistem pengelolaan loker yang berjalan saat ini di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta, antara lain:</p>
+  <p>Berdasarkan hasil observasi dan wawancara yang dilakukan terhadap beberapa pemangku kepentingan, ditemukan sejumlah permasalahan pada sistem penitipan surat dan paket yang berjalan saat ini di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta, antara lain:</p>
 
   <ol>
-    <li><strong>Ketergantungan pada kunci fisik.</strong> Penggunaan kunci fisik menyebabkan risiko kehilangan, kerusakan, maupun duplikasi tanpa izin. Setiap kasus kehilangan kunci memerlukan biaya penggantian dan waktu pengurusan administratif yang cukup lama.</li>
-    <li><strong>Tidak ada autentikasi terpusat.</strong> Sistem berjalan tidak memiliki mekanisme untuk memverifikasi identitas pengguna yang membuka loker. Hal ini berisiko apabila kunci jatuh ke tangan pihak yang tidak berkepentingan.</li>
-    <li><strong>Beban kerja staf sekretariat tinggi.</strong> Setiap penitipan paket harus melibatkan staf sekretariat secara langsung, mulai dari pencatatan, pembukaan loker dengan kunci cadangan, hingga pemberitahuan ke penerima. Hal ini menyita waktu staf yang seharusnya digunakan untuk pekerjaan administratif lainnya.</li>
-    <li><strong>Antrean pada jam sibuk.</strong> Pada jam-jam tertentu, terutama pagi dan siang, antrean kurir yang ingin menitipkan paket menjadi panjang dan berdampak pada produktivitas staf serta kepuasan kurir.</li>
-    <li><strong>Tidak adanya notifikasi otomatis.</strong> Pemberitahuan ke penerima kiriman dilakukan secara manual melalui SMS atau telepon. Hal ini berpotensi terlewatkan apabila staf sedang sibuk atau pengguna tidak segera membaca pesan.</li>
-    <li><strong>Tidak ada catatan riwayat akses.</strong> Sistem berjalan tidak mampu mencatat siapa, kapan, dan untuk tujuan apa loker dibuka. Hal ini menyulitkan proses audit jika terjadi kasus kehilangan barang.</li>
-    <li><strong>Pemanfaatan loker tidak optimal.</strong> Tidak adanya mekanisme alokasi loker secara dinamis menyebabkan paket berukuran kecil sering memenuhi loker besar, sementara loker kecil banyak yang kosong, atau sebaliknya.</li>
-    <li><strong>Tidak ada dashboard pemantauan.</strong> Pihak pengelola tidak memiliki gambaran <em>real-time</em> mengenai status setiap loker, sehingga kapasitas penyimpanan tidak dapat direncanakan secara akurat.</li>
+    <li><strong>Belum tersedianya fasilitas penyimpanan pribadi.</strong> FST tidak memiliki loker atau fasilitas penyimpanan tertutup bagi dosen dan tenaga kependidikan, sehingga seluruh kiriman hanya disimpan di rak dan meja terbuka pos keamanan.</li>
+    <li><strong>Keamanan kiriman tidak terjamin.</strong> Area pos keamanan bersifat terbuka dan dapat dilihat serta diakses oleh siapa saja, sehingga risiko kehilangan, pencurian, atau kerusakan kiriman cukup tinggi.</li>
+    <li><strong>Beban kerja petugas keamanan bertambah.</strong> Tugas penitipan dan penyerahan kiriman menyita waktu petugas keamanan yang seharusnya difokuskan pada tugas utama menjaga keamanan gedung.</li>
+    <li><strong>Antrean kurir di pos keamanan.</strong> Pada jam-jam tertentu, antrean kurir yang ingin menitipkan paket mengganggu kelancaran akses keluar-masuk gedung dan produktivitas petugas keamanan.</li>
+    <li><strong>Tidak adanya notifikasi otomatis.</strong> Pemberitahuan ke penerima kiriman dilakukan secara manual oleh petugas keamanan melalui SMS atau telepon, sehingga sering terlewatkan apabila petugas sedang bertugas di lapangan.</li>
+    <li><strong>Tidak ada catatan riwayat yang terstruktur.</strong> Pencatatan penitipan hanya dilakukan pada buku catatan manual yang rentan rusak, hilang, dan sulit dijadikan dasar audit.</li>
+    <li><strong>Privasi penerima tidak terjaga.</strong> Kiriman untuk dosen dan tenaga kependidikan terlihat oleh seluruh pengunjung yang melewati pos keamanan, termasuk informasi pengirim dan jenis kiriman.</li>
+    <li><strong>Kapasitas penyimpanan sangat terbatas.</strong> Rak dan meja di pos keamanan memiliki kapasitas terbatas sehingga kiriman sering menumpuk di lantai atau area sekitar, meningkatkan risiko kerusakan dan kehilangan.</li>
   </ol>
 </section>
 
@@ -1667,7 +1692,7 @@
 <section class="page">
   <span class="pageno">16</span>
 
-  <p>Dengan diimplementasikannya solusi yang diusulkan, diharapkan terjadi peningkatan signifikan pada kualitas layanan administrasi loker di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. Manfaat yang diperoleh antara lain berkurangnya beban kerja staf sekretariat, meningkatnya keamanan akses loker, serta tersedianya data kuantitatif yang dapat dijadikan dasar pengambilan keputusan oleh pimpinan fakultas.</p>
+  <p>Dengan diimplementasikannya solusi yang diusulkan, diharapkan terjadi peningkatan signifikan pada kualitas layanan penitipan surat dan paket di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. Manfaat yang diperoleh antara lain tersedianya fasilitas penyimpanan pribadi yang aman, berkurangnya beban petugas keamanan, serta tersedianya data kuantitatif yang dapat dijadikan dasar pengambilan keputusan oleh pimpinan fakultas.</p>
 
   <p>Tabel berikut merangkum perbandingan antara sistem berjalan dengan sistem yang diusulkan:</p>
 
@@ -1677,13 +1702,13 @@
       <th>Sistem Berjalan</th>
       <th>Sistem yang Diusulkan</th>
     </tr>
-    <tr><td>Mekanisme akses</td><td>Kunci fisik</td><td>Kartu RFID + solenoid elektronik</td></tr>
+    <tr><td>Fasilitas penyimpanan</td><td>Tidak tersedia (titip di pos keamanan)</td><td>48 unit loker pintar dengan tiga ukuran</td></tr>
     <tr><td>Penitipan paket</td><td>Melalui staf sekretariat</td><td>Mandiri melalui kios <em>touchscreen</em></td></tr>
     <tr><td>Pemberitahuan ke penerima</td><td>SMS / telepon manual</td><td>Surel otomatis dari sistem</td></tr>
-    <tr><td>Alokasi loker</td><td>Manual</td><td>Otomatis berdasarkan ukuran</td></tr>
+    <tr><td>Keamanan kiriman</td><td>Rak terbuka di pos keamanan</td><td>Loker tertutup dengan kunci elektronik</td></tr>
     <tr><td>Catatan riwayat akses</td><td>Tidak ada</td><td>Tercatat otomatis (<em>log</em>)</td></tr>
     <tr><td>Pemantauan loker</td><td>Visual saja</td><td>Dashboard <em>real-time</em></td></tr>
-    <tr><td>Risiko kehilangan kunci</td><td>Tinggi</td><td>Tidak ada (kartu dapat di-reset)</td></tr>
+    <tr><td>Risiko kehilangan kiriman</td><td>Tinggi (area terbuka)</td><td>Rendah (tersimpan dalam loker terkunci)</td></tr>
   </table>
   <p class="caption small">Tabel 2.5 Perbandingan Sistem Berjalan dan Sistem yang Diusulkan</p>
 
@@ -1693,14 +1718,14 @@
     <div class="cv-side berjalan">
       <div class="cv-title">Sistem Berjalan</div>
       <ul class="cv-list">
-        <li>Kunci fisik per pengguna</li>
-        <li>Penitipan via staf sekretariat</li>
+        <li>Tidak ada loker (titip ke security)</li>
+        <li>Penitipan via petugas keamanan</li>
         <li>Notifikasi SMS / telepon manual</li>
-        <li>Alokasi loker manual</li>
-        <li>Tidak ada catatan riwayat akses</li>
-        <li>Pemantauan visual saja</li>
-        <li>Risiko kehilangan kunci tinggi</li>
-        <li>Antrean pada jam sibuk</li>
+        <li>Kiriman di rak/meja terbuka</li>
+        <li>Tidak ada catatan riwayat terstruktur</li>
+        <li>Pemantauan tidak ada</li>
+        <li>Risiko kehilangan kiriman tinggi</li>
+        <li>Antrean kurir di pos keamanan</li>
       </ul>
     </div>
     <div class="cv-side usulan">
@@ -1729,7 +1754,7 @@
   <h1 class="bab">BAB III<br/>ANALISIS KEBUTUHAN SISTEM</h1>
 
   <h2 class="subbab">3.1 Analisis Kebutuhan Sistem</h2>
-  <p>Analisis kebutuhan sistem merupakan tahapan penting dalam pengembangan perangkat lunak yang bertujuan untuk mengidentifikasi kebutuhan pengguna terhadap sistem yang akan dibangun. Hasil dari tahap ini akan menjadi landasan utama dalam tahap perancangan dan implementasi sistem.</p>
+  <p>Analisis kebutuhan sistem merupakan tahapan penting dalam pengembangan perangkat lunak yang bertujuan untuk mengidentifikasi, menganalisis, dan mendokumentasikan kebutuhan pengguna terhadap sistem yang akan dibangun (Sommerville, 2016). Hasil dari tahap ini akan menjadi landasan utama dalam tahap perancangan dan implementasi sistem.</p>
 
   <p>Berdasarkan hasil observasi langsung di Sekretariat Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta serta wawancara dengan Kepala Sekretariat, staf administrasi, dosen, tenaga kependidikan, dan kurir layanan pengiriman, dapat dirumuskan kebutuhan utama sistem Loker Pintar FST sebagai berikut:</p>
 
@@ -1750,7 +1775,7 @@
   <span class="pageno">18</span>
 
   <h2 class="subbab">3.2 Identifikasi Pengguna / Aktor</h2>
-  <p>Sistem Loker Pintar FST melibatkan beberapa aktor, baik aktor manusia (pengguna langsung) maupun aktor sistem (perangkat keras dan layanan eksternal). Identifikasi aktor dilakukan untuk memetakan siapa saja yang berinteraksi dengan sistem dan apa peran masing-masing.</p>
+  <p>Sistem Loker Pintar FST melibatkan beberapa aktor, baik aktor manusia (pengguna langsung) maupun aktor sistem (perangkat keras dan layanan eksternal). Menurut Jacobson <em>et al.</em> (1992), identifikasi aktor merupakan langkah awal yang krusial dalam pemodelan use case karena aktor menentukan batas (<em>boundary</em>) antara sistem dan lingkungannya. Identifikasi aktor dilakukan untuk memetakan siapa saja yang berinteraksi dengan sistem dan apa peran masing-masing.</p>
 
   <table>
     <tr>
@@ -1817,7 +1842,7 @@
   <span class="pageno">19</span>
 
   <h2 class="subbab">3.3 Kebutuhan Fungsional</h2>
-  <p>Kebutuhan fungsional menjelaskan fitur-fitur dan layanan yang harus disediakan oleh sistem. Kebutuhan fungsional Sistem Loker Pintar FST diidentifikasi berdasarkan setiap aktor yang terlibat.</p>
+  <p>Kebutuhan fungsional (<em>functional requirements</em>) menjelaskan layanan yang harus disediakan oleh sistem, reaksi sistem terhadap masukan tertentu, serta perilaku sistem dalam situasi tertentu (Sommerville, 2016). Kebutuhan fungsional Sistem Loker Pintar FST diidentifikasi berdasarkan setiap aktor yang terlibat.</p>
 
   <h3 class="subsubbab">3.3.1 Kebutuhan Fungsional untuk Dosen / Tenaga Kependidikan</h3>
   <table>
@@ -1883,7 +1908,7 @@
   <span class="pageno">21</span>
 
   <h2 class="subbab">3.4 Kebutuhan Nonfungsional</h2>
-  <p>Kebutuhan nonfungsional menjelaskan karakteristik kualitas yang harus dimiliki oleh sistem, di luar fitur fungsional. Berikut adalah kebutuhan nonfungsional Sistem Loker Pintar FST yang dirumuskan berdasarkan kategori PIECES (Performance, Information, Economy, Control, Efficiency, Service).</p>
+  <p>Kebutuhan nonfungsional (<em>non-functional requirements</em>) menjelaskan batasan dan karakteristik kualitas yang harus dimiliki oleh sistem, di luar fitur fungsional (Sommerville, 2016). Berikut adalah kebutuhan nonfungsional Sistem Loker Pintar FST yang dirumuskan berdasarkan kerangka analisis PIECES (<em>Performance, Information, Economy, Control, Efficiency, Service</em>) yang dikembangkan oleh Whitten dan Bentley (2007).</p>
 
   <table>
     <tr>
@@ -2031,7 +2056,7 @@
   </table>
   <p class="caption small">Tabel 3.6 Daftar Entitas Data yang Dibutuhkan Sistem</p>
 
-  <p>Hubungan antar entitas data dapat dijelaskan secara sederhana sebagai berikut: satu Staff memiliki tepat satu Locker pribadi, namun dapat menerima banyak Mail. Setiap Mail disimpan dalam satu Locker tertentu. Setiap PackageSize dipetakan ke satu kategori LockerSize. Setiap aktivitas akses loker akan menghasilkan satu entri AccessLog.</p>
+  <p>Hubungan antar entitas data dapat dijelaskan secara sederhana sebagai berikut: satu Staff memiliki tepat satu Locker pribadi, namun dapat menerima banyak Mail. Setiap Mail disimpan dalam satu Locker tertentu. Setiap aktivitas akses loker akan menghasilkan satu entri AccessLog.</p>
 </section>
 
 
@@ -2105,7 +2130,7 @@
   <span class="pageno">26</span>
 
   <h2 class="subbab">3.9 Spesifikasi Kebutuhan Sistem</h2>
-  <p>Pada subbab ini, seluruh kebutuhan yang telah dijabarkan sebelumnya dirangkum dalam bentuk yang lebih terstruktur sebagai cikal bakal dokumen <em>Software Requirements Specification</em> (SRS). Spesifikasi ini terdiri dari empat aspek utama, yaitu deskripsi umum sistem, ruang lingkup sistem, ringkasan kebutuhan fungsional, dan ringkasan kebutuhan nonfungsional.</p>
+  <p>Pada subbab ini, seluruh kebutuhan yang telah dijabarkan sebelumnya dirangkum dalam bentuk yang lebih terstruktur sebagai cikal bakal dokumen <em>Software Requirements Specification</em> (SRS) sesuai standar IEEE/ISO/IEC/IEEE 29148:2011. Spesifikasi ini terdiri dari empat aspek utama, yaitu deskripsi umum sistem, ruang lingkup sistem, ringkasan kebutuhan fungsional, dan ringkasan kebutuhan nonfungsional.</p>
 
   <h3 class="subsubbab">3.9.1 Deskripsi Umum Sistem</h3>
   <p>Sistem Loker Pintar FST adalah sistem pengelolaan loker berbasis kios <em>touchscreen</em> yang mengintegrasikan teknologi RFID, kunci elektromekanis, dan layanan notifikasi otomatis untuk mendukung kebutuhan dosen, tenaga kependidikan, kurir, dan admin sekretariat di Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta. Sistem ini menggantikan mekanisme kunci fisik dan pencatatan manual yang berjalan saat ini.</p>
@@ -2125,7 +2150,7 @@
   <span class="pageno">27</span>
 
   <h3 class="subsubbab">3.9.5 Matriks Keterunutan Kebutuhan</h3>
-  <p>Untuk memastikan setiap kebutuhan fungsional dapat ditelusuri kembali ke aktor pengguna dan permasalahan sistem berjalan, berikut adalah matriks keterunutan (<em>traceability matrix</em>) kebutuhan fungsional terhadap aktor utama sistem.</p>
+  <p>Untuk memastikan setiap kebutuhan fungsional dapat ditelusuri kembali ke aktor pengguna dan permasalahan sistem berjalan, berikut adalah matriks keterunutan (<em>requirements traceability matrix</em>) kebutuhan fungsional terhadap aktor utama sistem. Menurut Sommerville (2016), matriks keterunutan merupakan alat penting dalam rekayasa kebutuhan untuk memverifikasi bahwa seluruh kebutuhan memiliki sumber dan tujuan yang jelas.</p>
 
   <table>
     <tr>
@@ -2172,7 +2197,7 @@
   <h2 class="subbab">4.1 Rancangan Sistem Usulan</h2>
   <p>Berdasarkan hasil analisis pada Bab III, dirancanglah sebuah sistem baru bernama <strong>Sistem Loker Pintar FST (Loker Pintar FST)</strong> yang merupakan sistem berbasis kios <em>touchscreen</em> berorientasi <em>portrait</em> dengan resolusi 1080 × 1920 piksel. Sistem ini mengintegrasikan tiga komponen utama, yaitu (1) antarmuka kios berbasis web sebagai jembatan interaksi pengguna, (2) perangkat keras pengunci elektromekanis (<em>solenoid</em>) beserta sensor pintu untuk eksekusi fisik buka-tutup loker, dan (3) modul pembaca RFID untuk autentikasi pengguna secara cepat dan aman.</p>
 
-  <p>Secara umum, sistem yang diusulkan terdiri dari tiga lapisan arsitektur, yaitu lapisan presentasi (<em>presentation layer</em>) yang berupa <em>kiosk frontend</em>, lapisan logika aplikasi (<em>application core</em>) yang menangani <em>state machine</em> dan <em>routing</em> antar layar, serta lapisan data (<em>data layer</em>) yang menyediakan akses ke basis data terpusat. Di bawah lapisan data, terdapat pula lapisan <em>hardware adapter</em> yang menjadi penghubung antara perangkat lunak dengan modul perangkat keras pada loker fisik.</p>
+  <p>Secara umum, sistem yang diusulkan terdiri dari tiga lapisan arsitektur (<em>layered architecture</em>), yaitu lapisan presentasi (<em>presentation layer</em>) yang berupa <em>kiosk frontend</em>, lapisan logika aplikasi (<em>application core</em>) yang menangani <em>state machine</em> dan <em>routing</em> antar layar, serta lapisan data (<em>data layer</em>) yang menyediakan akses ke basis data terpusat (Pressman &amp; Maxim, 2020). Di bawah lapisan data, terdapat pula lapisan <em>hardware adapter</em> yang menjadi penghubung antara perangkat lunak dengan modul perangkat keras pada loker fisik.</p>
 
   <p>Berikut adalah ilustrasi arsitektur tiga lapis Sistem Loker Pintar FST yang diusulkan:</p>
 
@@ -2227,7 +2252,7 @@
 
   <p>Selain ketiga alur utama tersebut, terdapat pula mekanisme <em>cross-cutting</em> berupa <strong>Inactivity Timer</strong>, yaitu pewaktu yang akan mengembalikan tampilan ke layar idle setelah 60 detik tanpa aktivitas pengguna. Hal ini bertujuan untuk menjaga keamanan sesi dan memastikan tidak ada data sensitif pengguna yang tertinggal di layar publik.</p>
 
-  <p>Transisi antar layar (<em>screen state</em>) yang membentuk ketiga alur tersebut dapat divisualisasikan dalam bentuk <em>state machine</em> sebagaimana ditunjukkan pada Gambar 4.2. Layar Idle bertindak sebagai keadaan awal sekaligus konvergen, di mana seluruh alur akan kembali ke layar tersebut setelah selesai atau setelah <em>timeout</em> 60 detik.</p>
+  <p>Transisi antar layar (<em>screen state</em>) yang membentuk ketiga alur tersebut dapat divisualisasikan dalam bentuk <em>state machine</em> (Rumbaugh <em>et al.</em>, 2004) sebagaimana ditunjukkan pada Gambar 4.2. Layar Idle bertindak sebagai keadaan awal sekaligus konvergen, di mana seluruh alur akan kembali ke layar tersebut setelah selesai atau setelah <em>timeout</em> 60 detik.</p>
 
   <div class="state-diagram">
     <div class="sd-row sd-1">
@@ -2293,17 +2318,17 @@
   </div>
   <p class="caption small">Gambar 4.3 Peta Perjalanan Pengguna (User Journey Map) untuk Tiga Alur Utama</p>
 
-  <p>Untuk mendokumentasikan rancangan sistem secara komprehensif, digunakan empat jenis diagram <em>Unified Modeling Language</em> (UML) versi 2.5, yaitu Use Case Diagram untuk menggambarkan kebutuhan fungsional dari perspektif aktor, Activity Diagram untuk menunjukkan alur proses bisnis, Sequence Diagram untuk menjelaskan interaksi antar objek terhadap waktu, serta Class Diagram untuk menggambarkan struktur statis sistem berorientasi objek. Keempat diagram tersebut akan diuraikan secara berurutan pada subbab-subbab berikutnya.</p>
+  <p>Untuk mendokumentasikan rancangan sistem secara komprehensif, digunakan empat jenis diagram <em>Unified Modeling Language</em> (UML) versi 2.5.1 sebagaimana didefinisikan oleh <em>Object Management Group</em> (OMG, 2017). UML merupakan bahasa pemodelan visual standar yang digunakan secara luas untuk menganalisis, merancang, dan mendokumentasikan sistem berorientasi objek (Booch <em>et al.</em>, 2005). Keempat jenis diagram yang digunakan adalah Use Case Diagram untuk menggambarkan kebutuhan fungsional dari perspektif aktor, Activity Diagram untuk menunjukkan alur proses bisnis, Sequence Diagram untuk menjelaskan interaksi antar objek terhadap waktu, serta Class Diagram untuk menggambarkan struktur statis sistem berorientasi objek. Keempat diagram tersebut akan diuraikan secara berurutan pada subbab-subbab berikutnya.</p>
 
   <h2 class="subbab">4.2 Use Case Diagram</h2>
-  <p>Use Case Diagram menggambarkan hubungan antara aktor dengan fungsi-fungsi yang disediakan oleh sistem. Pada Sistem Loker Pintar FST, terdapat tiga aktor manusia (Dosen/Tenaga Kependidikan, Kurir/Tamu, dan Admin Sekretariat FST) serta empat aktor sistem/perangkat (RFID Reader, Locker Hardware, Notification Service, dan Inactivity Timer).</p>
+  <p>Use Case Diagram menggambarkan hubungan antara aktor dengan fungsi-fungsi yang disediakan oleh sistem (Dennis <em>et al.</em>, 2015). Menurut Jacobson <em>et al.</em> (1992), use case merupakan teknik utama untuk menangkap kebutuhan fungsional karena diagram ini mendeskripsikan perilaku sistem dari sudut pandang pengguna. Pada Sistem Loker Pintar FST, terdapat tiga aktor manusia (Dosen/Tenaga Kependidikan, Kurir/Tamu, dan Admin Sekretariat FST) serta empat aktor sistem/perangkat (RFID Reader, Locker Hardware, Notification Service, dan Inactivity Timer).</p>
 
-  <p>Diagram berikut menunjukkan keseluruhan use case yang terdapat pada sistem beserta relasinya, baik berupa <em>include</em>, <em>extend</em>, maupun <em>uses</em>:</p>
+  <p>Diagram berikut menunjukkan keseluruhan use case yang terdapat pada sistem beserta relasinya, baik berupa <em>include</em>, <em>extend</em>, maupun <em>uses</em> (OMG, 2017):</p>
 
   <figure class="diagram-figure">
-    <img class="puml" id="img-usecase" alt="Use Case Diagram Sistem Loker Pintar FST" />
+    <img class="puml" id="img-usecase-bab4" alt="Use Case Diagram Sistem Loker Pintar FST" />
     <figcaption>Gambar 4.4 Use Case Diagram Sistem Loker Pintar FST</figcaption>
-    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: uml/use-case.puml</pre>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: uml/bab4/use-case.puml</pre>
   </figure>
 </section>
 
@@ -2311,7 +2336,7 @@
 <section class="page">
   <span class="pageno">30</span>
 
-  <p>Berdasarkan diagram pada Gambar 4.4, dapat diidentifikasi total 17 use case yang terbagi menjadi tiga kelompok berdasarkan aktor pemicu. Berikut adalah ringkasan pengelompokan use case:</p>
+  <p>Berdasarkan diagram pada Gambar 4.4, dapat diidentifikasi total 11 use case yang terbagi menjadi tiga kelompok berdasarkan aktor pemicu. Berikut adalah ringkasan pengelompokan use case:</p>
 
   <table>
     <tr>
@@ -2322,28 +2347,23 @@
     <tr>
       <td>1</td>
       <td>Dosen / Tenaga Kependidikan</td>
-      <td>Autentikasi via RFID, Lihat Dashboard Personal, Buka Loker Pribadi, Lihat Daftar Kiriman, Ambil Kiriman</td>
+      <td>Autentikasi via RFID, Lihat Dashboard Personal, Buka Loker Pribadi, Lihat Daftar Kiriman, Ambil Kiriman, Batalkan Operasi, Lihat Bantuan</td>
     </tr>
     <tr>
       <td>2</td>
       <td>Tamu / Kurir</td>
-      <td>Cari Penerima, Pilih Ukuran Paket, Konfirmasi &amp; Titipkan Paket</td>
+      <td>Cari Penerima, Pilih Ukuran Paket, Titipkan Paket, Batalkan Operasi, Lihat Bantuan</td>
     </tr>
     <tr>
       <td>3</td>
       <td>Admin Sekretariat FST</td>
-      <td>Kelola Data Staf &amp; Loker, Pantau Status Loker</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Sistem (Internal)</td>
-      <td>Tampilkan Layar Idle, Alokasikan Loker Kosong Terdekat, Buka Pintu Loker, Deteksi Pintu Tertutup, Kunci Otomatis (Timeout), Kirim Notifikasi, Reset ke Idle setelah 60 detik</td>
+      <td>Kelola Data Staf &amp; Loker</td>
     </tr>
   </table>
   <p class="caption small">Tabel 4.1 Pengelompokan Use Case Berdasarkan Aktor Pemicu</p>
 
   <h2 class="subbab">4.3 Deskripsi Use Case</h2>
-  <p>Untuk memberikan gambaran rinci mengenai setiap use case utama, berikut diuraikan deskripsi naratif dari lima use case kritis yang menjadi inti dari Sistem Loker Pintar FST. Format deskripsi mengikuti standar yang berisi nama, aktor, tujuan, prakondisi, alur utama (<em>main flow</em>), alur alternatif (<em>alternative flow</em>), pascakondisi, dan hasil akhir.</p>
+  <p>Untuk memberikan gambaran rinci mengenai setiap use case utama, berikut diuraikan deskripsi naratif dari lima use case kritis yang menjadi inti dari Sistem Loker Pintar FST. Format deskripsi mengikuti template <em>fully-dressed use case</em> (Larman, 2004) yang berisi nama, aktor, tujuan, prakondisi, alur utama (<em>main flow</em>), alur alternatif (<em>alternative flow</em>), pascakondisi, dan hasil akhir.</p>
 
   <h3 class="subsubbab">4.3.1 Deskripsi Use Case UC-01 Autentikasi via RFID</h3>
   <table>
@@ -2374,10 +2394,10 @@
 <section class="page">
   <span class="pageno">31</span>
 
-  <h3 class="subsubbab">4.3.2 Deskripsi Use Case UC-02 Buka Loker Pribadi</h3>
+  <h3 class="subsubbab">4.3.2 Deskripsi Use Case UC-03 Buka Loker Pribadi</h3>
   <table>
     <tr><th style="width:25%">Nama Use Case</th><td>Buka Loker Pribadi</td></tr>
-    <tr><th>Kode</th><td>UC-02</td></tr>
+    <tr><th>Kode</th><td>UC-08</td></tr>
     <tr><th>Aktor Utama</th><td>Dosen / Tenaga Kependidikan</td></tr>
     <tr><th>Aktor Pendukung</th><td>Locker Hardware (Solenoid + Door Sensor)</td></tr>
     <tr><th>Tujuan</th><td>Membuka loker pribadi milik pengguna untuk menyimpan atau mengambil barang.</td></tr>
@@ -2401,7 +2421,7 @@
     <tr><th>Pascakondisi</th><td>Loker pengguna terkunci kembali. Catatan akses tersimpan pada tabel access_log dengan tipe <em>self</em>.</td></tr>
   </table>
 
-  <h3 class="subsubbab">4.3.3 Deskripsi Use Case UC-03 Ambil Kiriman</h3>
+  <h3 class="subsubbab">4.3.3 Deskripsi Use Case UC-05 Ambil Kiriman</h3>
   <table>
     <tr><th style="width:25%">Nama Use Case</th><td>Ambil Kiriman (Claim Mail)</td></tr>
     <tr><th>Kode</th><td>UC-03</td></tr>
@@ -2430,10 +2450,10 @@
 <section class="page">
   <span class="pageno">32</span>
 
-  <h3 class="subsubbab">4.3.4 Deskripsi Use Case UC-04 Cari Penerima Paket</h3>
+  <h3 class="subsubbab">4.3.4 Deskripsi Use Case UC-06 Cari Penerima Paket</h3>
   <table>
     <tr><th style="width:25%">Nama Use Case</th><td>Cari Penerima Paket</td></tr>
-    <tr><th>Kode</th><td>UC-04</td></tr>
+    <tr><th>Kode</th><td>UC-06</td></tr>
     <tr><th>Aktor Utama</th><td>Kurir / Tamu Pengirim</td></tr>
     <tr><th>Aktor Pendukung</th><td>-</td></tr>
     <tr><th>Tujuan</th><td>Mencari data penerima (Dosen / Tenaga Kependidikan) yang akan dititipkan paket.</td></tr>
@@ -2454,14 +2474,14 @@
     <tr><th>Pascakondisi</th><td>Data penerima tersimpan pada state. Layar berpindah ke Courier Size.</td></tr>
   </table>
 
-  <h3 class="subsubbab">4.3.5 Deskripsi Use Case UC-05 Konfirmasi dan Titipkan Paket</h3>
+  <h3 class="subsubbab">4.3.5 Deskripsi Use Case UC-08 Titipkan Paket</h3>
   <table>
-    <tr><th style="width:25%">Nama Use Case</th><td>Konfirmasi dan Titipkan Paket</td></tr>
+    <tr><th style="width:25%">Nama Use Case</th><td>Titipkan Paket</td></tr>
     <tr><th>Kode</th><td>UC-05</td></tr>
     <tr><th>Aktor Utama</th><td>Kurir / Tamu Pengirim</td></tr>
     <tr><th>Aktor Pendukung</th><td>Locker Hardware, Notification Service</td></tr>
     <tr><th>Tujuan</th><td>Menitipkan paket pada loker yang dialokasikan secara otomatis dan mengirim notifikasi ke penerima.</td></tr>
-    <tr><th>Prakondisi</th><td>Kurir telah memilih penerima (UC-04) dan ukuran paket. Tersedia minimal satu loker kosong dengan ukuran yang sesuai.</td></tr>
+    <tr><th>Prakondisi</th><td>Kurir telah memilih penerima (UC-06) dan ukuran paket. Tersedia minimal satu loker kosong dengan ukuran yang sesuai.</td></tr>
     <tr>
       <th>Alur Utama</th>
       <td>
@@ -2497,22 +2517,16 @@
       <th>Tujuan Singkat</th>
     </tr>
     <tr><td>UC-01</td><td>Autentikasi via RFID</td><td>Dosen / Tendik</td><td>Memverifikasi identitas pengguna</td></tr>
-    <tr><td>UC-02</td><td>Buka Loker Pribadi</td><td>Dosen / Tendik</td><td>Membuka loker milik pengguna</td></tr>
-    <tr><td>UC-03</td><td>Ambil Kiriman</td><td>Dosen / Tendik</td><td>Mengambil surat / paket pada loker</td></tr>
-    <tr><td>UC-04</td><td>Cari Penerima Paket</td><td>Kurir</td><td>Mencari data penerima paket</td></tr>
-    <tr><td>UC-05</td><td>Konfirmasi &amp; Titipkan Paket</td><td>Kurir</td><td>Menitipkan paket pada loker</td></tr>
-    <tr><td>UC-06</td><td>Lihat Dashboard Personal</td><td>Dosen / Tendik</td><td>Melihat ringkasan loker dan kiriman</td></tr>
-    <tr><td>UC-07</td><td>Lihat Daftar Kiriman</td><td>Dosen / Tendik</td><td>Melihat seluruh kiriman masuk</td></tr>
-    <tr><td>UC-08</td><td>Pilih Ukuran Paket</td><td>Kurir</td><td>Memilih ukuran kiriman (S/M/L)</td></tr>
-    <tr><td>UC-09</td><td>Tampilkan Layar Idle</td><td>Sistem</td><td>Menampilkan layar awal kios</td></tr>
-    <tr><td>UC-10</td><td>Alokasikan Loker Kosong Terdekat</td><td>Sistem</td><td>Memilih loker kosong sesuai ukuran</td></tr>
-    <tr><td>UC-11</td><td>Buka Pintu Loker (Unlock 30 detik)</td><td>Sistem</td><td>Mengaktifkan solenoid selama 30 detik</td></tr>
-    <tr><td>UC-12</td><td>Deteksi Pintu Tertutup</td><td>Door Sensor</td><td>Mendeteksi penutupan pintu loker</td></tr>
-    <tr><td>UC-13</td><td>Kunci Otomatis (Timeout)</td><td>Sistem</td><td>Mengunci loker jika countdown habis</td></tr>
-    <tr><td>UC-14</td><td>Kirim Notifikasi ke Penerima</td><td>Sistem</td><td>Mengirim email notifikasi kiriman</td></tr>
-    <tr><td>UC-15</td><td>Reset ke Idle setelah 60 Detik</td><td>Inactivity Timer</td><td>Mengembalikan ke layar Idle</td></tr>
-    <tr><td>UC-16</td><td>Kelola Data Staf &amp; Loker</td><td>Admin</td><td>Mengelola entitas master sistem</td></tr>
-    <tr><td>UC-17</td><td>Pantau Status Loker</td><td>Admin</td><td>Memantau status loker secara real-time</td></tr>
+    <tr><td>UC-02</td><td>Lihat Dashboard Personal</td><td>Dosen / Tendik</td><td>Melihat ringkasan loker dan kiriman</td></tr>
+    <tr><td>UC-03</td><td>Buka Loker Pribadi</td><td>Dosen / Tendik</td><td>Membuka loker milik pengguna</td></tr>
+    <tr><td>UC-04</td><td>Lihat Daftar Kiriman</td><td>Dosen / Tendik</td><td>Melihat seluruh kiriman masuk</td></tr>
+    <tr><td>UC-05</td><td>Ambil Kiriman</td><td>Dosen / Tendik</td><td>Mengambil surat / paket pada loker</td></tr>
+    <tr><td>UC-06</td><td>Cari Penerima</td><td>Kurir</td><td>Mencari data penerima paket</td></tr>
+    <tr><td>UC-07</td><td>Pilih Ukuran Paket</td><td>Kurir</td><td>Memilih ukuran kiriman (S/M/L)</td></tr>
+    <tr><td>UC-08</td><td>Titipkan Paket</td><td>Kurir</td><td>Menitipkan paket pada loker</td></tr>
+    <tr><td>UC-09</td><td>Batalkan Operasi</td><td>Dosen / Tendik, Kurir</td><td>Membatalkan aksi dan kembali ke Idle</td></tr>
+    <tr><td>UC-10</td><td>Lihat Bantuan</td><td>Dosen / Tendik, Kurir</td><td>Melihat panduan penggunaan</td></tr>
+    <tr><td>UC-11</td><td>Kelola Data Staf &amp; Loker</td><td>Admin</td><td>Mengelola entitas master sistem</td></tr>
   </table>
   <p class="caption small">Tabel 4.2 Ringkasan Seluruh Use Case Sistem Loker Pintar FST</p>
 </section>
@@ -2522,24 +2536,86 @@
   <span class="pageno">34</span>
 
   <h2 class="subbab">4.4 Activity Diagram</h2>
-  <p>Activity Diagram menggambarkan alur aktivitas atau proses bisnis yang berlangsung pada sistem usulan. Diagram ini mendokumentasikan tiga alur utama Sistem Loker Pintar FST dalam satu diagram terintegrasi dengan menggunakan <em>swimlane</em> untuk membedakan tanggung jawab antara Pengguna, Sistem Kiosk, dan Hardware Loker.</p>
+  <p>Activity Diagram menggambarkan alur aktivitas atau proses bisnis yang berlangsung pada sistem usulan. Menurut Rumbaugh <em>et al.</em> (2004), activity diagram merupakan variasi dari <em>state machine</em> di mana setiap <em>state</em> merepresentasikan eksekusi suatu aksi atau aktivitas. Mengikuti notulensi dan arahan revisi, diagram aktivitas diuraikan satu per satu sesuai dengan setiap <em>use case</em> (pemetaan 1:1), menghasilkan 11 buah diagram aktivitas yang terperinci.</p>
 
-  <p>Pada diagram berikut, jalur aktivitas dimulai dari kondisi <em>Idle</em> dan dapat bercabang menjadi dua alur utama melalui pilihan <em>"Staf Akademik"</em> atau <em>"Tamu / Kurir"</em>. Setiap alur kemudian melewati serangkaian aktivitas terkoordinasi antara perangkat lunak kios dan perangkat keras pengunci loker hingga akhirnya kembali ke kondisi Idle.</p>
+  <p>Berikut adalah penjabaran kesebelas Activity Diagram:</p>
 
+  <h3 class="subsubbab">4.4.1 Activity Diagram UC-01 Autentikasi via RFID</h3>
   <figure class="diagram-figure">
-    <img class="puml" id="img-activity" alt="Activity Diagram Sistem Loker Pintar FST" />
-    <figcaption>Gambar 4.5 Activity Diagram Sistem Loker Pintar FST</figcaption>
-    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/activity.puml</pre>
+    <img class="puml" id="img-activity-uc01-autentikasi-rfid" alt="Activity Diagram UC-01 Autentikasi via RFID" />
+    <figcaption>Gambar 4.5 Activity Diagram UC-01 Autentikasi via RFID</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc01-autentikasi-rfid.puml</pre>
   </figure>
+  <h3 class="subsubbab">4.4.2 Activity Diagram UC-02 Lihat Dashboard Personal</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-activity-uc02-lihat-dashboard" alt="Activity Diagram UC-02 Lihat Dashboard Personal" />
+    <figcaption>Gambar 4.6 Activity Diagram UC-02 Lihat Dashboard Personal</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc02-lihat-dashboard.puml</pre>
+  </figure>
+  <h3 class="subsubbab">4.4.3 Activity Diagram UC-03 Buka Loker Pribadi</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-activity-uc03-buka-loker-pribadi" alt="Activity Diagram UC-03 Buka Loker Pribadi" />
+    <figcaption>Gambar 4.7 Activity Diagram UC-03 Buka Loker Pribadi</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc03-buka-loker-pribadi.puml</pre>
+  </figure>
+  <h3 class="subsubbab">4.4.4 Activity Diagram UC-04 Lihat Daftar Kiriman</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-activity-uc04-lihat-daftar-kiriman" alt="Activity Diagram UC-04 Lihat Daftar Kiriman" />
+    <figcaption>Gambar 4.8 Activity Diagram UC-04 Lihat Daftar Kiriman</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc04-lihat-daftar-kiriman.puml</pre>
+  </figure>
+  <h3 class="subsubbab">4.4.5 Activity Diagram UC-05 Ambil Kiriman</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-activity-uc05-ambil-kiriman" alt="Activity Diagram UC-05 Ambil Kiriman" />
+    <figcaption>Gambar 4.9 Activity Diagram UC-05 Ambil Kiriman</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc05-ambil-kiriman.puml</pre>
+  </figure>
+  <h3 class="subsubbab">4.4.6 Activity Diagram UC-06 Cari Penerima</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-activity-uc06-cari-penerima" alt="Activity Diagram UC-06 Cari Penerima" />
+    <figcaption>Gambar 4.10 Activity Diagram UC-06 Cari Penerima</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc06-cari-penerima.puml</pre>
+  </figure>
+  <h3 class="subsubbab">4.4.7 Activity Diagram UC-07 Pilih Ukuran Paket</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-activity-uc07-pilih-ukuran-paket" alt="Activity Diagram UC-07 Pilih Ukuran Paket" />
+    <figcaption>Gambar 4.11 Activity Diagram UC-07 Pilih Ukuran Paket</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc07-pilih-ukuran-paket.puml</pre>
+  </figure>
+  <h3 class="subsubbab">4.4.8 Activity Diagram UC-08 Titipkan Paket</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-activity-uc08-titipkan-paket" alt="Activity Diagram UC-08 Titipkan Paket" />
+    <figcaption>Gambar 4.12 Activity Diagram UC-08 Titipkan Paket</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc08-titipkan-paket.puml</pre>
+  </figure>
+  <h3 class="subsubbab">4.4.9 Activity Diagram UC-09 Batalkan Operasi</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-activity-uc09-batalkan-operasi" alt="Activity Diagram UC-09 Batalkan Operasi" />
+    <figcaption>Gambar 4.13 Activity Diagram UC-09 Batalkan Operasi</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc09-batalkan-operasi.puml</pre>
+  </figure>
+  <h3 class="subsubbab">4.4.10 Activity Diagram UC-10 Lihat Bantuan</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-activity-uc10-lihat-bantuan" alt="Activity Diagram UC-10 Lihat Bantuan" />
+    <figcaption>Gambar 4.14 Activity Diagram UC-10 Lihat Bantuan</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc10-lihat-bantuan.puml</pre>
+  </figure>
+  <h3 class="subsubbab">4.4.11 Activity Diagram UC-11 Kelola Data Staf & Loker</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-activity-uc11-kelola-data" alt="Activity Diagram UC-11 Kelola Data Staf & Loker" />
+    <figcaption>Gambar 4.15 Activity Diagram UC-11 Kelola Data Staf & Loker</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/activity-uc11-kelola-data.puml</pre>
+  </figure>
+
 </section>
 
 
 <section class="page">
   <span class="pageno">35</span>
 
-  <p>Berdasarkan Activity Diagram pada Gambar 4.5, dapat diidentifikasi beberapa karakteristik penting dari rancangan alur sistem usulan, antara lain:</p>
+  <p>Berdasarkan rangkaian Activity Diagram di atas, dapat diidentifikasi beberapa karakteristik penting dari rancangan alur sistem usulan, antara lain:</p>
   <ol>
-    <li><strong>Penggunaan Swimlane.</strong> Setiap aktivitas dipetakan ke salah satu dari tiga swimlane (Pengguna, Sistem Kiosk, dan Hardware Loker), sehingga tanggung jawab masing-masing pelaku menjadi sangat jelas.</li>
+    <li><strong>Penggunaan Swimlane.</strong> Setiap aktivitas dipetakan ke salah satu dari tiga <em>swimlane</em> (Pengguna, Sistem Kiosk, dan Hardware Loker) sesuai notasi partisi aktivitas dalam UML 2.5.1 (OMG, 2017), sehingga tanggung jawab masing-masing pelaku menjadi sangat jelas.</li>
     <li><strong>Decision Node.</strong> Terdapat dua decision node penting, yaitu pilihan jalur (Staf vs Kurir) dan pilihan aksi pada Dashboard (Buka Loker Saya vs Surat &amp; Paket).</li>
     <li><strong>Validasi Data.</strong> Pada alur autentikasi RFID, terdapat percabangan untuk menangani kasus kartu valid maupun tidak valid.</li>
     <li><strong>Sinkronisasi Hardware.</strong> Aktivitas pada swimlane Hardware Loker (aktivasi solenoid dan deteksi pintu tertutup) selalu disinkronkan dengan aktivitas pada Sistem Kiosk.</li>
@@ -2548,48 +2624,47 @@
   </ol>
 
   <h2 class="subbab">4.5 Sequence Diagram</h2>
-  <p>Sequence Diagram menggambarkan urutan interaksi antar objek dalam sistem terhadap waktu. Diagram berikut mendokumentasikan tiga skenario utama Sistem Loker Pintar FST, yaitu (1) Skenario Boot dan Layar Idle, (2) Staf Membuka Loker Pribadi, (3) Staf Mengambil Kiriman Masuk, dan (4) Kurir Menitipkan Paket. Selain itu, diagram juga mencakup mekanisme cross-cutting Inactivity Timer.</p>
+  <p>Sequence Diagram menggambarkan urutan interaksi antar objek dalam sistem terhadap waktu (Booch <em>et al.</em>, 2005). Menurut Dennis <em>et al.</em> (2015), sequence diagram secara khusus menekankan urutan kronologis pengiriman pesan antar objek, sehingga sangat berguna untuk memvalidasi logika skenario use case. Sesuai dengan arahan revisi, diagram sequence dikelompokkan menjadi tiga berdasarkan aktor utamanya (Staf, Kurir, dan Admin), dan menggunakan notasi panah balikan (<em>dashed arrow</em>) untuk pengembalian data.</p>
 
-  <p>Aktor yang terlibat pada diagram ini adalah Staf/Kurir sebagai aktor manusia, serta tujuh objek sistem yaitu KioskApp (state &amp; router), Screen (layar yang sedang ter-mount), DataRepository, InactivityTimer, RFID Reader, Locker Hardware, dan Notification Service.</p>
-</section>
-
-
-<section class="page">
-  <span class="pageno">36</span>
-
+  <h3 class="subsubbab">4.5.1 Sequence Diagram Staf (Dosen / Tendik)</h3>
   <figure class="diagram-figure">
-    <img class="puml" id="img-sequence" alt="Sequence Diagram Sistem Loker Pintar FST" />
-    <figcaption>Gambar 4.6 Sequence Diagram Sistem Loker Pintar FST (3 Skenario Utama)</figcaption>
-    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/sequence.puml</pre>
+    <img class="puml" id="img-sequence-staf" alt="Sequence Diagram Staf" />
+    <figcaption>Gambar 4.16 Sequence Diagram Aktor Staf</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/sequence-staf.puml</pre>
   </figure>
-</section>
 
+  <h3 class="subsubbab">4.5.2 Sequence Diagram Tamu / Kurir</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-sequence-kurir" alt="Sequence Diagram Kurir" />
+    <figcaption>Gambar 4.17 Sequence Diagram Aktor Kurir</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/sequence-kurir.puml</pre>
+  </figure>
 
-<section class="page">
-  <span class="pageno">37</span>
+  <h3 class="subsubbab">4.5.3 Sequence Diagram Admin</h3>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-sequence-admin" alt="Sequence Diagram Admin" />
+    <figcaption>Gambar 4.18 Sequence Diagram Aktor Admin</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/bab4/sequence-admin.puml</pre>
+  </figure>
 
-  <p>Beberapa pola interaksi penting yang dapat dilihat dari Sequence Diagram pada Gambar 4.6 adalah sebagai berikut:</p>
+  <p>Beberapa pola interaksi penting yang dapat dilihat dari Sequence Diagram di atas adalah sebagai berikut:</p>
 
   <ol>
     <li><strong>Pola Boot.</strong> Pada saat sistem dijalankan, KioskApp memanggil <code>boot()</code>, kemudian <code>startClock()</code> untuk memulai jam digital, lalu <code>navigate("idle")</code> untuk menampilkan layar awal.</li>
     <li><strong>Pola Mount Screen.</strong> Setiap kali terjadi navigasi, KioskApp memanggil <code>mount()</code> pada Screen yang dituju dengan parameter stage dan state. Layar lama otomatis di-unmount.</li>
     <li><strong>Reset Inactivity Timer.</strong> Setiap kali terjadi navigasi, InactivityTimer di-reset agar countdown 60 detik dimulai dari awal.</li>
-    <li><strong>Pola Query DataRepository.</strong> Layar yang membutuhkan data (TapCard, Dashboard, Mail, Courier) mengambil data dari DataRepository melalui method seperti <code>staff.find(by rfid)</code>, <code>mailFor(nip)</code>, <code>searchStaff(q)</code>, dan <code>findFreeLocker(size)</code>.</li>
-    <li><strong>Pola Hardware Communication.</strong> Setiap operasi buka loker dilakukan melalui dua pesan utama: <code>unlock(lockerId)</code> dari Screen ke Hardware, kemudian <code>doorClosed()</code> dari Hardware ke Screen sebagai callback ketika sensor mendeteksi pintu telah ditutup.</li>
-    <li><strong>Alt Fragment pada Buka Loker.</strong> Terdapat tiga alternatif yang dapat menyelesaikan operasi unlock: pengguna menekan tombol Selesai, sensor pintu mendeteksi penutupan, atau countdown 30 detik habis.</li>
+    <li><strong>Pola Query DataRepository.</strong> Layar yang membutuhkan data mengambil data dari DataRepository melalui method seperti <code>staff.find(by rfid)</code>, <code>mailFor(nip)</code>, <code>searchStaff(q)</code>, dan <code>findFreeLocker(size)</code>.</li>
+    <li><strong>Pola Hardware Communication.</strong> Setiap operasi buka loker dilakukan melalui dua pesan utama: <code>unlock(lockerId)</code> dari Screen ke Hardware, kemudian balikan asinkron ketika sensor mendeteksi pintu telah ditutup.</li>
     <li><strong>Loop Fragment pada Pencarian.</strong> Pada skenario kurir, terdapat loop pencarian iteratif di mana setiap penekanan tombol oleh kurir akan memicu query <code>searchStaff(q)</code> ke DataRepository.</li>
-    <li><strong>Notifikasi Asinkron.</strong> Setelah penitipan paket berhasil, sistem mengirim pesan <code>notify(recipient, mail)</code> ke Notification Service yang akan memproses pengiriman email secara asinkron.</li>
+    <li><strong>Notifikasi Asinkron.</strong> Setelah penitipan paket berhasil, sistem mengirim pesan ke Notification Service yang akan memproses pengiriman email secara asinkron (menggunakan notasi balikan data).</li>
   </ol>
 </section>
-
-
 <section class="page">
-  <span class="pageno">38</span>
+  <span class="pageno"></span>
+<h2 class="subbab">4.6 Class Diagram</h2>
+  <p>Class Diagram menggambarkan struktur statis Sistem Loker Pintar FST melalui kelas-kelas yang membentuknya, atribut yang dimiliki, metode yang disediakan, serta hubungan antar kelas (Booch <em>et al.</em>, 2005). Menurut Larman (2004), class diagram merupakan inti dari pemodelan berorientasi objek karena secara langsung menjadi cetak biru (<em>blueprint</em>) implementasi kode program. Sistem dirancang dengan pendekatan berorientasi objek dan dikelompokkan menjadi lima paket logis, yaitu Domain, Data, App Core, Screens (Mountable Modules), dan Hardware Adapters.</p>
 
-  <h2 class="subbab">4.6 Class Diagram</h2>
-  <p>Class Diagram menggambarkan struktur statis Sistem Loker Pintar FST melalui kelas-kelas yang membentuknya, atribut yang dimiliki, metode yang disediakan, serta hubungan antar kelas. Sistem dirancang dengan pendekatan berorientasi objek dan dikelompokkan menjadi lima paket logis, yaitu Domain, Data, App Core, Screens (Mountable Modules), dan Hardware Adapters.</p>
-
-  <p>Pada paket <strong>Domain</strong>, terdapat kelas-kelas entitas inti seperti Staff, Locker, Mail, PackageSize, dan Department, beserta dua enumeration yaitu Role (DOSEN / TENAGA_KEPENDIDIKAN), LockerSize (KECIL / SEDANG / BESAR), dan LockerState (AVAILABLE / ASSIGNED / OCCUPIED / DELIVERING).</p>
+  <p>Pada paket <strong>Domain</strong>, terdapat kelas-kelas entitas inti seperti Staff, Locker, Mail, PackageSize, dan Department, beserta enumeration yaitu Role (DOSEN / TENAGA_KEPENDIDIKAN).</p>
 
   <p>Pada paket <strong>Data</strong>, terdapat kelas DataRepository sebagai modul tunggal yang menyediakan akses CRUD ke seluruh entitas. Kelas ini memiliki method seperti <code>searchStaff(q)</code>, <code>mailFor(nip)</code>, <code>countFree(size)</code>, dan <code>findFreeLocker(size)</code>.</p>
 
@@ -2599,7 +2674,7 @@
 
   <figure class="diagram-figure">
     <img class="puml" id="img-class" alt="Class Diagram Sistem Loker Pintar FST" />
-    <figcaption>Gambar 4.7 Class Diagram Sistem Loker Pintar FST</figcaption>
+    <figcaption>Gambar 4.19 Class Diagram Sistem Loker Pintar FST</figcaption>
     <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/class.puml</pre>
   </figure>
 </section>
@@ -2608,7 +2683,7 @@
 <section class="page">
   <span class="pageno">39</span>
 
-  <p>Berdasarkan Class Diagram pada Gambar 4.7, terdapat beberapa relasi penting yang perlu diperhatikan:</p>
+  <p>Berdasarkan Class Diagram pada Gambar 4.19, terdapat beberapa relasi penting yang perlu diperhatikan:</p>
 
   <table>
     <tr>
@@ -2619,7 +2694,6 @@
     <tr><td>Staff – Locker</td><td>1 – 0..1</td><td>Satu Staff memiliki paling banyak satu Locker pribadi (<em>owns</em>).</td></tr>
     <tr><td>Staff – Mail</td><td>1 – 0..*</td><td>Satu Staff dapat menerima banyak Mail (<em>receives</em>).</td></tr>
     <tr><td>Mail – Locker</td><td>0..* – 1</td><td>Banyak Mail dapat tersimpan pada satu Locker (<em>stored in</em>).</td></tr>
-    <tr><td>PackageSize – LockerSize</td><td>1 – 1</td><td>Setiap PackageSize dipetakan ke tepat satu LockerSize (<em>maps to</em>).</td></tr>
     <tr><td>KioskApp – KioskState</td><td>1 – 1 (composition)</td><td>KioskApp memiliki dan mengelola siklus hidup KioskState.</td></tr>
     <tr><td>KioskApp – InactivityTimer</td><td>1 – 1 (composition)</td><td>KioskApp memiliki satu InactivityTimer yang aktif sepanjang aplikasi berjalan.</td></tr>
     <tr><td>DataRepository – Staff/Locker/Mail/PackageSize/Department</td><td>1 – *</td><td>DataRepository melakukan agregasi terhadap seluruh entitas domain.</td></tr>
@@ -2628,10 +2702,36 @@
   </table>
   <p class="caption small">Tabel 4.3 Relasi Antar Kelas pada Sistem Loker Pintar FST</p>
 
-  <h2 class="subbab">4.7 Perancangan Basis Data</h2>
-  <p>Basis data Sistem Loker Pintar FST dirancang menggunakan model relasional dengan menerapkan kaidah normalisasi hingga bentuk normal ketiga (3NF) untuk meminimalkan redundansi data. <em>Database Management System</em> (DBMS) yang dipilih adalah PostgreSQL versi 15 karena dukungannya yang baik terhadap tipe data UUID, JSON, serta fitur transaksional yang konsisten.</p>
+  <p>Selain Class Diagram utama di atas, berikut adalah variasi <strong>Class Diagram (Tanpa Spesialisasi)</strong>. Pada pendekatan <em>flat</em> ini, tidak ada generalisasi/<em>inheritance</em> sama sekali. Variasi entitas dimodelkan sebagai atribut (seperti <code>role</code> pada Pengguna dan <code>size</code> pada Loker). Menurut Larman (2004), pemilihan antara pewarisan dan atribut tipe bergantung pada sejauh mana perbedaan perilaku antar varian; apabila perbedaan hanya pada data dan bukan pada perilaku, pendekatan datar lebih pragmatis. Pendekatan ini relevan dengan implementasi nyata pada sistem, di mana struktur data lebih datar.</p>
 
-  <p>Berdasarkan analisis Class Diagram, dirancang tujuh tabel utama, yaitu <code>tbl_department</code>, <code>tbl_staff</code>, <code>tbl_locker</code>, <code>tbl_mail</code>, <code>tbl_package_size</code>, <code>tbl_access_log</code>, dan <code>tbl_rfid_card</code>. Berikut adalah ilustrasi <em>Entity Relationship Diagram</em> (ERD) sederhana yang menggambarkan struktur dan keterkaitan antar tabel.</p>
+  <figure class="diagram-figure">
+    <img class="puml" id="img-class-no-specialization" alt="Class Diagram (Tanpa Spesialisasi) Loker Pintar FST" />
+    <figcaption>Gambar 4.20 Class Diagram (Tanpa Spesialisasi) Sistem Loker Pintar FST</figcaption>
+    <pre class="diagram-fallback">Diagram tidak dapat dimuat. Silakan buka file: docs/uml/class-no-specialization.puml</pre>
+  </figure>
+
+  <p>Berdasarkan Class Diagram (Tanpa Spesialisasi) pada Gambar 4.20, terdapat beberapa penyesuaian relasi penting yang perlu diperhatikan bila dibandingkan dengan diagram utama:</p>
+
+  <table>
+    <tr>
+      <th style="width:25%">Relasi</th>
+      <th style="width:18%">Multiplisitas</th>
+      <th>Keterangan</th>
+    </tr>
+    <tr><td>Pengguna – Loker</td><td>1 – 0..1</td><td>Satu Pengguna memiliki paling banyak satu Loker pribadi (<em>memiliki</em>).</td></tr>
+    <tr><td>Pengguna – Kiriman</td><td>1 – 0..*</td><td>Satu Pengguna dapat menerima banyak Kiriman (<em>menerima</em>).</td></tr>
+    <tr><td>Kiriman – Loker</td><td>0..* – 1</td><td>Banyak Kiriman dapat tersimpan pada satu Loker (<em>disimpan di</em>).</td></tr>
+    <tr><td>UkuranPaket – Loker</td><td>1 – 0..*</td><td>Satu ukuran paket memetakan ke banyak loker yang mendukung ukuran tersebut (<em>dipetakan ke ukuran</em>).</td></tr>
+    <tr><td>KioskApp – ScreenRouter</td><td>1 – 1 (composition)</td><td>Karena tidak ada inheritance pada Screen, KioskApp mendelegasikan navigasi ke modul mandiri ScreenRouter.</td></tr>
+    <tr><td>DataRepository – Pengguna/Loker/Kiriman/UkuranPaket</td><td>1 – *</td><td>DataRepository melakukan agregasi secara flat terhadap seluruh entitas domain (Pengguna menggantikan Staff).</td></tr>
+    <tr><td>KioskState ↔ Pengguna/Loker</td><td>-</td><td>State dari aplikasi menyimpan referensi (pointer) langsung ke Pengguna dan Loker yang sedang aktif berinteraksi.</td></tr>
+  </table>
+  <p class="caption small">Tabel 4.4 Relasi Antar Kelas pada Class Diagram (Tanpa Spesialisasi)</p>
+
+  <h2 class="subbab">4.7 Perancangan Basis Data</h2>
+  <p>Basis data Sistem Loker Pintar FST dirancang menggunakan model relasional dengan menerapkan kaidah normalisasi hingga bentuk normal ketiga (3NF) untuk meminimalkan redundansi data (Connolly &amp; Begg, 2015). <em>Database Management System</em> (DBMS) yang dipilih adalah PostgreSQL versi 15 karena dukungannya yang baik terhadap tipe data UUID, JSON, serta fitur transaksional yang konsisten.</p>
+
+  <p>Berdasarkan analisis Class Diagram, dirancang tujuh tabel utama, yaitu <code>tbl_department</code>, <code>tbl_staff</code>, <code>tbl_locker</code>, <code>tbl_mail</code>, <code>tbl_package_size</code>, <code>tbl_access_log</code>, dan <code>tbl_rfid_card</code>. Berikut adalah ilustrasi <em>Entity Relationship Diagram</em> (ERD) yang menggambarkan struktur dan keterkaitan antar tabel. ERD dimodelkan mengikuti notasi Chen yang diperkenalkan oleh Chen (1976) dan telah menjadi standar dalam perancangan basis data relasional (Connolly &amp; Begg, 2015).</p>
 </section>
 
 
@@ -2692,7 +2792,6 @@
         <li>nama (Surat/Kecil/Sedang/Besar)</li>
         <li>icon</li>
         <li>dimensi</li>
-        <li>bucket (LockerSize)</li>
       </ul>
     </div>
     <div class="erd-entity">
@@ -2721,7 +2820,7 @@
       </ul>
     </div>
   </div>
-  <p class="caption small">Gambar 4.8 Entity Relationship Diagram Sistem Loker Pintar FST</p>
+  <p class="caption small">Gambar 4.21 Entity Relationship Diagram Sistem Loker Pintar FST</p>
 
   <p>Relasi antar tabel pada ERD di atas dapat diuraikan sebagai berikut: <code>tbl_department</code> berhubungan satu ke banyak (1:N) dengan <code>tbl_staff</code>; <code>tbl_staff</code> berhubungan satu ke satu (1:1) dengan <code>tbl_locker</code> sebagai pemilik tetap; <code>tbl_staff</code> berhubungan satu ke banyak (1:N) dengan <code>tbl_rfid_card</code>, <code>tbl_mail</code>, dan <code>tbl_access_log</code>; serta <code>tbl_locker</code> berhubungan satu ke banyak (1:N) dengan <code>tbl_mail</code> dan <code>tbl_access_log</code>.</p>
 </section>
@@ -2748,7 +2847,7 @@
     <tr><td>3</td><td>kode_departemen</td><td>VARCHAR(10)</td><td>Yes</td><td>-</td><td>Kode singkat (TI, SI, MAT, dll.)</td></tr>
     <tr><td>4</td><td>created_at</td><td>TIMESTAMP</td><td>No</td><td>-</td><td>Waktu data dibuat</td></tr>
   </table>
-  <p class="caption small">Tabel 4.4 Struktur Tabel tbl_department</p>
+  <p class="caption small">Tabel 4.5 Struktur Tabel tbl_department</p>
 
   <h3 class="subsubbab">4.8.2 Tabel tbl_staff</h3>
   <table>
@@ -2770,7 +2869,7 @@
     <tr><td>8</td><td>created_at</td><td>TIMESTAMP</td><td>No</td><td>-</td><td>Waktu data dibuat</td></tr>
     <tr><td>9</td><td>updated_at</td><td>TIMESTAMP</td><td>No</td><td>-</td><td>Waktu data terakhir diperbarui</td></tr>
   </table>
-  <p class="caption small">Tabel 4.5 Struktur Tabel tbl_staff</p>
+  <p class="caption small">Tabel 4.6 Struktur Tabel tbl_staff</p>
 </section>
 
 
@@ -2793,7 +2892,7 @@
     <tr><td>4</td><td>status</td><td>ENUM</td><td>No</td><td>-</td><td>Nilai: <code>aktif</code> atau <code>nonaktif</code></td></tr>
     <tr><td>5</td><td>created_at</td><td>TIMESTAMP</td><td>No</td><td>-</td><td>Waktu data dibuat</td></tr>
   </table>
-  <p class="caption small">Tabel 4.6 Struktur Tabel tbl_rfid_card</p>
+  <p class="caption small">Tabel 4.7 Struktur Tabel tbl_rfid_card</p>
 
   <h3 class="subsubbab">4.8.4 Tabel tbl_locker</h3>
   <table>
@@ -2814,7 +2913,7 @@
     <tr><td>7</td><td>created_at</td><td>TIMESTAMP</td><td>No</td><td>-</td><td>Waktu data dibuat</td></tr>
     <tr><td>8</td><td>updated_at</td><td>TIMESTAMP</td><td>No</td><td>-</td><td>Waktu data terakhir diperbarui</td></tr>
   </table>
-  <p class="caption small">Tabel 4.7 Struktur Tabel tbl_locker</p>
+  <p class="caption small">Tabel 4.8 Struktur Tabel tbl_locker</p>
 
   <h3 class="subsubbab">4.8.5 Tabel tbl_package_size</h3>
   <table>
@@ -2830,9 +2929,8 @@
     <tr><td>2</td><td>nama</td><td>VARCHAR(40)</td><td>No</td><td>-</td><td>Surat / Paket Kecil / Sedang / Besar</td></tr>
     <tr><td>3</td><td>icon</td><td>VARCHAR(40)</td><td>Yes</td><td>-</td><td>Nama ikon untuk tampilan</td></tr>
     <tr><td>4</td><td>dimensi</td><td>VARCHAR(60)</td><td>Yes</td><td>-</td><td>Maks dimensi paket (PxLxT cm)</td></tr>
-    <tr><td>5</td><td>bucket</td><td>ENUM</td><td>No</td><td>-</td><td>Mapping ke LockerSize</td></tr>
   </table>
-  <p class="caption small">Tabel 4.8 Struktur Tabel tbl_package_size</p>
+  <p class="caption small">Tabel 4.9 Struktur Tabel tbl_package_size</p>
 </section>
 
 
@@ -2859,7 +2957,7 @@
     <tr><td>8</td><td>status</td><td>ENUM</td><td>No</td><td>-</td><td>Nilai: <code>PENDING</code> atau <code>CLAIMED</code></td></tr>
     <tr><td>9</td><td>claimed_at</td><td>TIMESTAMP</td><td>Yes</td><td>-</td><td>Waktu kiriman diambil</td></tr>
   </table>
-  <p class="caption small">Tabel 4.9 Struktur Tabel tbl_mail</p>
+  <p class="caption small">Tabel 4.10 Struktur Tabel tbl_mail</p>
 
   <h3 class="subsubbab">4.8.7 Tabel tbl_access_log</h3>
   <table>
@@ -2881,7 +2979,7 @@
     <tr><td>8</td><td>device_id</td><td>VARCHAR(20)</td><td>Yes</td><td>-</td><td>ID kios yang digunakan</td></tr>
     <tr><td>9</td><td>created_at</td><td>TIMESTAMP</td><td>No</td><td>-</td><td>Waktu log tercatat</td></tr>
   </table>
-  <p class="caption small">Tabel 4.10 Struktur Tabel tbl_access_log</p>
+  <p class="caption small">Tabel 4.11 Struktur Tabel tbl_access_log</p>
 </section>
 
 
@@ -2909,7 +3007,7 @@
     <tr><td>9</td><td>INDEX(timestamp_access)</td><td>tbl_access_log</td><td>Mempercepat query laporan berdasarkan rentang waktu</td></tr>
     <tr><td>10</td><td>INDEX(status, ukuran)</td><td>tbl_locker</td><td>Mempercepat <code>findFreeLocker(size)</code></td></tr>
   </table>
-  <p class="caption small">Tabel 4.11 Ringkasan Constraint dan Indeks Basis Data</p>
+  <p class="caption small">Tabel 4.12 Ringkasan Constraint dan Indeks Basis Data</p>
 
   <h2 class="subbab">4.9 Rancangan Antarmuka</h2>
   <p>Rancangan antarmuka Sistem Loker Pintar FST menggunakan pendekatan <em>Calm Academic Futurism</em> dengan kanvas <em>portrait</em> 1080 × 1920 piksel yang sesuai dengan orientasi monitor kios. Identitas visual menggunakan warna hijau institusional UIN sebagai warna utama, dengan aksen emas hangat untuk elemen yang berkaitan dengan jalur kurir dan kiriman.</p>
@@ -2934,7 +3032,7 @@
         <div class="btn">Kirim Surat atau Paket</div>
         <p style="font-size:7pt;text-align:center;color:#777;margin-top:8px;">Sentuh layar untuk memulai</p>
       </div>
-      <figcaption>Gambar 4.9 Layar Idle</figcaption>
+      <figcaption>Gambar 4.22 Layar Idle</figcaption>
     </figure>
 
     <figure class="mockup">
@@ -2946,7 +3044,7 @@
         <div style="flex-grow:1;"></div>
         <div class="btn">Batal</div>
       </div>
-      <figcaption>Gambar 4.10 Layar Tap Card</figcaption>
+      <figcaption>Gambar 4.23 Layar Tap Card</figcaption>
     </figure>
   </div>
 
@@ -2963,7 +3061,7 @@
         <div style="flex-grow:1;"></div>
         <div class="btn">Keluar / Logout</div>
       </div>
-      <figcaption>Gambar 4.11 Layar Dashboard Personal</figcaption>
+      <figcaption>Gambar 4.24 Layar Dashboard Personal</figcaption>
     </figure>
 
     <figure class="mockup">
@@ -2977,7 +3075,7 @@
         <div class="btn btn-primary">Ambil Pilihan</div>
         <div class="btn">Kembali</div>
       </div>
-      <figcaption>Gambar 4.12 Layar Mail List</figcaption>
+      <figcaption>Gambar 4.25 Layar Mail List</figcaption>
     </figure>
   </div>
 </section>
@@ -3000,7 +3098,7 @@
         <div style="flex-grow:1;"></div>
         <div class="btn">Batal</div>
       </div>
-      <figcaption>Gambar 4.13 Layar Courier Search</figcaption>
+      <figcaption>Gambar 4.26 Layar Courier Search</figcaption>
     </figure>
 
     <figure class="mockup">
@@ -3015,7 +3113,7 @@
         <div style="flex-grow:1;"></div>
         <div class="btn">Kembali</div>
       </div>
-      <figcaption>Gambar 4.14 Layar Courier Size</figcaption>
+      <figcaption>Gambar 4.27 Layar Courier Size</figcaption>
     </figure>
   </div>
 
@@ -3036,7 +3134,7 @@
         <div style="flex-grow:1;"></div>
         <div class="btn btn-primary">Buka Loker &amp; Titipkan</div>
       </div>
-      <figcaption>Gambar 4.15 Layar Courier Assign</figcaption>
+      <figcaption>Gambar 4.28 Layar Courier Assign</figcaption>
     </figure>
 
     <figure class="mockup">
@@ -3052,7 +3150,7 @@
         <div style="flex-grow:1;"></div>
         <div class="btn btn-primary">Selesai</div>
       </div>
-      <figcaption>Gambar 4.16 Layar Opening Locker</figcaption>
+      <figcaption>Gambar 4.29 Layar Opening Locker</figcaption>
     </figure>
   </div>
 </section>
@@ -3074,7 +3172,7 @@
         </div>
         <p style="font-size:7pt;text-align:center;color:#777;">Kembali ke Idle dalam 5 detik...</p>
       </div>
-      <figcaption>Gambar 4.17 Layar Done (Konfirmasi)</figcaption>
+      <figcaption>Gambar 4.30 Layar Done (Konfirmasi)</figcaption>
     </figure>
 
     <figure class="mockup">
@@ -3093,7 +3191,7 @@
         <div class="btn">Lihat Riwayat</div>
         <div class="btn">Kelola Staf</div>
       </div>
-      <figcaption>Gambar 4.18 Layar Admin Dashboard</figcaption>
+      <figcaption>Gambar 4.31 Layar Admin Dashboard</figcaption>
     </figure>
   </div>
 
@@ -3117,22 +3215,64 @@
     <tr><td>Bahasa</td><td>Bahasa Indonesia dengan salam pembuka berbahasa Arab</td></tr>
     <tr><td>Inactivity Timeout</td><td>60 detik tanpa interaksi → kembali ke Idle</td></tr>
   </table>
-  <p class="caption small">Tabel 4.12 Pedoman Visual dan Interaksi Antarmuka Sistem</p>
+  <p class="caption small">Tabel 4.13 Pedoman Visual dan Interaksi Antarmuka Sistem</p>
 
   <p>Dengan tersusunnya rancangan sistem yang komprehensif sebagaimana diuraikan pada Bab IV ini, mulai dari rancangan umum sistem usulan, diagram UML lengkap (Use Case, Activity, Sequence, Class), perancangan basis data, struktur tabel, hingga rancangan antarmuka kios, maka tahap perancangan Sistem Loker Pintar FST untuk Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta dinyatakan selesai. Hasil rancangan ini siap menjadi acuan utama pada tahap implementasi dan pengujian sistem yang akan dibahas pada laporan Ujian Akhir Semester (UAS).</p>
 </section>
 
 
 <!-- =============================================================
+     DAFTAR PUSTAKA
+     ============================================================= -->
+<section class="page bab-page">
+  <span class="pageno"></span>
+  <h1 class="bab">DAFTAR PUSTAKA</h1>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Booch, G., Rumbaugh, J., &amp; Jacobson, I. (2005). <em>The Unified Modeling Language User Guide</em> (2nd ed.). Addison-Wesley Professional.</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Chen, P. P.-S. (1976). The Entity-Relationship Model—Toward a Unified View of Data. <em>ACM Transactions on Database Systems</em>, 1(1), 9–36. https://doi.org/10.1145/320434.320440</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Connolly, T., &amp; Begg, C. (2015). <em>Database Systems: A Practical Approach to Design, Implementation, and Management</em> (6th ed.). Pearson Education.</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Dennis, A., Wixom, B. H., &amp; Roth, R. M. (2015). <em>Systems Analysis and Design</em> (6th ed.). John Wiley &amp; Sons.</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Finkenzeller, K. (2010). <em>RFID Handbook: Fundamentals and Applications in Contactless Smart Cards, Radio Frequency Identification and Near-Field Communication</em> (3rd ed.). John Wiley &amp; Sons. https://doi.org/10.1002/9780470665121</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Jacobson, I., Christerson, M., Jonsson, P., &amp; Övergaard, G. (1992). <em>Object-Oriented Software Engineering: A Use Case Driven Approach</em>. Addison-Wesley.</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Larman, C. (2004). <em>Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development</em> (3rd ed.). Prentice Hall.</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Object Management Group (OMG). (2017). <em>OMG Unified Modeling Language (OMG UML), Version 2.5.1</em>. Object Management Group. https://www.omg.org/spec/UML/2.5.1</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Pressman, R. S., &amp; Maxim, B. R. (2020). <em>Software Engineering: A Practitioner's Approach</em> (9th ed.). McGraw-Hill Education.</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Rumbaugh, J., Jacobson, I., &amp; Booch, G. (2004). <em>The Unified Modeling Language Reference Manual</em> (2nd ed.). Addison-Wesley Professional.</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Schwalbe, K. (2018). <em>Information Technology Project Management</em> (9th ed.). Cengage Learning.</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Sommerville, I. (2016). <em>Software Engineering</em> (10th ed.). Pearson Education.</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Sugiyono. (2019). <em>Metode Penelitian Kuantitatif, Kualitatif, dan R&amp;D</em> (2nd ed.). Penerbit Alfabeta.</p>
+
+  <p class="no-indent" style="text-indent:0;margin-bottom:1.2em;">Whitten, J. L., &amp; Bentley, L. D. (2007). <em>Systems Analysis and Design Methods</em> (7th ed.). McGraw-Hill/Irwin.</p>
+
+</section>
+
+
+<!-- =============================================================
      SUMBER PUML - disisipkan sebagai script type="text/plantuml"
-     Browser akan mengabaikan <script> dengan type tidak dikenal,
-     sehingga konten tetap tersedia sebagai teks untuk di-encode
-     dan dikirim ke server PlantUML.
      ============================================================= -->
 
-<script type="text/plantuml" data-target="img-usecase">
-@startuml use-case-loker-pintar-fst
-title Use Case Diagram - Loker Pintar FST (UIN Syarif Hidayatullah Jakarta)
+<script type="text/plantuml" data-target="img-usecase-bab4">
+@startuml bab4-use-case-loker-pintar-fst
+title Use Case Diagram — Loker Pintar FST (11 Use Case)
+
+' Versi BAB IV sesuai catatan dosen: hanya use case yang bermakna bagi
+' aktor (11 buah). Langkah internal sistem (alokasi loker, deteksi pintu,
+' kunci otomatis, reset idle) TIDAK menjadi use case tersendiri —
+' langkah-langkah itu muncul di dalam activity diagram masing-masing.
+' Setiap use case di sini memiliki tepat SATU activity diagram (1:1),
+' lihat activity-uc01 s.d. activity-uc11.
 
 left to right direction
 skinparam packageStyle rectangle
@@ -3144,88 +3284,461 @@ skinparam usecase {
   ArrowColor #2A403C
 }
 
-actor "Dosen / Tenaga\nKependidikan" as Staf
+' ---------- Aktor ----------
+actor "Dosen / Tenaga\nKependidikan (Staf)" as Staf
 actor "Tamu / Kurir" as Kurir
 actor "Admin Sekretariat\nFST" as Admin
 
-actor "RFID Reader" as RFID <<device>>
-actor "Locker Hardware\n(Solenoid + Door Sensor)" as Hardware <<device>>
-actor "Notification Service" as Notif <<system>>
-actor "Inactivity Timer" as Timer <<system>>
-
+' ---------- Batas Sistem ----------
 rectangle "Sistem Loker Pintar FST" {
-  usecase "Tampilkan Layar Idle" as UC_Idle
-  usecase "Autentikasi via RFID" as UC_Auth
-  usecase "Lihat Dashboard Personal" as UC_Dash
-  usecase "Buka Loker Pribadi" as UC_OpenSelf
-  usecase "Lihat Daftar Kiriman" as UC_MailList
-  usecase "Ambil Kiriman" as UC_Claim
-
-  usecase "Cari Penerima\n(nama / NIP / dept)" as UC_Search
-  usecase "Pilih Ukuran Paket" as UC_PickSize
-  usecase "Konfirmasi & Titipkan\nPaket" as UC_Deliver
-
-  usecase "Alokasikan Loker Kosong\nTerdekat Sesuai Ukuran" as UC_Allocate
-  usecase "Buka Pintu Loker\n(unlock 30 detik)" as UC_Unlock
-  usecase "Deteksi Pintu Tertutup" as UC_DoorClose
-  usecase "Kunci Otomatis\n(timeout)" as UC_AutoLock
-  usecase "Kirim Notifikasi\nke Penerima" as UC_Notify
-  usecase "Reset ke Idle\n(setelah 60 detik diam)" as UC_AutoIdle
-
-  usecase "Kelola Data Staf\n& Loker" as UC_Manage
-  usecase "Pantau Status Loker" as UC_Monitor
+  usecase "UC-01\nAutentikasi via RFID" as UC01
+  usecase "UC-02\nLihat Dashboard Personal" as UC02
+  usecase "UC-03\nBuka Loker Pribadi" as UC03
+  usecase "UC-04\nLihat Daftar Kiriman" as UC04
+  usecase "UC-05\nAmbil Kiriman" as UC05
+  usecase "UC-06\nCari Penerima" as UC06
+  usecase "UC-07\nPilih Ukuran Paket" as UC07
+  usecase "UC-08\nTitipkan Paket" as UC08
+  usecase "UC-09\nBatalkan Operasi" as UC09
+  usecase "UC-10\nLihat Bantuan" as UC10
+  usecase "UC-11\nKelola Data Staf & Loker" as UC11
 }
 
-Staf --> UC_Auth
-Staf --> UC_Dash
-Staf --> UC_OpenSelf
-Staf --> UC_MailList
-Staf --> UC_Claim
+' ---------- Relasi Staf ----------
+Staf --> UC01
+Staf --> UC02
+Staf --> UC03
+Staf --> UC04
+Staf --> UC05
+Staf --> UC10
 
-UC_Auth ..> RFID : <<uses>>
-UC_Auth <.. UC_Dash : <<include>>
-UC_OpenSelf ..> UC_Unlock : <<include>>
-UC_Claim    ..> UC_Unlock : <<include>>
-UC_MailList <.. UC_Claim  : <<extend>>
+UC02 ..> UC01 : <<include>>
+UC03 ..> UC01 : <<include>>
+UC04 ..> UC01 : <<include>>
+UC05 ..> UC04 : <<include>>
 
-Kurir --> UC_Search
-Kurir --> UC_PickSize
-Kurir --> UC_Deliver
+' ---------- Relasi Kurir ----------
+Kurir --> UC06
+Kurir --> UC07
+Kurir --> UC08
+Kurir --> UC10
 
-UC_Search   <.. UC_PickSize : <<include>>
-UC_PickSize <.. UC_Deliver  : <<include>>
-UC_Deliver  ..> UC_Allocate : <<include>>
-UC_Deliver  ..> UC_Unlock   : <<include>>
-UC_Deliver  ..> UC_Notify   : <<include>>
+UC07 ..> UC06 : <<include>>
+UC08 ..> UC07 : <<include>>
 
-UC_Unlock    --> Hardware
-UC_DoorClose <-- Hardware
-UC_AutoLock  --> Hardware
-UC_Unlock    <.. UC_DoorClose : <<extend>>
-UC_Unlock    <.. UC_AutoLock  : <<extend>>
+' ---------- Batalkan (extend: opsional) ----------
+UC03 <.. UC09 : <<extend>>
+UC05 <.. UC09 : <<extend>>
+UC08 <.. UC09 : <<extend>>
 
-UC_Notify --> Notif
-
-UC_AutoIdle <-- Timer
-UC_Idle <.. UC_AutoIdle : <<extend>>
-
-Admin --> UC_Manage
-Admin --> UC_Monitor
+' ---------- Admin ----------
+Admin --> UC11
 
 @enduml
 </script>
 
-<script type="text/plantuml" data-target="img-activity">
-@startuml activity-loker-pintar-fst
-title Activity Diagram - Loker Pintar FST (3 Alur Utama)
+<script type="text/plantuml" data-target="img-activity-uc01-autentikasi-rfid">
+@startuml activity-uc01-autentikasi-rfid
+title Activity Diagram UC-01 — Autentikasi via RFID
 
 skinparam shadowing false
 skinparam ActivityBackgroundColor #F4F1E8
 skinparam ActivityBorderColor #2A403C
 skinparam ActivityDiamondBackgroundColor #FFF7E0
 skinparam ActivityDiamondBorderColor #8A6A1F
-skinparam PartitionBorderColor #2A403C
-skinparam PartitionFontColor #2A403C
+
+|#E8F0EE|Staf|
+|#FFF7E0|Sistem Kiosk|
+
+|Staf|
+start
+:Tap tombol "Staf Akademik"
+di layar Idle;
+
+|Sistem Kiosk|
+:Tampilkan layar **Tap Card**;
+
+|Staf|
+:Tempelkan kartu RFID
+ke reader;
+
+|Sistem Kiosk|
+:Baca UID kartu;
+if (Kartu terdaftar?) then (ya)
+  :Muat data staf
+  (nama, NIP, role, lockerId);
+  :Navigasi ke **Dashboard**;
+  stop
+else (tidak)
+  :Tampilkan toast
+  "Kartu tidak dikenali";
+  :Tetap di layar Tap Card;
+  stop
+endif
+
+@enduml
+</script>
+
+<script type="text/plantuml" data-target="img-activity-uc02-lihat-dashboard">
+@startuml activity-uc02-lihat-dashboard
+title Activity Diagram UC-02 — Lihat Dashboard Personal
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Staf|
+|#FFF7E0|Sistem Kiosk|
+
+|Staf|
+start
+:Berhasil autentikasi (UC-01);
+
+|Sistem Kiosk|
+:Ambil daftar kiriman
+mailFor(nip);
+:Ambil data loker pribadi
+(nomor, ukuran, status);
+:Render **Dashboard**:
+sapaan, kartu loker pribadi,
+jumlah kiriman masuk,
+tombol aksi;
+
+|Staf|
+:Melihat ringkasan
+loker dan kiriman;
+if (Lanjut ke aksi?) then (ya)
+  :Pilih "Buka Loker Saya" (UC-03)
+  atau "Surat & Paket" (UC-04);
+  stop
+else (tidak, selesai)
+  stop
+endif
+
+@enduml
+</script>
+
+<script type="text/plantuml" data-target="img-activity-uc03-buka-loker-pribadi">
+@startuml activity-uc03-buka-loker-pribadi
+title Activity Diagram UC-03 — Buka Loker Pribadi
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Staf|
+|#FFF7E0|Sistem Kiosk|
+|#EAEAEA|Hardware Loker|
+
+|Staf|
+start
+:Tap "Buka Loker Saya"
+di Dashboard;
+
+|Sistem Kiosk|
+:Render layar **Opening Locker**
+(nomor loker besar, aksen hijau);
+:Mulai hitung mundur 30 detik;
+
+|Hardware Loker|
+:Aktifkan solenoid —
+pintu loker terbuka;
+
+|Staf|
+:Ambil / letakkan barang;
+:Tutup pintu loker;
+
+|Hardware Loker|
+:Sensor mendeteksi
+pintu tertutup;
+:Kunci otomatis;
+
+|Sistem Kiosk|
+:Hentikan hitung mundur;
+:Render layar **Done** "Selesai";
+:Kembali otomatis ke Idle
+setelah 5 detik;
+
+stop
+
+note right
+  Jalur "Batal" dimodelkan
+  terpisah di UC-09.
+end note
+
+@enduml
+</script>
+
+<script type="text/plantuml" data-target="img-activity-uc04-lihat-daftar-kiriman">
+@startuml activity-uc04-lihat-daftar-kiriman
+title Activity Diagram UC-04 — Lihat Daftar Kiriman
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Staf|
+|#FFF7E0|Sistem Kiosk|
+
+|Staf|
+start
+:Tap "Surat & Paket"
+di Dashboard;
+
+|Sistem Kiosk|
+:Ambil kiriman milik staf
+mailFor(nip), urut terbaru;
+if (Ada kiriman?) then (ya)
+  :Render daftar kiriman:
+  pengirim, jenis, nomor loker,
+  waktu tiba (relatif);
+
+  |Staf|
+  :Melihat / menggulir daftar;
+  if (Ambil salah satu?) then (ya)
+    :Tap "Ambil" (lanjut UC-05);
+    stop
+  else (tidak)
+    :Kembali ke Dashboard;
+    stop
+  endif
+else (tidak)
+  :Render keadaan kosong
+  "Tidak ada kiriman";
+  stop
+endif
+
+@enduml
+</script>
+
+<script type="text/plantuml" data-target="img-activity-uc05-ambil-kiriman">
+@startuml activity-uc05-ambil-kiriman
+title Activity Diagram UC-05 — Ambil Kiriman
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Staf|
+|#FFF7E0|Sistem Kiosk|
+|#EAEAEA|Hardware Loker|
+
+|Staf|
+start
+:Tap "Ambil" pada salah satu
+kiriman di daftar (UC-04);
+
+|Sistem Kiosk|
+:Render layar **Opening Locker**
+(reason = claim-mail, aksen emas);
+
+|Hardware Loker|
+:Buka pintu loker
+tempat kiriman disimpan;
+
+|Staf|
+:Ambil kiriman;
+:Tutup pintu, tap "Sudah Diambil";
+
+|Sistem Kiosk|
+:claimMail(id) —
+hapus kiriman dari daftar;
+if (Loker non-permanen
+dan sudah kosong?) then (ya)
+  :Ubah status loker
+  OCCUPIED → AVAILABLE;
+else (tidak — loker permanen staf)
+  :Status loker tetap OCCUPIED;
+endif
+
+|Hardware Loker|
+:Kunci otomatis;
+
+|Sistem Kiosk|
+:Render layar **Done**;
+:Kembali otomatis ke Idle
+setelah 5 detik;
+
+stop
+
+@enduml
+</script>
+
+<script type="text/plantuml" data-target="img-activity-uc06-cari-penerima">
+@startuml activity-uc06-cari-penerima
+title Activity Diagram UC-06 — Cari Penerima
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Kurir|
+|#FFF7E0|Sistem Kiosk|
+
+|Kurir|
+start
+:Tap "Kirim Surat atau Paket"
+di layar Idle;
+
+|Sistem Kiosk|
+:Render layar **Courier — Search**
+(Langkah 1/3);
+
+repeat
+  |Kurir|
+  :Ketik nama / departemen / NIP
+  dari label paket;
+
+  |Sistem Kiosk|
+  :Pencarian fuzzy:
+  gelar & sapaan diabaikan,
+  urutan kata bebas,
+  toleransi 1 salah ketik;
+  if (Ada hasil?) then (ya)
+    :Tampilkan daftar hasil
+    + jumlah ("Menampilkan X dari Y");
+  else (tidak)
+    :Tampilkan "0 hasil" + saran
+    "coba nama tanpa gelar";
+  endif
+repeat while (Penerima ditemukan?) is (belum) not (sudah)
+
+|Kurir|
+:Pilih penerima dari daftar;
+
+|Sistem Kiosk|
+:Simpan recipient di state;
+:Lanjut ke **Pilih Ukuran Paket**
+(UC-07);
+
+stop
+
+@enduml
+</script>
+
+<script type="text/plantuml" data-target="img-activity-uc07-pilih-ukuran-paket">
+@startuml activity-uc07-pilih-ukuran-paket
+title Activity Diagram UC-07 — Pilih Ukuran Paket
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Kurir|
+|#FFF7E0|Sistem Kiosk|
+
+|Kurir|
+start
+:Selesai memilih penerima (UC-06);
+
+|Sistem Kiosk|
+:Render layar **Courier — Size**
+(Langkah 2/3);
+:Hitung ketersediaan tiap ukuran
+countFree(kecil / sedang / besar);
+:Nonaktifkan tile ukuran
+yang lokernya habis;
+
+|Kurir|
+:Pilih ukuran paket
+(Surat / Kecil / Sedang / Besar);
+
+|Sistem Kiosk|
+if (Loker tersedia
+untuk ukuran itu?) then (ya)
+  :findFreeLocker(bucket);
+  :reserveLocker(id) —
+  AVAILABLE → DELIVERING;
+  :Render **Courier — Assign**
+  (peta loker + ringkasan,
+  Langkah 3/3);
+  stop
+else (tidak)
+  :Tile sudah nonaktif —
+  kurir memilih ukuran lain
+  atau membatalkan;
+  stop
+endif
+
+@enduml
+</script>
+
+<script type="text/plantuml" data-target="img-activity-uc08-titipkan-paket">
+@startuml activity-uc08-titipkan-paket
+title Activity Diagram UC-08 — Titipkan Paket
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Kurir|
+|#FFF7E0|Sistem Kiosk|
+|#EAEAEA|Hardware Loker|
+
+|Kurir|
+start
+:Tap "Buka Loker & Titipkan"
+di layar Assign (UC-07);
+
+|Sistem Kiosk|
+:Render layar **Opening Locker**
+(reason = deliver, aksen emas);
+
+|Hardware Loker|
+:Buka pintu loker
+yang sudah direservasi;
+
+|Kurir|
+:Letakkan paket di dalam loker;
+:Tutup pintu, tap "Sudah Diletakkan";
+
+|Sistem Kiosk|
+:occupyLocker(id, nip penerima) —
+DELIVERING → OCCUPIED;
+:recordDelivery() —
+paket terdaftar sebagai kiriman
+yang bisa diklaim penerima;
+:Kirim notifikasi ke penerima
+**(planned — belum diimplementasikan)**;
+
+|Hardware Loker|
+:Kunci otomatis;
+
+|Sistem Kiosk|
+:Render layar **Done** +
+**Kode Bukti Titip** "FST-XXXXX";
+:Tahan 15 detik agar kurir
+sempat memfoto kode;
+:Kembali otomatis ke Idle;
+
+stop
+
+@enduml
+</script>
+
+<script type="text/plantuml" data-target="img-activity-uc09-batalkan-operasi">
+@startuml activity-uc09-batalkan-operasi
+title Activity Diagram UC-09 — Batalkan Operasi
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
 
 |#E8F0EE|Pengguna|
 |#FFF7E0|Sistem Kiosk|
@@ -3233,149 +3746,148 @@ skinparam PartitionFontColor #2A403C
 
 |Pengguna|
 start
-:Mendekati kiosk;
+:Tap "Batal" pada layar
+**Opening Locker**;
 
 |Sistem Kiosk|
-:Tampilkan layar **Idle**
-(2 CTA: Staf / Kurir);
+:Hentikan hitung mundur;
 
-|Pengguna|
-if (Pilih jalur?) then (**Staf Akademik**)
+|Hardware Loker|
+:Kunci kembali pintu loker;
 
-  :Tap kartu RFID;
-
-  |Sistem Kiosk|
-  :Baca UID kartu
-  (timeout simulasi 3.5s);
-  if (Kartu valid?) then (ya)
-    :Muat data Staf
-    (nama, NIP, role, lockerId);
-    :Render **Dashboard**
-    (loker, kiriman, status);
-  else (tidak)
-    :Tampilkan toast error;
-    stop
-  endif
-
-  |Pengguna|
-  if (Aksi di dashboard?) then (**Buka Loker Saya**)
-
-    |Sistem Kiosk|
-    :Render **Opening Locker**
-    reason = "self"
-    accent = hijau;
-    :Mulai countdown 30 detik;
-
-    |Hardware Loker|
-    :Aktifkan solenoid
-    (pintu terbuka);
-
-    |Pengguna|
-    :Ambil/letakkan barang;
-    :Tutup pintu;
-
-    |Hardware Loker|
-    :Sensor mendeteksi
-    pintu tertutup;
-
-    |Sistem Kiosk|
-    :Hentikan countdown;
-    :Render **Done**
-    "Selesai";
-
-  else (**Surat & Paket**)
-
-    |Sistem Kiosk|
-    :Render daftar **Mail**
-    (sender, type, locker, waktu);
-
-    |Pengguna|
-    :Pilih kiriman → tap **Ambil**;
-
-    |Sistem Kiosk|
-    :Render **Opening Locker**
-    reason = "claim-mail"
-    accent = emas;
-
-    |Hardware Loker|
-    :Buka loker target;
-
-    |Pengguna|
-    :Ambil kiriman, tutup pintu;
-
-    |Sistem Kiosk|
-    :Tandai mail = claimed;
-    :Render **Done**;
-
-  endif
-
-else (**Tamu / Kurir**)
-
-  |Sistem Kiosk|
-  :Render **Courier - Search**
-  (Langkah 1/3);
-
-  |Pengguna|
-  :Cari penerima
-  (nama / dept / NIP);
-  :Pilih penerima;
-
-  |Sistem Kiosk|
-  :Render **Courier - Size**
-  (Langkah 2/3);
-
-  |Pengguna|
-  :Pilih ukuran paket
-  (Surat / Kecil / Sedang / Besar);
-
-  |Sistem Kiosk|
-  if (Loker tersedia
-  untuk ukuran ini?) then (ya)
-    :findFreeLocker(bucket);
-    :Tandai locker.state = delivering;
-    :Render **Courier - Assign**
-    (peta loker + ringkasan);
-  else (tidak)
-    :Disable tile ukuran tsb;
-    stop
-  endif
-
-  |Pengguna|
-  :Tap **Buka Loker & Titipkan**;
-
-  |Sistem Kiosk|
-  :Render **Opening Locker**
-  reason = "deliver"
-  accent = emas;
-
-  |Hardware Loker|
-  :Buka loker target;
-
-  |Pengguna|
-  :Letakkan paket, tutup pintu;
-
-  |Sistem Kiosk|
-  :Tandai locker.state = occupied;
-  :Buat record mail untuk penerima;
-  :Kirim notifikasi ke penerima;
-  :Render **Done**;
-
+|Sistem Kiosk|
+if (Jenis operasi?) then (Titip paket — deliver)
+  :releaseLocker(id) —
+  DELIVERING → AVAILABLE
+  (loker kembali ke inventori);
+  :Toast "Penitipan dibatalkan";
+  :Kembali ke layar
+  **Pilih Ukuran Paket**;
+elseif (Ambil kiriman — claim-mail) then
+  :Kiriman TIDAK dihapus
+  dari daftar;
+  :Toast "Pengambilan dibatalkan";
+  :Kembali ke daftar **Kiriman**;
+else (Loker pribadi — self)
+  :Kembali ke **Dashboard**;
 endif
 
-|Sistem Kiosk|
-:Tampilkan konfirmasi 5 detik;
-:Reset state transient
-(user, recipient, package, locker);
-:Kembali ke **Idle**;
+:TIDAK ada layar sukses —
+kembali langsung ke layar asal;
 
 stop
 
 @enduml
 </script>
 
-<script type="text/plantuml" data-target="img-sequence">
-@startuml sequence-loker-pintar-fst
-title Sequence Diagram - Loker Pintar FST (3 Skenario)
+<script type="text/plantuml" data-target="img-activity-uc10-lihat-bantuan">
+@startuml activity-uc10-lihat-bantuan
+title Activity Diagram UC-10 — Lihat Bantuan
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Pengguna|
+|#FFF7E0|Sistem Kiosk|
+
+|Pengguna|
+start
+:Tap tombol "Butuh bantuan?"
+di footer (tersedia di semua layar);
+
+|Sistem Kiosk|
+:Tampilkan overlay bantuan:
+* lokasi Sekretariat FST
+* jam layanan
+* nomor telepon
+* cara melaporkan masalah;
+
+|Pengguna|
+:Membaca informasi bantuan;
+if (Tutup overlay?) then (tap "Tutup" / area luar)
+  |Sistem Kiosk|
+  :Tutup overlay,
+  kembali ke layar sebelumnya
+  (sesi tidak terganggu);
+  stop
+else (tidak ada interaksi)
+  |Sistem Kiosk|
+  :Timer inaktivitas tetap berjalan —
+  60 detik tanpa sentuhan
+  kiosk kembali ke Idle;
+  stop
+endif
+
+@enduml
+</script>
+
+<script type="text/plantuml" data-target="img-activity-uc11-kelola-data">
+@startuml activity-uc11-kelola-data
+title Activity Diagram UC-11 — Kelola Data Staf & Loker
+
+skinparam shadowing false
+skinparam ActivityBackgroundColor #F4F1E8
+skinparam ActivityBorderColor #2A403C
+skinparam ActivityDiamondBackgroundColor #FFF7E0
+skinparam ActivityDiamondBorderColor #8A6A1F
+
+|#E8F0EE|Admin Sekretariat|
+|#FFF7E0|Sistem|
+
+|Admin Sekretariat|
+start
+:Perlu perubahan data
+(staf baru, kartu hilang,
+loker rusak / reassign);
+
+|Sistem|
+:Buka sumber data
+(prototipe: berkas data.js,
+rencana: konsol admin — backlog B-03);
+
+|Admin Sekretariat|
+if (Jenis perubahan?) then (Data staf)
+  :Tambah / ubah / hapus entri staf
+  (nama, NIP, role, dept, RFID,
+  loker permanen);
+elseif (Data loker) then
+  :Ubah status / kepemilikan loker,
+  tandai loker rusak
+  "TIDAK DIPAKAI";
+else (Pantau status)
+  :Periksa okupansi loker
+  dan kiriman tak diambil;
+endif
+
+|Sistem|
+:Terapkan perubahan;
+note right
+  Prototipe: perubahan berlaku
+  setelah muat ulang kiosk
+  (data seed in-memory).
+end note
+
+|Admin Sekretariat|
+:Verifikasi di kiosk +
+catat di log kertas
+(RUNBOOK bagian 3.6);
+
+stop
+
+@enduml
+</script>
+
+<script type="text/plantuml" data-target="img-sequence-staf">
+@startuml sequence-staf-loker-pintar-fst
+title Sequence Diagram — Aktor Staf (Dosen / Tenaga Kependidikan)
+
+' Skenario makro aktor Staf: autentikasi → dashboard → buka loker
+' pribadi → ambil kiriman. Notasi panah UML baku:
+'   ->   permintaan sinkron  (garis lurus, mata panah tertutup/solid)
+'   -->> balikan data        (garis putus-putus, mata panah terbuka)
 
 skinparam shadowing false
 skinparam sequence {
@@ -3385,134 +3897,176 @@ skinparam sequence {
   LifeLineBorderColor #2A403C
   ParticipantBorderColor #2A403C
   ParticipantBackgroundColor #D9CFA9
-  ParticipantFontColor #1B2A26
   GroupBorderColor #8A6A1F
   GroupBackgroundColor #FFF7E0
 }
 
-actor "Staf / Kurir" as User
-participant "KioskApp\n(state + router)" as App
-participant "Screen\n(mounted)" as Screen
-participant "DataRepository" as Repo
-participant "InactivityTimer" as Timer
-participant "RFID Reader" as RFID
+actor "Staf" as Staf
+participant "Kiosk UI\n(Frontend)" as UI
+participant "DataRepository\n(Backend Service)" as Repo
 participant "Locker Hardware" as HW
-participant "Notification\nService" as Notif
 
-== Boot ==
-User -> App : open kiosk URL
-activate App
-App -> App : boot()
-App -> App : startClock()
-App -> App : navigate("idle")
-App -> Screen : mountIdle(stage, state)
-deactivate App
+== Autentikasi (UC-01) & Dashboard (UC-02) ==
+Staf -> UI : tap "Staf Akademik"
+Staf -> UI : tempel kartu RFID
+UI -> Repo : cariStaf(uid)
+Repo -->> UI : data Staf {nip, nama, role, lockerId}
+UI -> Repo : mailFor(nip)
+Repo -->> UI : daftar Kiriman
+UI -> Repo : dataLoker(lockerId)
+Repo -->> UI : Loker {nomor, ukuran, status}
+UI -->> Staf : tampilkan Dashboard personal
 
-== Skenario 1 - Staf membuka loker pribadi ==
-User  -> Screen : tap "Staf Akademik"
-Screen -> App   : navigate("tap-card")
-App   -> Screen : mountTapCard(stage, state)
+== Buka Loker Pribadi (UC-03) ==
+Staf -> UI : tap "Buka Loker Saya"
+UI -> HW : unlock(lockerId)
+HW -->> UI : ack (pintu terbuka)
+Staf -> UI : ambil/letakkan barang,\ntutup pintu, tap "Selesai"
+UI -> HW : autoLock(lockerId)
+HW -->> UI : ack (terkunci)
+UI -->> Staf : layar Done, kembali ke Idle (5 detik)
 
-User  -> RFID   : tempel kartu
-RFID  -> Screen : onTap(uid)
-Screen -> Repo  : staff.find(by rfid)
-Repo  --> Screen : Staff
-Screen -> App   : navigate("dashboard", {user})
-App   -> Timer  : reset()
-App   -> Screen : mountDashboard(stage, state)
-Screen -> Repo  : mailFor(user.nip)
-Repo  --> Screen : Mail[]
-Screen -> Repo  : lockers.find(user.lockerId)
-Repo  --> Screen : Locker
+== Ambil Kiriman (UC-04 & UC-05) ==
+Staf -> UI : tap "Surat & Paket"
+UI -> Repo : mailFor(nip)
+Repo -->> UI : daftar Kiriman
+UI -->> Staf : tampilkan daftar kiriman
+Staf -> UI : tap "Ambil" pada kiriman
+UI -> HW : unlock(mail.lockerId)
+HW -->> UI : ack (pintu terbuka)
+Staf -> UI : ambil kiriman, tap "Sudah Diambil"
+UI -> Repo : claimMail(mailId)
+Repo -->> UI : Kiriman terhapus,\nloker non-permanen → AVAILABLE
+UI -> HW : autoLock(lockerId)
+HW -->> UI : ack (terkunci)
+UI -->> Staf : layar Done, kembali ke Idle (5 detik)
 
-User  -> Screen : tap "Buka Loker Saya"
-Screen -> App   : navigate("opening-locker", {openReason: "self"})
-App   -> Screen : mountOpeningLocker(stage, state)
-Screen -> HW    : unlock(locker.id)
-HW    --> Screen : ack
-Screen -> Screen : startCountdown(30s)
+@enduml
+</script>
 
-alt Pengguna selesai sebelum 30s
-  User   -> Screen : tap "Selesai"
-else Door sensor menutup
-  HW     -> Screen : doorClosed()
-else Timeout 30s
-  Screen -> Screen : tick to 0
+<script type="text/plantuml" data-target="img-sequence-kurir">
+@startuml sequence-kurir-loker-pintar-fst
+title Sequence Diagram — Aktor Tamu / Kurir
+
+' Skenario makro aktor Kurir: cari penerima → pilih ukuran →
+' titipkan paket → terima kode bukti. Notasi panah UML baku:
+'   ->   permintaan sinkron  (garis lurus, mata panah tertutup/solid)
+'   -->> balikan data        (garis putus-putus, mata panah terbuka)
+
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #2A403C
+  ActorBorderColor #2A403C
+  LifeLineBackgroundColor #F4F1E8
+  LifeLineBorderColor #2A403C
+  ParticipantBorderColor #2A403C
+  ParticipantBackgroundColor #D9CFA9
+  GroupBorderColor #8A6A1F
+  GroupBackgroundColor #FFF7E0
+}
+
+actor "Kurir" as Kurir
+participant "Kiosk UI\n(Frontend)" as UI
+participant "DataRepository\n(Backend Service)" as Repo
+participant "Locker Hardware" as HW
+participant "Notification\nService <<planned>>" as Notif
+
+== Cari Penerima (UC-06) ==
+Kurir -> UI : tap "Kirim Surat atau Paket"
+loop sampai penerima ditemukan
+  Kurir -> UI : ketik nama / dept / NIP
+  UI -> Repo : searchStaff(query)
+  Repo -->> UI : daftar Staf (fuzzy:\ngelar diabaikan, toleransi 1 typo)
+  UI -->> Kurir : tampilkan hasil + jumlah
 end
-Screen -> HW    : autoLock(locker.id)
-Screen -> App   : navigate("done-screen")
-App   -> Screen : mountDone(stage, state)
-Screen -> Screen : auto-back ke idle (5s)
-Screen -> App   : navigate("idle")
+Kurir -> UI : pilih penerima
 
-== Skenario 2 - Staf mengambil kiriman ==
-User  -> Screen : (di Dashboard) tap "Surat & Paket"
-Screen -> App   : navigate("mail")
-App   -> Screen : mountMail(stage, state)
-Screen -> Repo  : mailFor(user.nip)
-Repo  --> Screen : Mail[]
+== Pilih Ukuran Paket (UC-07) ==
+UI -> Repo : countFree(tiap ukuran)
+Repo -->> UI : jumlah loker kosong per ukuran
+UI -->> Kurir : tampilkan tile ukuran\n(tile habis dinonaktifkan)
+Kurir -> UI : pilih ukuran paket
+UI -> Repo : findFreeLocker(bucket)
+Repo -->> UI : Loker kosong
+UI -> Repo : reserveLocker(id)
+Repo -->> UI : Loker {AVAILABLE → DELIVERING}
+UI -->> Kurir : tampilkan peta loker + ringkasan
 
-User  -> Screen : tap "Ambil"
-Screen -> App   : navigate("opening-locker", {openReason: "claim-mail"})
-App   -> Screen : mountOpeningLocker(stage, state)
-Screen -> Repo  : incomingMail.find(mailId)
-Repo  --> Screen : Mail
-Screen -> HW    : unlock(locker.id)
-HW    --> Screen : ack
-User  -> Screen : tap "Sudah Diambil"
-Screen -> Repo  : mark mail = claimed
-Screen -> HW    : autoLock(locker.id)
-Screen -> App   : navigate("done-screen")
+== Titipkan Paket (UC-08) ==
+Kurir -> UI : tap "Buka Loker & Titipkan"
+UI -> HW : unlock(lockerId)
+HW -->> UI : ack (pintu terbuka)
+Kurir -> UI : letakkan paket,\ntutup pintu, tap "Sudah Diletakkan"
+UI -> Repo : occupyLocker(id, nip penerima)
+Repo -->> UI : Loker {DELIVERING → OCCUPIED}
+UI -> Repo : recordDelivery(lockerId, nip, jenis)
+Repo -->> UI : Kiriman baru (bisa diklaim penerima)
+UI -> HW : autoLock(lockerId)
+HW -->> UI : ack (terkunci)
+UI -> Notif : notify(penerima, kiriman)
+note right of Notif
+  <<planned>> — belum
+  diimplementasikan (backlog B-01)
+end note
+UI -->> Kurir : layar Done + Kode Bukti Titip\n"FST-XXXXX" (15 detik untuk difoto)
 
-== Skenario 3 - Kurir menitipkan paket ==
-User  -> Screen : tap "Kirim Surat atau Paket"
-Screen -> App   : navigate("courier-search")
-App   -> Screen : mountCourierSearch(stage, state)
+@enduml
+</script>
 
-loop pencarian iteratif
-  User  -> Screen : ketik query
-  Screen -> Repo  : searchStaff(q)
-  Repo  --> Screen : Staff[]
-end
-User  -> Screen : pilih penerima
-Screen -> App   : navigate("courier-size", {recipient})
-App   -> Screen : mountCourierSize(stage, state)
+<script type="text/plantuml" data-target="img-sequence-admin">
+@startuml sequence-admin-loker-pintar-fst
+title Sequence Diagram — Aktor Admin Sekretariat FST
 
-loop tiap ukuran paket
-  Screen -> Repo : countFree(bucket)
-  Repo  --> Screen : n
-end
+' Skenario makro aktor Admin: kelola data staf & loker dan pantau
+' status. Pada prototipe, "backend" adalah berkas data seed
+' (data.js); konsol admin adalah rencana (backlog B-03).
+' Notasi panah UML baku:
+'   ->   permintaan sinkron  (garis lurus, mata panah tertutup/solid)
+'   -->> balikan data        (garis putus-putus, mata panah terbuka)
 
-User  -> Screen : pilih ukuran
-Screen -> Repo  : findFreeLocker("sedang")
-alt Loker tersedia
-  Repo  --> Screen : Locker
-  Screen -> App   : navigate("courier-assign")
-  App   -> Screen : mountCourierAssign(stage, state)
-  Screen -> Screen : locker.state = "delivering"
-else Tidak ada
-  Repo  --> Screen : null
-  Screen -> Screen : disable tile ukuran
-end
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #2A403C
+  ActorBorderColor #2A403C
+  LifeLineBackgroundColor #F4F1E8
+  LifeLineBorderColor #2A403C
+  ParticipantBorderColor #2A403C
+  ParticipantBackgroundColor #D9CFA9
+  GroupBorderColor #8A6A1F
+  GroupBackgroundColor #FFF7E0
+}
 
-User  -> Screen : tap "Buka Loker & Titipkan"
-Screen -> App   : navigate("opening-locker", {openReason: "deliver"})
-App   -> Screen : mountOpeningLocker(stage, state)
-Screen -> HW    : unlock(assignedLocker.id)
-HW    --> Screen : ack
-User  -> Screen : tap "Sudah Diletakkan"
-Screen -> Repo  : create Mail
-Screen -> Repo  : assignedLocker.state = "occupied"
-Screen -> HW    : autoLock(assignedLocker.id)
-Screen -> Notif : notify(recipient, mail)
-Notif --> Screen : queued
-Screen -> App   : navigate("done-screen")
+actor "Admin\nSekretariat" as Admin
+participant "Konsol Admin\n(Frontend) <<planned>>" as Console
+participant "DataRepository\n(Backend Service)" as Repo
+participant "Kiosk UI\n(Frontend)" as UI
 
-== Cross-cutting - Inactivity ==
-User  -> Timer : (no input over 60s)
-Timer -> App   : onTimeout()
-App   -> App   : clear transient state
-App   -> Screen : mountIdle(stage, state)
+== Kelola Data Staf (UC-11) ==
+Admin -> Console : tambah / ubah staf\n(nama, NIP, RFID, loker permanen)
+Console -> Repo : simpanStaf(data)
+Repo -->> Console : Staf tersimpan
+Console -->> Admin : konfirmasi perubahan
+note over Console, Repo
+  Prototipe saat ini: Admin menyunting
+  data seed (data.js) langsung; perubahan
+  aktif setelah kiosk dimuat ulang.
+end note
+
+== Kelola Data Loker (UC-11) ==
+Admin -> Console : ubah status loker\n(rusak / reassign pemilik)
+Console -> Repo : perbaruiLoker(id, status)
+Repo -->> Console : Loker diperbarui
+Console -->> Admin : konfirmasi perubahan
+
+== Pantau Status Loker (UC-11) ==
+Admin -> Console : buka panel pemantauan
+Console -> Repo : daftarLoker() + kirimanTakDiambil()
+Repo -->> Console : okupansi loker,\nkiriman menunggu diambil
+Console -->> Admin : tampilkan ringkasan status
+
+== Sinkronisasi ke Kiosk ==
+UI -> Repo : muat data saat boot
+Repo -->> UI : staf, loker, kiriman terbaru
 
 @enduml
 </script>
@@ -3532,80 +4086,66 @@ skinparam class {
 hide circle
 
 package "Domain" {
-  class Staff {
-    + nip : String
-    + name : String
-    + role : Role
-    + dept : String
-    + initials : String
-    + rfid : String
-    + lockerId : String
+  abstract class Staff {
+    - nip : String <<PK>>
+    - name : String
+    - dept : String <<FK>>
+    - initials : String
+    - rfid : String
+    - lockerId : String <<FK>>
     --
     + greetingHint() : String
   }
 
-  enum Role {
-    DOSEN
-    TENAGA_KEPENDIDIKAN
+  class Dosen {
+    - nidn : String
+  }
+
+  class TenagaKependidikan {
+    - jabatan : String
   }
 
   class Locker {
-    + id : String
-    + number : int
-    + size : LockerSize
-    + state : LockerState
-    + ownerNip : String
-    + hasMail : boolean
+    - id : String <<PK>>
+    - number : int
+    - ownerNip : String <<FK>>
+    - hasMail : boolean
     --
     + isFree() : boolean
     + sizeLabel() : String
   }
 
-  enum LockerSize {
-    KECIL
-    SEDANG
-    BESAR
-  }
-
-  enum LockerState {
-    AVAILABLE
-    ASSIGNED
-    OCCUPIED
-    DELIVERING
-  }
-
   class Mail {
-    + id : String
-    + recipientNip : String
-    + sender : String
-    + type : String
-    + note : String
-    + arrivedAt : ISODateTime
-    + lockerId : String
+    - id : String <<PK>>
+    - recipientNip : String <<FK>>
+    - sender : String
+    - type : String
+    - note : String
+    - arrivedAt : ISODateTime
+    - lockerId : String <<FK>>
     --
     + relativeAge() : String
   }
 
   class PackageSize {
-    + id : String
-    + name : String
-    + icon : String
-    + dim : String
-    + bucket : LockerSize
+    - id : String <<PK>>
+    - name : String
+    - icon : String
+    - dim : String
   }
 
   class Department {
-    + name : String
+    - name : String <<PK>>
   }
 }
 
 package "Data" {
   class DataRepository {
-    + departments : List
-    + lockers : List
-    + staff : List
-    + incomingMail : List
-    + packageSizes : List
+    - departments : List
+    - lockers : List
+    - staff : List
+    - incomingMail : List
+    - packageSizes : List
     --
     + searchStaff(q) : List
     + mailFor(nip) : List
@@ -3616,7 +4156,7 @@ package "Data" {
 
 package "App Core" {
   class KioskApp {
-    + state : KioskState
+    - state : KioskState
     --
     + navigate(screen, ctx) : void
     + toast(msg, opts) : void
@@ -3624,13 +4164,13 @@ package "App Core" {
   }
 
   class KioskState {
-    + screen : String
-    + user : Staff
-    + recipient : Staff
-    + packageSize : PackageSize
-    + assignedLocker : Locker
-    + openReason : OpenReason
-    + claimedMailId : String
+    - screen : String
+    - user : Staff
+    - recipient : Staff
+    - packageSize : PackageSize
+    - assignedLocker : Locker
+    - openReason : OpenReason
+    - claimedMailId : String
   }
 
   enum OpenReason {
@@ -3701,10 +4241,8 @@ package "Hardware Adapters" {
 Staff "1" -- "0..1" Locker        : owns >
 Staff "1" -- "0..*" Mail          : receives >
 Mail  "0..*" -- "1" Locker        : stored in >
-PackageSize "1" -- "1" LockerSize : maps to >
-Staff -- Role
-Locker -- LockerSize
-Locker -- LockerState
+Staff <|-- Dosen
+Staff <|-- TenagaKependidikan
 Staff -- Department
 
 KioskApp "1" *-- "1" KioskState
@@ -3723,6 +4261,159 @@ DataRepository "1" o-- "*" Department
 @enduml
 </script>
 
+<script type="text/plantuml" data-target="img-class-no-specialization">
+@startuml class-no-specialization-loker-pintar-fst
+title Class Diagram (Tanpa Spesialisasi) — Loker Pintar FST
+
+' Versi FLAT: tidak ada generalisasi/inheritance sama sekali.
+' Variasi dimodelkan sebagai ATRIBUT (role, size, screen), persis seperti
+' implementasi nyata di scripts/data.js dan scripts/app.js.
+' Bandingkan dengan class-specialization.puml untuk versi hierarki.
+
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam class {
+  BackgroundColor #F4F1E8
+  BorderColor #2A403C
+  ArrowColor #2A403C
+  HeaderBackgroundColor #D9CFA9
+}
+hide circle
+
+' ================== Domain (flat) ==================
+package "Domain" {
+
+  class Pengguna {
+    - nip : String <<PK>>
+    - name : String
+    - role : String  {"dosen" | "tendik" | "kurir"}
+    - dept : String? <<FK>>
+    - rfid : String?  {null untuk kurir}
+    - lockerId : String? <<FK>>  {null untuk kurir}
+    --
+    + isStaf() : boolean
+    + isKurir() : boolean
+  }
+
+  class Loker {
+    - id : String <<PK>>
+    - number : int
+    - size : String  {"kecil" | "sedang" | "besar"}
+    - state : String  {"available" | "delivering" | "occupied"}
+    - ownerNip : String? <<FK>>
+    - hasMail : boolean
+    --
+    + isFree() : boolean
+  }
+
+  class Kiriman {
+    - id : String <<PK>>
+    - recipientNip : String <<FK>>
+    - sender : String
+    - type : String
+    - note : String
+    - arrivedAt : ISODateTime
+    - lockerId : String <<FK>>
+  }
+
+  class UkuranPaket {
+    - id : String <<PK>>
+    - name : String
+    - dim : String
+    - bucket : String  {"kecil" | "sedang" | "besar"}
+  }
+}
+
+' ================== Data Layer ==================
+package "Data" {
+  class DataRepository <<module>> {
+    - staff : List<Pengguna>
+    - lockers : List<Loker>
+    - incomingMail : List<Kiriman>
+    - packageSizes : List<UkuranPaket>
+    --
+    + searchStaff(q : String) : List<Pengguna>
+    + mailFor(nip : String) : List<Kiriman>
+    + countFree(size : String) : int
+    + findFreeLocker(size : String) : Loker?
+    + reserveLocker(id : String) : Loker?
+    + releaseLocker(id : String) : Loker?
+    + occupyLocker(id : String, ownerNip : String?) : Loker?
+    + recordDelivery(spec) : Kiriman
+    + claimMail(mailId : String) : Kiriman?
+  }
+}
+
+' ================== App Core ==================
+package "App Core" {
+
+  class KioskApp <<module>> {
+    - state : KioskState
+    --
+    + navigate(screen : String, ctx : Object) : void
+    + toast(msg : String) : void
+    + boot() : void
+  }
+
+  class KioskState {
+    - screen : String  {"idle" | "tap-card" | "dashboard" | ...}
+    - user : Pengguna?
+    - recipient : Pengguna?
+    - packageSize : UkuranPaket?
+    - assignedLocker : Loker?
+    - openReason : String?  {"self" | "claim-mail" | "deliver"}
+    - claimedMailId : String?
+    - completedLocker : Loker?
+  }
+
+  class InactivityTimer {
+    - timeoutMs : long = 60000
+    - warningMs : long = 50000
+    --
+    + reset() : void
+    + onWarning() : void
+    + onTimeout() : void
+  }
+
+  ' Tanpa spesialisasi: setiap layar adalah satu modul mandiri dengan
+  ' fungsi mount() masing-masing — tidak ada kelas induk "Screen".
+  class ScreenRouter <<module>> {
+    - screens : Map<String, mountFn>
+    --
+    + mount(name : String, stage, state) : Cleanup?
+  }
+}
+
+' ================== Relationships (asosiasi saja) ==================
+Pengguna "1" -- "0..1" Loker   : memiliki >
+Pengguna "1" -- "0..*" Kiriman : menerima >
+Kiriman  "0..*" -- "1" Loker   : disimpan di >
+UkuranPaket "1" -- "0..*" Loker : dipetakan ke ukuran >
+
+DataRepository "1" o-- "*" Pengguna
+DataRepository "1" o-- "*" Loker
+DataRepository "1" o-- "*" Kiriman
+DataRepository "1" o-- "*" UkuranPaket
+
+KioskApp "1" *-- "1" KioskState
+KioskApp "1" *-- "1" InactivityTimer
+KioskApp "1" *-- "1" ScreenRouter
+KioskApp ..> DataRepository : queries
+
+KioskState --> Pengguna : user / recipient
+KioskState --> Loker    : assignedLocker
+KioskState --> UkuranPaket : packageSize
+
+note bottom of Pengguna
+  Tanpa spesialisasi, perbedaan Dosen /
+  Tenaga Kependidikan / Kurir hanyalah
+  nilai atribut "role" — akibatnya atribut
+  rfid dan lockerId harus nullable karena
+  kurir tidak memilikinya.
+end note
+
+@enduml
+</script>
 
 <!-- =============================================================
      LIBRARY - pako (deflate) untuk encode PlantUML

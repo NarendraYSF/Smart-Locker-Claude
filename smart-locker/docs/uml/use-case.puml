@@ -16,10 +16,6 @@ actor "Dosen / Tenaga\nKependidikan" as Staf
 actor "Tamu / Kurir" as Kurir
 actor "Admin Sekretariat\nFST" as Admin
 
-actor "RFID Reader" as RFID <<device>>
-actor "Locker Hardware\n(Solenoid + Door Sensor)" as Hardware <<device>>
-actor "Notification Service" as Notif <<system>>
-actor "Inactivity Timer" as Timer <<system>>
 
 ' ---------- System Boundary ----------
 rectangle "Sistem Loker Pintar FST" {
@@ -57,7 +53,6 @@ Staf --> UC_OpenSelf
 Staf --> UC_MailList
 Staf --> UC_Claim
 
-UC_Auth ..> RFID : <<uses>>
 UC_Auth <.. UC_Dash : <<include>>
 UC_OpenSelf ..> UC_Unlock : <<include>>
 UC_Claim    ..> UC_Unlock : <<include>>
@@ -83,21 +78,15 @@ UC_Deliver  <.. UC_Cancel : <<extend>>
 Staf  --> UC_Help
 Kurir --> UC_Help
 
-' ---------- Hardware / system actors ----------
-UC_Unlock    --> Hardware
-UC_DoorClose <-- Hardware
-UC_AutoLock  --> Hardware
+' ---------- Hardware / system logic ----------
 UC_Unlock    <.. UC_DoorClose : <<extend>>
 UC_Unlock    <.. UC_AutoLock  : <<extend>>
 
-UC_Notify --> Notif
 note bottom of UC_Notify
   Belum diimplementasikan —
   backlog (WA / SMS / email)
 end note
 
-UC_IdleWarn <-- Timer
-UC_AutoIdle <-- Timer
 UC_AutoIdle <.. UC_IdleWarn : <<extend>>
 UC_Idle     <.. UC_AutoIdle : <<extend>>
 
