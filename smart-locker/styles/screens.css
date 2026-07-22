@@ -1282,8 +1282,13 @@
 }
 
 .admin__cell--delivering {
-  border-color: var(--c-gold);
+  border-color: var(--accent-gold);
   background: rgba(212, 168, 75, 0.05);
+}
+
+.admin__cell--rusak {
+  border-color: var(--danger);
+  background: var(--danger-soft);
 }
 
 .admin__legend {

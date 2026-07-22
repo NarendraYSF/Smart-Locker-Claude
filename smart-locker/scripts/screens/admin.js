@@ -68,6 +68,42 @@ export function mount(stage, state) {
   // Body Container
   const body = h("div.admin__body", {});
 
+  // Shared Modal Helper
+  function showModal(title, contentFn) {
+    const overlay = h(
+      "div",
+      {
+        style: {
+          position: "absolute", inset: 0, background: "rgba(0,0,0,0.8)",
+          display: "grid", placeItems: "center", zIndex: 100,
+          backdropFilter: "blur(4px)"
+        }
+      },
+      h(
+        "div",
+        {
+          style: {
+            background: "var(--bg-card)", padding: "var(--space-6)",
+            borderRadius: "var(--radius-lg)", border: "1px solid var(--line-strong)",
+            width: "80%", maxWidth: "600px", display: "grid", gap: "var(--space-5)"
+          }
+        },
+        h("h2", { style: { fontFamily: "var(--font-display)", fontSize: "var(--fs-xl)" } }, title),
+        contentFn(() => overlay.remove())
+      )
+    );
+    stage.appendChild(overlay);
+  }
+
+  // Update Stats Helper
+  const updateStats = () => {
+    const statsEl = root.querySelector('.admin__stats');
+    if (statsEl) {
+      statsEl.children[1].querySelector('.admin__stat-value').textContent = lockers.filter(l => l.state === "occupied").length;
+      statsEl.children[2].querySelector('.admin__stat-value').textContent = lockers.filter(l => l.state === "available" || l.state === "rusak").length;
+    }
+  };
+
   const renderBody = () => {
     body.innerHTML = "";
     
@@ -108,7 +144,19 @@ export function mount(stage, state) {
           ...lockers.map(l => {
             return h(
               "div.admin__cell",
-              { class: `admin__cell--${l.state}` },
+              { 
+                class: `admin__cell--${l.state}`,
+                style: { cursor: "pointer" },
+                onclick: () => {
+                  showModal(`Kelola Loker ${l.id}`, (close) => h(
+                    "div", { style: { display: "grid", gap: "var(--space-3)" } },
+                    h("p", { style: { color: "var(--fg-secondary)" } }, `Status saat ini: ${l.state.toUpperCase()}`),
+                    h("button.btn.btn--primary", { onclick: () => { l.state = "available"; updateStats(); renderBody(); close(); } }, "Set Tersedia"),
+                    h("button.btn", { style: { background: "var(--danger-soft)", color: "var(--danger)" }, onclick: () => { l.state = "rusak"; updateStats(); renderBody(); close(); } }, "Tandai Rusak (Tidak Dipakai)"),
+                    h("button.btn.btn--ghost", { onclick: close }, "Batal")
+                  ));
+                }
+              },
               h("p.admin__cell-id", {}, l.id),
               h("p.admin__cell-size", {}, l.size)
             );
@@ -119,7 +167,8 @@ export function mount(stage, state) {
           {},
           h("div.admin__legend-item", {}, h("span.admin__legend-dot"), "Tersedia"),
           h("div.admin__legend-item", {}, h("span.admin__legend-dot.admin__legend-dot--occupied"), "Terisi"),
-          h("div.admin__legend-item", {}, h("span.admin__legend-dot.admin__legend-dot--delivering"), "Sedang Diisi")
+          h("div.admin__legend-item", {}, h("span.admin__legend-dot.admin__legend-dot--delivering"), "Sedang Diisi"),
+          h("div.admin__legend-item", {}, h("span.admin__legend-dot", { style: { background: "var(--danger)" } }), "Rusak")
         )
       );
       body.appendChild(grid);
@@ -131,7 +180,29 @@ export function mount(stage, state) {
           const l = lockers.find(x => x.id === s.lockerId);
           return h(
             "div.admin__staff-item.recipient",
-            {},
+            {
+              style: { cursor: "pointer" },
+              onclick: () => {
+                showModal(`Kelola Staf: ${s.name}`, (close) => h(
+                  "div", { style: { display: "grid", gap: "var(--space-3)" } },
+                  h("button.btn.btn--primary", { 
+                    onclick: () => { 
+                      const newName = prompt("Ubah Nama Staf:", s.name); 
+                      if (newName) { s.name = newName; renderBody(); }
+                      close(); 
+                    } 
+                  }, "Ubah Nama"),
+                  h("button.btn.btn--primary", { 
+                    onclick: () => { 
+                      const newDept = prompt("Ubah Departemen:", s.dept); 
+                      if (newDept) { s.dept = newDept; renderBody(); }
+                      close(); 
+                    } 
+                  }, "Ubah Departemen"),
+                  h("button.btn.btn--ghost", { onclick: close }, "Batal")
+                ));
+              }
+            },
             h(
               "div.recipient__avatar",
               {},
