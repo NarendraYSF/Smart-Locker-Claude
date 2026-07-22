@@ -1169,6 +1169,7 @@
     <li class="subbab-row"><span class="num">4.9</span><span class="title-text">Rancangan Antarmuka</span><span class="dots"></span><span class="pg">62</span></li>
 
     <li class="bab-row" style="margin-top:1em;"><span class="num"></span><span class="title-text">DAFTAR PUSTAKA</span><span class="dots"></span><span class="pg">67</span></li>
+    <li class="bab-row"><span class="num"></span><span class="title-text">LAMPIRAN</span><span class="dots"></span><span class="pg">69</span></li>
   </ul>
 </section>
 
@@ -1245,15 +1246,15 @@
 
   <h3 class="subsubbab">1.4.3 Waktu (Time)</h3>
   <ol>
-    <li>Pengerjaan mengikuti kalender akademik semester berjalan: tahap analisis sistem dan kebutuhan (BAB I sampai dengan BAB III) diselesaikan hingga Ujian Tengah Semester (UTS), sedangkan tahap perancangan UML, pembangunan prototipe, dan pengujian diselesaikan hingga Ujian Akhir Semester (UAS).</li>
-    <li>Pembahasan dalam laporan UTS ini dibatasi pada tahap analisis dan kebutuhan sistem; tahap perancangan, implementasi, dan pengujian akan dibahas pada laporan UAS.</li>
+    <li>Pengerjaan mengikuti kalender akademik semester berjalan: tahap analisis sistem, kebutuhan, dan perancangan (BAB I sampai dengan BAB IV) diselesaikan hingga Ujian Tengah Semester (UTS), sedangkan tahap pembangunan prototipe, evaluasi, dan perbaikan iteratif diselesaikan hingga Ujian Akhir Semester (UAS).</li>
+    <li>Pembahasan dalam laporan UTS ini mencakup tahap analisis, kebutuhan, dan perancangan sistem; tahap implementasi, pengujian, dan penyempurnaan akan dibahas pada laporan UAS.</li>
   </ol>
 
   <h3 class="subsubbab">1.4.4 Proses</h3>
   <ol>
     <li>Metode pengembangan sistem yang digunakan dalam penelitian ini adalah metode <em>Prototyping</em> yang terdiri atas enam tahapan berurutan, yaitu Pengumpulan Data, Analisis Sistem, Perancangan Sistem, Pembangunan Purwarupa, Evaluasi Purwarupa, serta Perbaikan dan Iterasi, sebagaimana dijabarkan secara rinci pada subbab 1.8 laporan ini.</li>
-    <li>Laporan Ujian Tengah Semester (UTS) ini hanya mencakup dua tahapan awal dari keseluruhan siklus <em>Prototyping</em>, yakni tahap Pengumpulan Data (<em>Collecting Data</em>) dan tahap Analisis Sistem (<em>System Analysis</em>), yang pembahasannya tertuang pada BAB II (analisis sistem berjalan beserta permasalahannya) dan BAB III (perumusan kebutuhan fungsional, nonfungsional, perangkat keras, perangkat lunak, serta kebutuhan data sistem usulan).</li>
-    <li>Empat tahapan lanjutan, yaitu Perancangan Sistem (<em>System Design</em>), Pembangunan Purwarupa (<em>Build Prototype</em>), Evaluasi Purwarupa (<em>Prototype Evaluation</em>), dan Perbaikan serta Iterasi (<em>Refinement</em>), berada di luar lingkup laporan UTS ini dan akan dibahas secara menyeluruh pada laporan Ujian Akhir Semester (UAS).</li>
+    <li>Laporan Ujian Tengah Semester (UTS) ini mencakup tiga tahapan awal dari keseluruhan siklus <em>Prototyping</em>, yakni tahap Pengumpulan Data (<em>Collecting Data</em>), tahap Analisis Sistem (<em>System Analysis</em>), dan tahap Perancangan Sistem (<em>System Design</em>), yang pembahasannya tertuang pada BAB II (analisis sistem berjalan beserta permasalahannya), BAB III (perumusan kebutuhan fungsional, nonfungsional, perangkat keras, perangkat lunak, serta kebutuhan data sistem usulan), dan BAB IV (pemodelan UML, perancangan basis data, serta rancangan antarmuka kios).</li>
+    <li>Tiga tahapan lanjutan, yaitu Pembangunan Purwarupa (<em>Build Prototype</em>), Evaluasi Purwarupa (<em>Prototype Evaluation</em>), dan Perbaikan serta Iterasi (<em>Refinement</em>), berada di luar lingkup laporan UTS ini dan akan dibahas secara menyeluruh pada laporan Ujian Akhir Semester (UAS).</li>
     <li>Alur bisnis yang dianalisis pada laporan ini dibatasi pada dua proses utama yang berlangsung dalam pengelolaan penitipan surat dan paket saat ini, yaitu prosedur penitipan kiriman oleh kurir melalui pos keamanan, serta prosedur pengambilan kiriman oleh dosen atau tenaga kependidikan dari pos keamanan.</li>
   </ol>
 
@@ -1347,7 +1348,7 @@
     <li><strong>Evaluasi Purwarupa (<em>Prototype Evaluation</em>).</strong> Menguji purwarupa kepada calon pengguna (dosen, tenaga kependidikan, dan kurir) untuk memvalidasi alur, keterbacaan antarmuka, dan kesesuaian dengan kebutuhan yang telah dirumuskan.</li>
     <li><strong>Perbaikan dan Iterasi (<em>Refinement</em>).</strong> Memperbaiki rancangan dan purwarupa berdasarkan temuan evaluasi, kemudian mengulang siklus evaluasi hingga rancangan dinilai layak menjadi dasar implementasi penuh beserta integrasi perangkat keras (RFID, solenoid, dan sensor pintu).</li>
   </ol>
-  <p>Sesuai batasan waktu pada subbab 1.4.3, laporan UTS ini mencakup tahap 1 dan 2, sedangkan tahap 3 sampai 6 akan dibahas pada laporan UAS.</p>
+  <p>Sesuai batasan waktu pada subbab 1.4.3, laporan UTS ini mencakup tahap 1 sampai 3, sedangkan tahap 4 sampai 6 akan dibahas pada laporan UAS.</p>
 </section>
 
 
@@ -1365,7 +1366,11 @@
 
   <p><strong>BAB III ANALISIS KEBUTUHAN SISTEM</strong></p>
   <p>Bab ini membahas analisis kebutuhan sistem yang akan dirancang, identifikasi pengguna atau aktor, kebutuhan fungsional, kebutuhan nonfungsional, kebutuhan perangkat keras, kebutuhan perangkat lunak, kebutuhan data, kebutuhan input proses output, hingga spesifikasi kebutuhan sistem secara keseluruhan dalam bentuk yang lebih terstruktur sebagai cikal bakal dokumen <em>Software Requirements Specification</em> (SRS).</p>
+
+  <p><strong>BAB IV PERANCANGAN SISTEM</strong></p>
+  <p>Bab ini membahas perancangan sistem usulan yang meliputi arsitektur sistem tiga lapis (<em>three-tier architecture</em>), pemodelan perilaku sistem menggunakan diagram UML (<em>use case diagram</em>, <em>activity diagram</em>, <em>sequence diagram</em>, dan <em>class diagram</em>), perancangan basis data relasional beserta struktur tabel, serta rancangan antarmuka pengguna kios dalam orientasi <em>portrait</em> 1080 × 1920 piksel.</p>
 </section>
+
 
 
 <!-- =============================================================
@@ -1609,6 +1614,13 @@
     <div class="flow-step">Penerima datang ke pos keamanan dan mengambil kiriman</div>
   </div>
   <p class="caption small">Gambar 2.3 Diagram Alur Prosedur Penitipan Paket pada Sistem Berjalan</p>
+
+  <p>Selain diagram alur di atas, Gambar 2.4 menyajikan ilustrasi pemetaan visual (<em>illustrative mapping</em>) yang menggambarkan keseluruhan alur sistem berjalan secara spasial, mencakup alur penitipan paket oleh kurir (sisi kiri) dan alur pengambilan kiriman oleh dosen/tenaga kependidikan (sisi kanan), beserta titik-titik permasalahan (<em>pain points</em>) yang ditandai dengan ikon peringatan.</p>
+
+  <figure style="text-align:center; margin:1em 0;">
+    <img src="map-sistem-berjalan.png" alt="Pemetaan Visual Alur Sistem Berjalan Penitipan Surat dan Paket FST" style="max-width:100%; height:auto;" />
+    <figcaption class="caption small">Gambar 2.4 Pemetaan Visual Alur Sistem Berjalan — Penitipan Surat dan Paket FST UIN Jakarta</figcaption>
+  </figure>
 </section>
 
 
@@ -1712,7 +1724,7 @@
   </table>
   <p class="caption small">Tabel 2.5 Perbandingan Sistem Berjalan dan Sistem yang Diusulkan</p>
 
-  <p>Untuk memberikan gambaran visual yang lebih ringkas, perbandingan antara sistem berjalan dan sistem yang diusulkan disajikan pula dalam bentuk diagram dua kolom pada Gambar 2.4 berikut.</p>
+  <p>Untuk memberikan gambaran visual yang lebih ringkas, perbandingan antara sistem berjalan dan sistem yang diusulkan disajikan pula dalam bentuk diagram dua kolom pada Gambar 2.5 berikut.</p>
 
   <div class="compare-vis">
     <div class="cv-side berjalan">
@@ -1742,7 +1754,7 @@
       </ul>
     </div>
   </div>
-  <p class="caption small">Gambar 2.4 Perbandingan Visual Karakteristik Sistem Berjalan dan Sistem yang Diusulkan</p>
+  <p class="caption small">Gambar 2.5 Perbandingan Visual Karakteristik Sistem Berjalan dan Sistem yang Diusulkan</p>
 </section>
 
 
@@ -3260,6 +3272,95 @@
 
 
 <!-- =============================================================
+     LAMPIRAN
+     ============================================================= -->
+<section class="page bab-page">
+  <span class="pageno"></span>
+  <h1 class="bab">LAMPIRAN</h1>
+
+  <h2 class="subbab">Lampiran A — Dokumentasi Sistem Berjalan</h2>
+  <p class="no-indent">Gambar berikut menunjukkan peta lokasi dan kondisi sistem penitipan surat dan paket yang berjalan saat ini di pos keamanan gedung Fakultas Sains dan Teknologi UIN Syarif Hidayatullah Jakarta.</p>
+
+  <figure class="diagram-figure">
+    <img src="map-sistem-berjalan.png" style="max-width:100%;border:1px solid #000;" alt="Peta Lokasi Sistem Berjalan — Pos Keamanan FST"/>
+    <figcaption>Lampiran A.1 — Peta Lokasi dan Kondisi Sistem Berjalan di Pos Keamanan FST</figcaption>
+  </figure>
+</section>
+
+
+<section class="page">
+  <span class="pageno"></span>
+
+  <h2 class="subbab">Lampiran B — Tangkapan Layar Prototipe Antarmuka Kios</h2>
+  <p class="no-indent">Berikut adalah tangkapan layar (<em>screenshot</em>) dari prototipe antarmuka kios loker pintar yang telah dibangun menggunakan teknologi web standar (HTML5, CSS3, JavaScript ES6+) dengan orientasi <em>portrait</em> 1080 × 1920 piksel.</p>
+
+  <h3 class="subsubbab">B.1 Alur Dosen / Tenaga Kependidikan (Staf)</h3>
+
+  <figure class="diagram-figure">
+    <img src="print/shots/tap-card.png" style="max-width:80%;border:1px solid #000;" alt="Layar Tap Kartu RFID"/>
+    <figcaption>Lampiran B.1 — Layar Tap Kartu RFID (Autentikasi)</figcaption>
+  </figure>
+
+  <figure class="diagram-figure">
+    <img src="print/shots/dashboard.png" style="max-width:80%;border:1px solid #000;" alt="Layar Dashboard Personal Staf"/>
+    <figcaption>Lampiran B.2 — Layar Dashboard Personal Staf</figcaption>
+  </figure>
+</section>
+
+
+<section class="page">
+  <span class="pageno"></span>
+
+  <h3 class="subsubbab">B.2 Alur Kurir / Tamu (Penitipan Paket)</h3>
+
+  <figure class="diagram-figure">
+    <img src="print/shots/courier-search.png" style="max-width:80%;border:1px solid #000;" alt="Layar Pencarian Penerima"/>
+    <figcaption>Lampiran B.3 — Layar Pencarian Penerima (Kurir)</figcaption>
+  </figure>
+
+  <figure class="diagram-figure">
+    <img src="print/shots/courier-size.png" style="max-width:80%;border:1px solid #000;" alt="Layar Pemilihan Ukuran Paket"/>
+    <figcaption>Lampiran B.4 — Layar Pemilihan Ukuran Paket</figcaption>
+  </figure>
+</section>
+
+
+<section class="page">
+  <span class="pageno"></span>
+
+  <figure class="diagram-figure">
+    <img src="print/shots/courier-assign.png" style="max-width:80%;border:1px solid #000;" alt="Layar Penugasan Loker Otomatis"/>
+    <figcaption>Lampiran B.5 — Layar Penugasan Loker Otomatis</figcaption>
+  </figure>
+
+  <h3 class="subsubbab">B.3 Layar Umum (Berlaku untuk Semua Alur)</h3>
+
+  <figure class="diagram-figure">
+    <img src="print/shots/done-receipt.png" style="max-width:80%;border:1px solid #000;" alt="Layar Selesai dan Tanda Terima"/>
+    <figcaption>Lampiran B.6 — Layar Konfirmasi Selesai dan Tanda Terima Digital</figcaption>
+  </figure>
+</section>
+
+
+<section class="page">
+  <span class="pageno"></span>
+
+  <h2 class="subbab">Lampiran C — Tampilan Layar Penuh Prototipe Kios</h2>
+  <p class="no-indent">Berikut adalah tangkapan layar dalam rasio 16:10 yang menunjukkan tampilan keseluruhan prototipe kios loker pintar pada mode layar penuh.</p>
+
+  <figure class="diagram-figure">
+    <img src="final-idle-16by10.png" style="max-width:100%;border:1px solid #000;" alt="Tampilan Layar Idle Kios Loker Pintar"/>
+    <figcaption>Lampiran C.1 — Tampilan Layar Idle (Halaman Utama) Kios Loker Pintar</figcaption>
+  </figure>
+
+  <figure class="diagram-figure">
+    <img src="final-courier-16by10.png" style="max-width:100%;border:1px solid #000;" alt="Tampilan Layar Mode Kurir Kios Loker Pintar"/>
+    <figcaption>Lampiran C.2 — Tampilan Layar Mode Kurir pada Kios Loker Pintar</figcaption>
+  </figure>
+</section>
+
+
+<!-- =============================================================
      SUMBER PUML - disisipkan sebagai script type="text/plantuml"
      ============================================================= -->
 
@@ -4076,6 +4177,7 @@ Repo -->> UI : staf, loker, kiriman terbaru
 title Class Diagram - Loker Pintar FST (Kiosk Frontend Model)
 
 skinparam shadowing false
+skinparam linetype ortho
 skinparam classAttributeIconSize 0
 skinparam class {
   BackgroundColor #F4F1E8
@@ -4251,12 +4353,35 @@ KioskApp "1" *-- "1" ToastHost
 KioskApp ..> ClockService : uses
 KioskApp ..> Screen        : routes to >
 KioskApp ..> DataRepository : queries
+KioskApp ..> RfidReader          : << planned >> configures
+KioskApp ..> LockerHardware      : << planned >> configures
+KioskApp ..> NotificationGateway : << planned >> configures
+
+KioskState --> Staff       : user
+KioskState --> Staff       : recipient
+KioskState --> PackageSize : packageSize
+KioskState --> Locker      : assignedLocker
+KioskState --> OpenReason  : openReason
 
 DataRepository "1" o-- "*" Staff
 DataRepository "1" o-- "*" Locker
 DataRepository "1" o-- "*" Mail
 DataRepository "1" o-- "*" PackageSize
 DataRepository "1" o-- "*" Department
+
+' Screens that need data
+TapCardScreen        ..> DataRepository
+DashboardScreen      ..> DataRepository
+OpeningLockerScreen  ..> DataRepository
+CourierSearchScreen  ..> DataRepository
+CourierSizeScreen    ..> DataRepository
+CourierAssignScreen  ..> DataRepository
+MailScreen           ..> DataRepository
+
+' Hardware adapter bindings
+TapCardScreen       ..> RfidReader        : << adapter >>
+OpeningLockerScreen ..> LockerHardware    : << adapter >>
+CourierAssignScreen ..> NotificationGateway : << adapter >>
 
 @enduml
 </script>
@@ -4511,14 +4636,6 @@ end note
   /* -------- Inisialisasi setelah halaman selesai dimuat -------- */
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", renderPlantUmlDiagrams);
-  } else {
-    renderPlantUmlDiagrams();
-  }
-</script>
-
-</body>
-</html>
-tLoaded", renderPlantUmlDiagrams);
   } else {
     renderPlantUmlDiagrams();
   }

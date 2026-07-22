@@ -6,6 +6,7 @@ title Class Diagram (Dengan Spesialisasi) — Loker Pintar FST
 ' versi flat yang memakai atribut role/size.
 
 skinparam shadowing false
+skinparam linetype ortho
 skinparam classAttributeIconSize 0
 skinparam class {
   BackgroundColor #F4F1E8

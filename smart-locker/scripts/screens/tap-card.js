@@ -78,7 +78,9 @@ export function mount(stage) {
       {},
       h("span", {}, "Dev shortcut:"),
       h("span.tap__hint-key", {}, "Enter"),
-      h("span", {}, "untuk simulasi tap")
+      h("span", {}, "(Staf),"),
+      h("span.tap__hint-key", {}, "A"),
+      h("span", {}, "(Admin)")
     )
   );
 
@@ -93,19 +95,29 @@ export function mount(stage) {
   const keyHandler = (e) => {
     if (e.key === "Enter" || e.code === "Enter") {
       e.preventDefault();
-      simulate();
+      simulate(); // Default staff
+    } else if (e.key === "a" || e.key === "A") {
+      e.preventDefault();
+      simulate("199607122020121011"); // Rina Agustina (Admin)
     } else if (e.key === "Escape") {
       navigate("idle");
     }
   };
   window.addEventListener("keydown", keyHandler);
 
-  function simulate() {
+  function simulate(forceNip) {
     clearTimeout(autoId);
     window.removeEventListener("keydown", keyHandler);
-    // pick a deterministic but visually rich user: first staff with mail
-    const user = staff.find((s) => s.nip === "198203102009011012") || staff[0];
-    navigate("dashboard", { user });
+    // pick a deterministic but visually rich user, or a specific admin if requested
+    const user = forceNip 
+      ? staff.find((s) => s.nip === forceNip) 
+      : (staff.find((s) => s.nip === "198203102009011012") || staff[0]);
+      
+    if (user.dept === "Sekretariat FST") {
+      navigate("admin", { user });
+    } else {
+      navigate("dashboard", { user });
+    }
   }
 
   return () => {

@@ -11,6 +11,7 @@ import { mount as mountOpening } from "./screens/opening-locker.js";
 import { mount as mountCourier } from "./screens/courier.js";
 import { mount as mountMail } from "./screens/mail.js";
 import { mount as mountDone } from "./screens/done.js";
+import { mount as mountAdmin } from "./screens/admin.js";
 
 const SCREENS = {
   idle: mountIdle,
@@ -21,7 +22,8 @@ const SCREENS = {
   "courier-size": (root, ctx) => mountCourier(root, ctx, "size"),
   "courier-assign": (root, ctx) => mountCourier(root, ctx, "assign"),
   mail: mountMail,
-  "done-screen": mountDone
+  "done-screen": mountDone,
+  admin: mountAdmin
 };
 
 /** Global reactive-ish state. Rerender = navigate(current). */

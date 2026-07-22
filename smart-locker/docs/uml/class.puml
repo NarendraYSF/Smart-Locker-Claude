@@ -2,6 +2,7 @@
 title Class Diagram — Loker Pintar FST (Kiosk Frontend Model)
 
 skinparam shadowing false
+skinparam linetype ortho
 skinparam classAttributeIconSize 0
 skinparam class {
   BackgroundColor #F4F1E8
@@ -256,6 +257,9 @@ KioskApp "1" *-- "1" ToastHost
 KioskApp ..> ClockService : uses
 KioskApp ..> Screen        : routes to >
 KioskApp ..> DataRepository : queries
+KioskApp ..> RfidReader          : << planned >> configures
+KioskApp ..> LockerHardware      : << planned >> configures
+KioskApp ..> NotificationGateway : << planned >> configures
 
 KioskState --> Staff       : user
 KioskState --> Staff       : recipient

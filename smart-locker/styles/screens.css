@@ -1118,3 +1118,225 @@
   text-transform: uppercase;
   color: var(--fg-subtle);
 }
+
+/* ==========================================================================
+   ADMIN SCREEN
+   ========================================================================== */
+
+.admin {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-8);
+  gap: var(--space-6);
+}
+
+.admin__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.admin__title-wrap {
+  margin-left: auto;
+  text-align: right;
+}
+
+.admin__title-wrap h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 400;
+  color: var(--fg-primary);
+  margin-top: var(--space-1);
+}
+
+.admin__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.admin__stat {
+  background: var(--bg-card-translucent);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.admin__stat-label {
+  font-size: var(--fs-sm);
+  color: var(--fg-secondary);
+}
+
+.admin__stat-value {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  color: var(--fg-primary);
+  line-height: 1;
+}
+
+.admin__stat-value--occupied {
+  color: var(--c-green);
+}
+
+.admin__stat-value--gold {
+  color: var(--c-gold);
+}
+
+.admin__body {
+  flex: 1;
+  background: var(--bg-card-translucent);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-2xl);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.admin__tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line-soft);
+  padding: 0 var(--space-6);
+}
+
+.admin__tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: var(--space-5) var(--space-6);
+  color: var(--fg-secondary);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: -1px;
+}
+
+.admin__tab-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+}
+
+.admin__tab--active {
+  color: var(--fg-primary);
+  border-bottom-color: var(--c-green);
+}
+
+.admin__tab--active .admin__tab-icon {
+  opacity: 1;
+  color: var(--c-green);
+}
+
+.admin__grid-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
+  gap: var(--space-6);
+  overflow-y: auto;
+}
+
+.admin__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.admin__cell {
+  background: var(--bg-elevated);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.admin__cell-id {
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  color: var(--fg-primary);
+}
+
+.admin__cell-size {
+  font-size: var(--fs-xs);
+  color: var(--fg-subtle);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-label);
+}
+
+.admin__cell--occupied {
+  border-color: var(--c-green);
+  background: rgba(39, 209, 124, 0.05);
+}
+
+.admin__cell--delivering {
+  border-color: var(--c-gold);
+  background: rgba(212, 168, 75, 0.05);
+}
+
+.admin__legend {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-6);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line-soft);
+}
+
+.admin__legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--fg-secondary);
+}
+
+.admin__legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--line-soft);
+  background: var(--bg-elevated);
+}
+
+.admin__legend-dot--occupied {
+  border-color: var(--c-green);
+  background: var(--c-green);
+}
+
+.admin__legend-dot--delivering {
+  border-color: var(--c-gold);
+  background: var(--c-gold);
+}
+
+.admin__staff-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Ensure staff item inherits recipient styling properly */
+.admin__staff-item {
+  cursor: default;
+}
+
+.admin__foot {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-4);
+}
