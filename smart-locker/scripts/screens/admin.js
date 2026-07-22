@@ -173,6 +173,47 @@ export function mount(stage, state) {
       );
       body.appendChild(grid);
     } else {
+      const container = h("div", { style: { display: "flex", flexDirection: "column", gap: "var(--space-4)", height: "100%" } });
+      
+      const actionBar = h(
+        "div",
+        { style: { display: "flex", justifyContent: "flex-end" } },
+        h(
+          "button.btn.btn--primary",
+          {
+            onclick: () => {
+              showModal("Tambah Staf Baru", (close) => h(
+                "div", { style: { display: "grid", gap: "var(--space-3)" } },
+                h("button.btn.btn--primary", { 
+                  onclick: () => { 
+                    const nip = prompt("Masukkan NIP:");
+                    if (!nip) return;
+                    const name = prompt("Masukkan Nama Lengkap:");
+                    if (!name) return;
+                    const dept = prompt("Masukkan Departemen:");
+                    if (!dept) return;
+                    
+                    staff.unshift({
+                      nip,
+                      name,
+                      role: "Dosen", // Default to Dosen
+                      dept,
+                      initials: name.slice(0, 2).toUpperCase(),
+                      rfid: "N" + Math.floor(Math.random()*1000), // Mock RFID
+                      lockerId: null
+                    });
+                    renderBody();
+                    close(); 
+                  } 
+                }, "Isi Data & Simpan"),
+                h("button.btn.btn--ghost", { onclick: close }, "Batal")
+              ));
+            }
+          },
+          "+ Tambah Staf"
+        )
+      );
+      
       const list = h(
         "div.admin__staff-list",
         {},
@@ -223,7 +264,10 @@ export function mount(stage, state) {
           );
         })
       );
-      body.appendChild(list);
+      
+      container.appendChild(actionBar);
+      container.appendChild(list);
+      body.appendChild(container);
     }
   };
 
