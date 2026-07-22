@@ -1243,6 +1243,15 @@
   padding: var(--space-6);
   gap: var(--space-6);
   overflow-y: auto;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.admin__grid-wrap::-webkit-scrollbar { width: 6px; }
+.admin__grid-wrap::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 4px;
 }
 
 .admin__grid {
